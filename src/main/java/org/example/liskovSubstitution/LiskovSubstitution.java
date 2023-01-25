@@ -1,6 +1,20 @@
 package org.example.liskovSubstitution;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LiskovSubstitution {
+
+    public void ejecutar(){
+        List<FiguraGeometrica> figuras = new ArrayList<>();
+        figuras.add(new Cuadrado(10));
+        figuras.add(new Triangulo(5, 10));
+        figuras.add(new Circulo(2));
+
+        for(FiguraGeometrica figura: figuras) {
+            System.out.println("Area: " + figura.area());
+        }
+    }
 }
 
 
@@ -57,18 +71,6 @@ class Circulo extends FiguraGeometrica {
     }
 }
 
-
-    public static void main(String[] args) {
-        List<FiguraGeometrica> figuras = new ArrayList<>();
-        figuras.add(new Cuadrado(10));
-        figuras.add(new Triangulo(5, 10));
-        figuras.add(new Circulo(2));
-
-        for(FiguraGeometrica figura: figuras) {
-            System.out.println("Area: " + figura.area());
-        }
-
-    }
 /*
 * Un anti-patrón de sustitución de Liskov en Java podría ser una jerarquía de clases "Empleado"
 * que tiene una clase base "Empleado" y varias subclases que representan diferentes tipos de
