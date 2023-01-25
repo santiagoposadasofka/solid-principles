@@ -9,7 +9,7 @@ public class OpenClose {
      * y vamos a ejecutar sus comportamientos.
      * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
      * ej. impuestoDepartamental ...
-     * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
+     * añadir un ejemplo de un escenario en donde se siga este patron o uno en donde no.
      * */
 }
 
