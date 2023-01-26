@@ -1,14 +1,51 @@
 package org.example.singleResponsibility;
 
+import java.util.Scanner;
+
 public class SingleResponsibility {
     /**
-     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
      * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
      * van a ejecutar sus comportamientos.
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
+    private double cantidad;
+    private double saldo = 10000;
+    int opc = 0;
+    CuentaBancaria cuentaBancaria = new CuentaBancaria(saldo);
+    public void ejecutarSingleResponsibilityCuenta(){
+        do{
+            Scanner in = new Scanner(System.in);
+            System.out.println("Cuenta Bancaria");
+            System.out.println("\nElige una opción");
+            System.out.println("1. Depositar dinero. \n2. Retirar dinero. \n3. Ver saldo. \n4. Salir");
+            opc = in.nextInt();
 
-    public void ejecutar(){
+            switch (opc) {
+                case 1:
+                    System.out.println("Cuanto dinero desea depositar");
+                    cantidad = in.nextDouble();
+                    cuentaBancaria.depositar(cantidad);
+                    break;
+                case 2:
+                   System.out.println("Cuanto dinero desea retirar");
+                   cantidad = in.nextDouble();
+                   cuentaBancaria.retirar(cantidad);
+                   break;
+                case 3:
+                    System.out.println("Su saldo es de $:" + cuentaBancaria.getSaldo());
+                    break;
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción Incorrecta");
+            }
+        }while (opc!=4);
+
+    }
+
+    public void ejecutarSingleResponsibilitySistema() {
 
     }
 }
