@@ -1,6 +1,71 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
+
+
+    /**
+     *  Ejemplo de patron SingleResponsability. Esta clase se encarga solamente lo relacionado con la lavadora, lavar, secar y enjuagar.
+     */
+    class Lavadora{
+        private int cantidadDeRopa;
+
+        public Lavadora(int cantidadDeRopa) {
+            this.cantidadDeRopa = cantidadDeRopa;
+        }
+
+        public void setCantidadDeRopa(int cantidadDeRopa) {
+            this.cantidadDeRopa = cantidadDeRopa;
+        }
+
+        public void lavar() {
+            System.out.println("Se esta lavando" + this.cantidadDeRopa + " kilos de ropa ");
+        }
+
+        public void enjuagar() {
+            System.out.println("Se esta enjuagando" + this.cantidadDeRopa + " kilos de ropa ");
+        }
+
+        public void secar() {
+            System.out.println("Se esta secando" + this.cantidadDeRopa + " kilos de ropa ");
+        }
+    }
+
+    public void  ejecutar(){
+        /**
+         * se instancia clase cuentaBanria.
+         */
+        CuentaBancaria cuentaBancaria = new CuentaBancaria(5000);
+        cuentaBancaria.depositar(10000);
+        cuentaBancaria.retirar(12000);
+        System.out.println("El saldo de su cuenta es:" + cuentaBancaria.getSaldo());
+
+        /**
+         * se instancia clase sistema.
+         */
+
+        Sistema sistema = new Sistema();
+        sistema.depositar(15000);
+        sistema.retirar(10000);
+
+        /**
+         * instancia de lavadora
+         *
+         */
+
+        Lavadora lavadora = new Lavadora(15);
+        lavadora.lavar();
+        lavadora.enjuagar();
+        lavadora.secar();
+
+
+    };
+
 }
 
 
@@ -70,5 +135,10 @@ class Sistema {
         printer.print(receipt);
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
+    }
+
+    public static void main(String[] args){
+
+
     }
 }

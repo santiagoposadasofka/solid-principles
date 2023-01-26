@@ -4,8 +4,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LiskovSubstitution {
+    /**
+     * El ejemplo que planteo para LiskovSubstitution es un patron con una clase abstracta animal
+     * y dos clases que extienden de esta(Humano, Canino) con un metodo en comun que no hace lo mismo
+     * pero no interfiere con la funcionlidad ddel padre.
+     */
+    abstract class Animal{
+        public abstract String comunicarse();
+    }
+
+    class Humano extends Animal{
+        String palabras;
+
+        public Humano(String palabras) {
+            this.palabras = palabras;
+        }
+
+        @Override
+        public String comunicarse() {
+            return this.palabras;
+        }
+    }
+
+    class Canino extends Animal{
+        String ladrar;
+
+        public Canino(String ladrar) {
+            this.ladrar = ladrar;
+        }
+
+        @Override
+        public String comunicarse() {
+            return this.ladrar;
+        }
+    }
 
     public void ejecutar(){
+
+        /**
+         * instancias figuras geometricas
+         */
         List<FiguraGeometrica> figuras = new ArrayList<>();
         figuras.add(new Cuadrado(10));
         figuras.add(new Triangulo(5, 10));
@@ -14,6 +52,28 @@ public class LiskovSubstitution {
         for(FiguraGeometrica figura: figuras) {
             System.out.println("Area: " + figura.area());
         }
+
+        /**
+         * instancia e empleados
+         */
+        List<Empleado> empleados = new ArrayList<>();
+        empleados.add(new EmpleadoEjecutivo());
+        empleados.add(new EmpleadoOperativo());
+        empleados.add(new EmpleadoTemporal());
+
+        for (Empleado empleado : empleados) {
+            empleado.realizarTarea();
+        }
+        /**
+         * instancia clase Animal
+         */
+
+        Humano efrain = new Humano("Hola mi nombre es Efrain");
+        efrain.comunicarse();
+
+        Canino labrador = new Canino("gua gua gua");
+        labrador.comunicarse();
+
     }
 }
 
@@ -97,7 +157,7 @@ class EmpleadoEjecutivo extends Empleado {
         tomarDecision();
     }
     public void tomarDecision() {
-        //...
+
     }
 }
 
@@ -107,16 +167,15 @@ class EmpleadoOperativo extends Empleado {
         realizarOperacion();
     }
     public void realizarOperacion() {
-        //...
+
     }
 }
 
 class EmpleadoTemporal extends Empleado {
     @Override
     public void realizarTarea() {
-        realizarTareaTemporal();
+       realizarTareaTemporal();
     }
     public void realizarTareaTemporal() {
-        //...
     }
 }
