@@ -1,7 +1,24 @@
 package org.example.dependecyInversion;
 
+import jdk.jshell.Snippet;
+
 public class DependencyInvesion {
+    /**
+     * Se Sigue con la dinamica de los principios previos
+     * */
+    public void ejecutar(){
+        GmailService gmailService = new GmailService();
+        OutlookService outlookService = new OutlookService();
+
+        Empleado SantiagoPosada = new Empleado(gmailService);
+        SantiagoPosada.enviarCorreo("Sergio", "Solicitud", "Por favor realizar el pull request");
+        Empleado JesusMiguel = new Empleado(outlookService);
+        JesusMiguel.enviarCorreo("Santiago", "Solicitud", "Por favor revisar el pull request de Sergio");
+    }
+
 }
+
+
 
 
 /*
@@ -10,8 +27,6 @@ public class DependencyInvesion {
 * directamente de una implementación específica de "ServicioDeCorreo", como "GmailService" o "OutlookService",
 * se proporciona una instancia de "ServicioDeCorreo" a través de un constructor o un setter. De esta forma,
 * "Empleado" no tiene conocimiento de cómo se envían los correos electrónicos, sino que simplemente utiliza la interfaz.
-
-
  * */
 
 interface ServicioDeCorreo {
@@ -22,6 +37,9 @@ class GmailService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Gmail
+        System.out.println("Enviando email desde google " +
+                "a " + destinatario + " con el asunto "
+                + asunto + "diciendole: " + mensaje);
     }
 }
 
@@ -29,6 +47,9 @@ class OutlookService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Outlook
+        System.out.println("Enviando email desde outlook " +
+                "a " + destinatario + " con el asunto "
+                + asunto + " diciendole: " + mensaje);
     }
 }
 

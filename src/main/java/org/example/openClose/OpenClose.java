@@ -4,6 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OpenClose {
+    /**
+     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     * y vamos a ejecutar sus comportamientos.
+     * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     * ej. impuestoDepartamental ...
+     * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
+     * */
+
+    public void ejecutar(){
+        System.out.println("Calculadora Impuestos");
+        CalculadoraImpuestos calculadoraImpuestos1 = new CalculadoraImpuestos();
+
+        List<Producto> productos = new ArrayList<>();
+
+        Producto producto1 = new Producto(1000);
+        productos.add(producto1);
+        Producto producto2 = new Producto(2000);
+        productos.add(producto2);
+        Producto producto3 = new Producto(1500);
+        productos.add(producto3);
+
+        System.out.println("Los impuestos totales para los productos adquiridos son de " + calculadoraImpuestos1.calcularImpuestos(productos));
+
+    }
 }
 
 
@@ -37,6 +61,11 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+class ImpuestoRegional extends Impuesto {
+    @Override
+    double calcular(Producto producto) {return producto.getPrecio() * 0.10; }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -44,6 +73,7 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+        reglasImpuestos.add(new ImpuestoRegional());
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
@@ -75,7 +105,7 @@ class CalculadoraImpuestos {
 * */
 
 
-class CalculadoraImpuestosAtiPatron {
+class CalculadoraImpuestosAntiPatron {
     public double calcularImpuestosAtiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
@@ -83,6 +113,8 @@ class CalculadoraImpuestosAtiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "Regional"){
+                totalImpuestos += producto.getPrecio() * 0.10;
             }
         }
         return totalImpuestos;
