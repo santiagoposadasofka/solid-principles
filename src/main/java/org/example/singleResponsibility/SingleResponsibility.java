@@ -27,8 +27,10 @@ public class SingleResponsibility {
         List<CuentaBancaria> cuentasBancarias = new ArrayList<>();
         cuentasBancarias.add(new CuentaBancaria(45000));
 
+
         for(CuentaBancaria cuentaBancaria: cuentasBancarias){
-            System.out.println( "Cuenta bancaria" + cuentaBancaria);
+            System.out.println( "Cuenta bancaria: " + cuentaBancaria.getSaldo());
+
         }
 
     }
