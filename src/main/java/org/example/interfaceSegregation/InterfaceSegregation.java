@@ -24,9 +24,82 @@ public class InterfaceSegregation {
 
         System.out.println("Barco");
         barco.navegar();
+
+        Humano humano = new Humano();
+        Gato gato = new Gato();
+
+        System.out.println("Humano");
+        humano.hablar();
+        humano.caminar();
+        humano.hacerSonido();
+        humano.volar();
+        humano.nadar();
+
+        System.out.println("Gato");
+        gato.hacerSonido();
+        gato.volar();
+        gato.nadar();
     }
 }
 
+//Ejemplo de segregación de interfaces
+interface SerHumano {
+    void hablar();
+
+    void caminar();
+}
+
+interface SerVivo {
+    void hacerSonido();
+
+    void volar();
+
+    void nadar();
+}
+
+class Humano implements SerHumano, SerVivo {
+    @Override
+    public void hablar() {
+        System.out.println("Hablando...");
+    }
+
+    @Override
+    public void caminar() {
+        System.out.println("Caminando...");
+    }
+
+    @Override
+    public void hacerSonido() {
+        System.out.println("Silvando...");
+    }
+
+    @Override
+    public void volar() {
+        System.out.println("Un humano no puede volar");
+    }
+
+    @Override
+    public void nadar() {
+        System.out.println("Nadando...");
+    }
+}
+
+class Gato implements SerVivo {
+    @Override
+    public void hacerSonido() {
+        System.out.println("Gato: miau");
+    }
+
+    @Override
+    public void volar() {
+        System.out.println("El gato no puede volar");
+    }
+
+    @Override
+    public void nadar() {
+        System.out.println("El gato no puede nadar");
+    }
+}
 
 /*
  * Un ejemplo de aislamiento de interfaz en Java podría ser una interfaz "Volador" que tiene métodos
