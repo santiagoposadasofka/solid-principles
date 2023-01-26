@@ -10,9 +10,23 @@ public class OpenClose {
      * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
-     * */
-}
+     */
 
+    public void Ejecutar() {
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(500));
+        productos.add(new Producto(1000));
+        productos.add(new Producto(1500));
+
+        CalculadoraImpuestos calculation = new CalculadoraImpuestos();
+        double TotalImpuesto = calculation.calcularImpuestos(productos);
+        System.out.println("" + ":" + TotalImpuesto);
+
+        CalculadoraImpuestosAntiPatron calculadoraImpuestosAtiPatron = new CalculadoraImpuestosAntiPatron();
+        double TotalImpuestoAntipatron = calculadoraImpuestosAtiPatron.calcularImpuestosAtiPatron(productos);
+        System.out.println("" + ":" + TotalImpuestoAntipatron);
+    }
+}
 
 /*
 * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
@@ -33,6 +47,7 @@ abstract class Impuesto {
 class ImpuestoNacional extends Impuesto {
     @Override
     double calcular(Producto producto) {
+
         return producto.getPrecio() * 0.15;
     }
 }
@@ -40,7 +55,15 @@ class ImpuestoNacional extends Impuesto {
 class ImpuestoImportacion extends Impuesto {
     @Override
     double calcular(Producto producto) {
+
         return producto.getPrecio() * 0.25;
+    }
+}
+class ImpuestoMunicipal extends Impuesto{
+
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio() * 0.015;
     }
 }
 
@@ -51,6 +74,7 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+        reglasImpuestos.add(new ImpuestoMunicipal());
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
@@ -90,6 +114,8 @@ class CalculadoraImpuestosAntiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "ImpuestoMunicipal") {
+                totalImpuestos += producto.getPrecio() * 0.015;
             }
         }
         return totalImpuestos;
