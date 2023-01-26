@@ -1,6 +1,4 @@
 
-t
-Dsrc/main/java/org/example/dependecyInversion/DependencyInvesion.java,d\1\d1f13a050ea110657f5c21604bb6f9cda16dff81
 k
 ;src/main/java/org/example/singleResponsibility/Printer.java,5\3\5314eb08d0e3bdc6bb7bdf3803830f4ad28a0840
 l

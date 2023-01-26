@@ -9,17 +9,22 @@ public class Main {
     public static void main(String[] args) {
 
         SingleResponsibility single = new SingleResponsibility();
-       // single.ejecutar();
-        //single.ejecutar2();
-        //single.ejecutar3();
+        single.ejecutar();
+        single.ejecutar2();
+        single.ejecutar3();
 
         OpenClose open = new OpenClose();
-        //open.ejecutar2();
+        open.ejecutar();
+        open.ejecutar1();
+        open.ejecutar2();
 
         LiskovSubstitution liskov = new LiskovSubstitution();
-        //liskov.ejecutar2();
+        liskov.ejecutar();
+        liskov.ejecutar1();
+        liskov.ejecutar2();
 
         InterfaceSegregation interfaceSegregation = new InterfaceSegregation();
+        interfaceSegregation.ejecutar();
         interfaceSegregation.ejecutar1();
 
 
