@@ -1,19 +1,53 @@
 package org.example.openClose;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class OpenClose {
     /**
-     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir más reglas de cálculo de impuestos,
      * y vamos a ejecutar sus comportamientos.
-     * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos a añadir más reglas de impuestos,
      * ej. impuestoDepartamental ...
-     * añadir un ejemplo de un escenario en donde se siga este patron o uno en donde no.
+     * Añadir un ejemplo de un escenario en donde se siga este patron o uno en donde no.
      * */
+    public static void ejecutar(){
+        DecimalFormat formato=new DecimalFormat("#.####");
+        CalculadoraImpuestosAntiPatron antiPatron=new CalculadoraImpuestosAntiPatron();
+        CalculadoraImpuestos calculadoraImpuestos=new CalculadoraImpuestos();
+        calculadoraImpuestos.agregarReglaImpuesto(new ImpuestoDepartamental());
+        List<Producto> productos=new ArrayList<>();
+        for(int i=0;i<3;i++){
+            productos.add(new Producto(ThreadLocalRandom.current().nextDouble(1000.0,20001.0)));
+        }
+        System.out.println("El total de los impuestos a pagar es de: "+formato.format(calculadoraImpuestos.calcularImpuestos(productos)));
+        productos.get(0).setTipo("Nacional");
+        productos.get(1).setTipo("Importado");
+        productos.get(2).setTipo("Departamental");
+        System.out.println("El total de los impuestos a pagar es de: "+formato.format(antiPatron.calcularImpuestosAntiPatron(productos)));
+    }
+
+
 }
-
-
+interface Perimetro{
+    public double calcularPerimetro();
+}
+class circulo implements Perimetro{
+    int radio;
+    @Override
+    public double calcularPerimetro() {
+        return 2*Math.PI*radio;
+    }
+}
+class triangulo implements Perimetro{
+    int ladoUno,ladoDos,ladoTres;
+    @Override
+    public double calcularPerimetro() {
+        return ladoUno+ladoDos+ladoTres;
+    }
+}
 /*
 * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
 *  encarga de calcular los impuestos de una lista de objetos "Producto". La clase tiene un método
@@ -43,6 +77,12 @@ class ImpuestoImportacion extends Impuesto {
         return producto.getPrecio() * 0.25;
     }
 }
+class ImpuestoDepartamental extends Impuesto{
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio()*0.08;
+    }
+}
 
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
@@ -59,10 +99,10 @@ class CalculadoraImpuestos {
 
     public double calcularImpuestos(List<Producto> productos) {
         double totalImpuestos = 0;
+        int i=0;
         for (Producto producto : productos) {
-            for (Impuesto reglaImpuesto : this.reglasImpuestos) {
-                totalImpuestos += reglaImpuesto.calcular(producto);
-            }
+                totalImpuestos += this.reglasImpuestos.get(i).calcular(producto);
+                i++;
         }
         return totalImpuestos;
     }
@@ -82,14 +122,16 @@ class CalculadoraImpuestos {
 * */
 
 
-class CalculadoraImpuestosAtiPatron {
-    public double calcularImpuestosAtiPatron(List<Producto> productos) {
+class CalculadoraImpuestosAntiPatron {
+    public double calcularImpuestosAntiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
-            if (producto.getTipo() == "Nacional") {
+            if (producto.getTipo().equals("Nacional")) {
                 totalImpuestos += producto.getPrecio() * 0.15;
-            } else if (producto.getTipo() == "Importado") {
+            } else if (producto.getTipo().equals("Importado")) {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo().equals("Departamental")) {
+                totalImpuestos+= producto.getPrecio()*0.08;
             }
         }
         return totalImpuestos;
