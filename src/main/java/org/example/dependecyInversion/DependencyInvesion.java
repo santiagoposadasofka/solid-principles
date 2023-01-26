@@ -5,6 +5,16 @@ public class DependencyInvesion {
      * Se Sigue con la dinamica de los principios previos
      * */
 
+    public void ejecutar() {
+
+        Empleado Juan = new Empleado(gmailService);
+
+        gmailService.enviarCorreo("Pedro", " Cambio de Fechas", " Se realiza un cambio de inicio de proyecto");
+
+        Empleado Marta = new Empleado(outlookService);
+        outlookService.enviarCorreo(" Santiago", " Testing", " Se realizo pruebas de caja negra");
+    }
+
     GmailService gmailService = new GmailService();
 
     OutlookService outlookService = new OutlookService();
