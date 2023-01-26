@@ -17,6 +17,10 @@ public class SingleResponsibility {
 
         double saldo = miCuenta.getSaldo();
 
+        Sistema miSistema = new Sistema();
+        miSistema.depositar(500.00);
+        miSistema.retirar(200.00);
+
 
     }
 }
