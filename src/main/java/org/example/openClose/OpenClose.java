@@ -11,6 +11,10 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
+
+    public void ejecutar(){
+
+    }
 }
 
 

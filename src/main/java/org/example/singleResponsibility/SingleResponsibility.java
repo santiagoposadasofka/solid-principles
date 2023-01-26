@@ -16,11 +16,14 @@ public class SingleResponsibility {
         cuenta.depositar(86235);
         cuenta.retirar(83456);
         System.out.println(" Saldo Cuenta Bancaria: "+cuenta.getSaldo());
+        cuenta.cancelarCuenta(true);
 
+        System.out.println("______________________________________________________________");
         Sistema sistema = new Sistema();
         sistema.depositar(150000);
         sistema.retirar(130000);
 
+        System.out.println("  ");
         System.out.println("------Ejemplo------");
         Puerta puerta = new Puerta(false);
         puerta.abrir(false);
@@ -46,6 +49,7 @@ public class SingleResponsibility {
 
 class CuentaBancaria {
     private double saldo;
+    private boolean estado;
 
     public CuentaBancaria(double saldoInicial) {
         this.saldo = saldoInicial;
@@ -64,6 +68,14 @@ class CuentaBancaria {
 
     public double getSaldo() {
         return this.saldo;
+    }
+
+    public void cancelarCuenta(boolean estado){
+        if(this.estado == false) {
+            System.out.println("La cuenta esta activa");
+        } else {
+            System.out.println(" La cuenta ha sido cancelada");
+        }
     }
 }
 
