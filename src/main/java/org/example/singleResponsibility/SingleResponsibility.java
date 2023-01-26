@@ -93,4 +93,13 @@ class Sistema {
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
     }
+
+    public void consignar(double cantidad) {
+        cuenta.depositar(cantidad);
+        String receipt = "Consignacion de: " + cantidad;
+        printer.print(receipt);
+        db.saveTransaction(receipt);
+        emailSender.send("Consignacion realizada", receipt);
+    }
+
 }

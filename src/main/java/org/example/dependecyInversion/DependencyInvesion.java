@@ -11,6 +11,8 @@ public class DependencyInvesion {
     Empleado SantiagoPosada = new Empleado(gmailService);
 
     Empleado JesusMiguel = new Empleado(outlookService);
+
+    Empleado JamesMuñoz = new Empleado(gmailService);
 }
 
 

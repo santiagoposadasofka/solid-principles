@@ -27,9 +27,6 @@ public class OpenClose {
         double TotalImpuestoAntipatron = calculadoraImpuestosAtiPatron.calcularImpuestosAtiPatron(productos);
         System.out.println("" + ":" + TotalImpuestoAntipatron);
 
-
-
-
     }
 }
 /*
