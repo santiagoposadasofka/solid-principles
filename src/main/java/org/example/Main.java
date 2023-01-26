@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.dependecyInversion.DependencyInvesion;
 import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.LiskovSubstitution;
 
@@ -28,6 +29,11 @@ public class Main {
 
         OpenClose openClose = new OpenClose();
         openClose.ejecutar();
+
+        System.out.println("----Dependency Invesion----");
+
+        DependencyInvesion dependencyInvesion = new DependencyInvesion();
+        dependencyInvesion.ejecutar();
 
     }
 }
