@@ -11,6 +11,6 @@ public class Main {
         SingleResponsibility single = new SingleResponsibility();
 
         //single.ejecutar();
-        single.ejecutar2();
+        single.ejecutar3();
     }
 }

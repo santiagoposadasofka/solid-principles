@@ -23,7 +23,17 @@ public class SingleResponsibility {
         sistema.retirar(50.000);
     }
 
+    public void ejecutar3(){
+        Factura recibo = new Factura("HJ123");
+        Producto prod1 = new Producto("leche", 3500);
+        Producto prod2 = new Producto("huevo", 4000);
+        Producto prod3 = new Producto("pan", 500);
+        recibo.agregarProducto(prod1);
+        recibo.agregarProducto(prod2);
+        recibo.agregarProducto(prod3);
+        recibo.mostrarFactura();
 
+    }
 }
 
 
