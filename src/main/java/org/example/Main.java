@@ -8,7 +8,7 @@ public class Main {
         LiskovSubstitution liskovSubstitution = new LiskovSubstitution();
         liskovSubstitution.ejecutar();
 
-        SingleResponsibility single = new SingleResponsibility();
+       SingleResponsibility single = new SingleResponsibility();
         single.ejecutar();
     }
 }

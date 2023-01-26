@@ -1,14 +1,35 @@
 package org.example.singleResponsibility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SingleResponsibility {
     /**
      * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
      * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
      * van a ejecutar sus comportamientos.
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     *   public void ejecutar(){
+     *         List<FiguraGeometrica> figuras = new ArrayList<>();
+     *         figuras.add(new Cuadrado(10));
+     *         figuras.add(new Triangulo(5, 10));
+     *         figuras.add(new Circulo(2));
+     *
+     *         for(FiguraGeometrica figura: figuras) {
+     *             System.out.println("Area: " + figura.area());
+     *         }
+     *     }
+     * }
      * */
 
     public void ejecutar(){
+
+        List<CuentaBancaria> cuentasBancarias = new ArrayList<>();
+        cuentasBancarias.add(new CuentaBancaria(45000));
+
+        for(CuentaBancaria cuentaBancaria: cuentasBancarias){
+            System.out.println( "Cuenta bancaria" + cuentaBancaria);
+        }
 
     }
 }
