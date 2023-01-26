@@ -18,7 +18,7 @@ public class SingleResponsibility {
         System.out.println("el saldo de la cuenta el "  + LocalDateTime.now() + " es de " + cuenta1.getSaldo());
         cuenta1.depositar(1000);
         cuenta1.retirar(500);
-        System.out.println("el saldo de la cuenta siendo las " + cuenta1.getSaldo() + " es de " + cuenta1.getSaldo());
+        System.out.println("el saldo de la cuenta siendo las " + LocalDateTime.now() + " es de " + cuenta1.getSaldo());
         System.out.println("-----------------------------------------------------------------------------------------");
 
         Sistema sistema1 = new Sistema();
