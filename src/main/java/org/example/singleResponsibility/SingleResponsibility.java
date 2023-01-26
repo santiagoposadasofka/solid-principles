@@ -25,11 +25,32 @@ public class SingleResponsibility {
     public void ejecutar(){
 
         List<CuentaBancaria> cuentasBancarias = new ArrayList<>();
-        cuentasBancarias.add(new CuentaBancaria(45000));
+        cuentasBancarias.add(new CuentaBancaria(10000));
 
 
         for(CuentaBancaria cuentaBancaria: cuentasBancarias){
-            System.out.println( "Cuenta bancaria: " + cuentaBancaria.getSaldo());
+            System.out.println( "==========================================");
+            System.out.println("CUENTA BANCARIA");
+            System.out.println( "==========================================");
+            System.out.println( "Saldo cuenta bancaria: " + cuentaBancaria.getSaldo());
+
+
+            cuentaBancaria.depositar(200);
+            cuentaBancaria.retirar(2000);
+
+            System.out.println( "==========================================");
+            System.out.println( "Depositar: 200 ");
+            System.out.println( "Retirar: 200 ");
+            System.out.println( "==========================================");
+
+
+            System.out.println( "Nuevo Saldo: " + cuentaBancaria.getSaldo());
+
+
+
+
+
+
 
         }
 
