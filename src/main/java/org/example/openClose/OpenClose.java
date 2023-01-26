@@ -21,8 +21,9 @@ public class OpenClose {
 
 
         CalculadoraImpuestos calculadora = new CalculadoraImpuestos();
-        double totalImpuesto = calculadora.calcularImpuestos(productos);
 
+
+        double totalImpuesto = calculadora.calcularImpuestos(productos);
         System.out.println("total impuestos" + ":" + totalImpuesto);
 
         /****
@@ -38,6 +39,9 @@ public class OpenClose {
         CalculadoraImpuestosAntiPatron calculadoraAntiPatron = new CalculadoraImpuestosAntiPatron();
         double totalImpuestoAntipatron = calculadoraAntiPatron.calcularImpuestosAntiPatron(productos1);
         System.out.println("total impuestosAntipatron-->" + ":" + totalImpuestoAntipatron);
+
+
+
 
 
     }

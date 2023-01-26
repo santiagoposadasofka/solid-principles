@@ -5,15 +5,24 @@ public class DependencyInvesion {
      * Se Sigue con la dinamica de los principios previos
      * vamos a empezar con toda
      */
+    public void ejecutar() {
+        GmailService gmailService = new GmailService();
+        OutlookService outlookService = new OutlookService();
+        Empleado SantiagoPosada = new Empleado(gmailService);
+        Empleado JesusMiguel = new Empleado(outlookService);
+        Empleado Yeison = new Empleado(gmailService);
 
-    GmailService gmailService = new GmailService();
-    OutlookService outlookService = new OutlookService();
 
-    Empleado SantiagoPosada = new Empleado(gmailService);
+        TransporteBuseta transporteBuseta = new TransporteBuseta();
+        transporteBuseta.realizarTransporte("Los Patios");
+        Persona juan = new Persona(transporteBuseta);
 
-    Empleado JesusMiguel = new Empleado(outlookService);
 
-    Empleado Yeison = new Empleado(gmailService);
+        TransporteTaxi transporteTaxi = new TransporteTaxi();
+        transporteTaxi.realizarTransporte("Carrera al centro");
+        Persona ppito = new Persona(transporteTaxi);
+
+    }
 }
 
 
@@ -75,6 +84,46 @@ class Empleado {
 }
 
 
+/****
+ * ejemplo de clase servicioDeTransporte que implenta el principio solid DependencyInversion
+ */
 
 
+interface ServicioDeTransporte {
+    void realizarTransporte(String destino);
+}
 
+class TransporteTaxi implements ServicioDeTransporte {
+    @Override
+    public void realizarTransporte(String destino) {
+// Realiza el transporte utilizando un taxi al destino especificado
+        System.out.println("Llevando al pasajero al destino " + destino + " en un taxi");
+    }
+}
+
+class TransporteBuseta implements ServicioDeTransporte {
+    @Override
+    public void realizarTransporte(String destino) {
+// Realiza el transporte utilizando una buseta al destino especificado
+        System.out.println("Llevando al pasajero al destino " + destino + " en una buseta");
+    }
+}
+
+
+class Persona {
+    private ServicioDeTransporte servicioDeTransporte;
+
+
+    public Persona(ServicioDeTransporte servicioDeTransporte) {
+        this.servicioDeTransporte = servicioDeTransporte;
+    }
+
+    public void setServicioDeTransporte(ServicioDeTransporte servicioDeTransporte) {
+        this.servicioDeTransporte = servicioDeTransporte;
+    }
+
+    public void realizarTransporte(String destino) {
+        servicioDeTransporte.realizarTransporte(destino);
+    }
+
+}

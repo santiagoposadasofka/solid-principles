@@ -8,23 +8,35 @@ public class InterfaceSegregation {
     /***
      * pregunta para mañana porque no puedo instanciar el objeto
      */
-    Avion avion = new Avion();
-    Helicoptero helicoptero = new Helicoptero();
 
+    public void Ejecutar() {
+        Avion miAvion = new Avion();
+        Helicoptero helicoptero = new Helicoptero();
+        Barco barco = new Barco();
 
+        miAvion.despegar();
+        miAvion.aterrizar();
+
+        helicoptero.despegar();
+        helicoptero.aterrizar();
+
+        barco.navegar();
+
+    }
 }
 
 
 /*
-* Un ejemplo de aislamiento de interfaz en Java podría ser una interfaz "Volador" que tiene métodos
-* para volar y aterrizar. Sin embargo, no todos los objetos que implementan la interfaz "Volador"
-* tienen la capacidad de navegar. Por lo tanto, se crea una interfaz separada "Navegable" que solo tiene métodos para navegar.
-* En este ejemplo se puede ver cómo se han separado las interfaces Volador y Navegable, de esta forma solo se tiene que
-* implementar los métodos ne
-* */
+ * Un ejemplo de aislamiento de interfaz en Java podría ser una interfaz "Volador" que tiene métodos
+ * para volar y aterrizar. Sin embargo, no todos los objetos que implementan la interfaz "Volador"
+ * tienen la capacidad de navegar. Por lo tanto, se crea una interfaz separada "Navegable" que solo tiene métodos para navegar.
+ * En este ejemplo se puede ver cómo se han separado las interfaces Volador y Navegable, de esta forma solo se tiene que
+ * implementar los métodos ne
+ * */
 
 interface Volador {
     void despegar();
+
     void aterrizar();
 }
 
@@ -37,10 +49,12 @@ class Avion implements Volador, Navegable {
     public void despegar() {
         //...
     }
+
     @Override
     public void aterrizar() {
         //...
     }
+
     @Override
     public void navegar() {
         //...
@@ -52,6 +66,7 @@ class Helicoptero implements Volador {
     public void despegar() {
         //...
     }
+
     @Override
     public void aterrizar() {
         //...
@@ -62,5 +77,50 @@ class Barco implements Navegable {
     @Override
     public void navegar() {
         //...
+    }
+}
+
+
+/**
+ *
+ * Creamos otro ejemplo de antipatronpara para el principop InterfaceSegregation donde vemos que solo hay un
+ * metodo generico para todos las demas clases que exteniende de ella, pero cada caso es diferentes tanto
+ * para un auto electrico, gasolina e hibrido
+ */
+
+abstract class Auto {
+    public abstract void encender();
+}
+
+class AutoElectrico extends Auto {
+    @Override
+    public void encender() {
+        iniciarSistemaElectrico();
+    }
+
+    public void iniciarSistemaElectrico() {
+//...
+    }
+}
+
+class AutoGasolina extends Auto {
+    @Override
+    public void encender() {
+        iniciarSistemaGasolina();
+    }
+
+    public void iniciarSistemaGasolina() {
+//...
+    }
+}
+
+class AutoHibrido extends Auto {
+    @Override
+    public void encender() {
+        iniciarSistemaHibrido();
+    }
+
+    public void iniciarSistemaHibrido() {
+//...
     }
 }
