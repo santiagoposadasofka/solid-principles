@@ -1,5 +1,8 @@
 package org.example.singleResponsibility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SingleResponsibility {
     /**
      * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
@@ -9,6 +12,21 @@ public class SingleResponsibility {
      * */
 
     public void ejecutar(){
+
+        System.out.println("-----------Cuenta Bancaria ----------------");
+
+        CuentaBancaria transacciones = new CuentaBancaria(300.0);
+
+        System.out.println("Su saldo actual es de " + transacciones.getSaldo());
+
+        transacciones.depositar(500.0);
+        System.out.println("Su saldo despues del depósito ahora es de " + transacciones.getSaldo());
+
+        transacciones.retirar(200);
+
+        System.out.println("Su saldo despues del retiro ahora es de " + transacciones.getSaldo());
+
+        System.out.println("-----------Sistema ----------------");
 
     }
 }
