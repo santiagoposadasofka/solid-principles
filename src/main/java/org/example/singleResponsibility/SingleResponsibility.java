@@ -1,7 +1,139 @@
 package org.example.singleResponsibility;
 
+import java.util.Scanner;
+
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
+    Scanner in = new Scanner(System.in);
+    private double cantidad;
+    private double saldo;
+    int opc = 0;
+    CuentaBancaria cuentaBancaria = new CuentaBancaria(saldo);
+    public void ejecutarSingleResponsibilityCuenta(){
+        do{
+            System.out.println("Cuenta Bancaria");
+            System.out.println("\nElige una opción");
+            System.out.println("1. Depositar dinero. \n2. Retirar dinero. \n3. Ver saldo. \n4. Salir");
+            opc = in.nextInt();
+
+            switch (opc) {
+                case 1:
+                    System.out.println("Cuanto dinero desea depositar");
+                    cantidad = in.nextDouble();
+                    cuentaBancaria.depositar(cantidad);
+                    break;
+                case 2:
+                   System.out.println("Cuanto dinero desea retirar");
+                   cantidad = in.nextDouble();
+                   cuentaBancaria.retirar(cantidad);
+                   break;
+                case 3:
+                    System.out.println("Su saldo es de $:" + cuentaBancaria.getSaldo());
+                    break;
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción Incorrecta");
+            }
+        }while (opc!=4);
+
+    }
+
+
+    Sistema sistema = new Sistema();
+    public void ejecutarSingleResponsibilitySistema() {
+        do{
+            System.out.println("Cuenta Bancaria");
+            System.out.println("\nElige una opción");
+            System.out.println("1. Depositar dinero. \n2. Retirar dinero. \n3. Salir");
+            opc = in.nextInt();
+
+            switch (opc) {
+                case 1:
+                    System.out.println("Cuanto dinero desea depositar");
+                    cantidad = in.nextDouble();
+                    sistema.depositar(cantidad);
+                    break;
+                case 2:
+                    System.out.println("Cuanto dinero desea retirar");
+                    cantidad = in.nextDouble();
+                    sistema.retirar(cantidad);
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción Incorrecta");
+            }
+        }while (opc!=4);
+    }
+    private String usuario;
+    private String clave;
+
+    RedSocial redSocial = new RedSocial(usuario, clave);
+
+    public void ejecutarSingleResponsibilityAntiPatron() {
+        do{
+            System.out.println("Bienvenido a tu Red Social");
+            System.out.println("1. Inicar Sesión \n2. Registrate \n3. Salir");
+            opc = in.nextInt();
+
+            switch (opc) {
+                case 1:
+                    in.nextLine();
+                    System.out.println("Digite su nombre de usuario");
+                    usuario = in.nextLine();
+                    System.out.println("Digite su contraseña");
+                    clave = in.nextLine();
+                    redSocial.loguin(usuario,clave);
+                    break;
+                case 2:
+                    in.nextLine();
+                    System.out.println("Usuario que desea utilizar");
+                    usuario = in.nextLine();
+                    System.out.println("Digite una contraseña");
+                    clave = in.nextLine();
+                    redSocial.registro(usuario,clave);
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción Incorrecta");
+            }
+        }while (opc!=3);
+    }
+
 }
+class RedSocial {
+    private String usuario;
+    private String clave;
+
+    public RedSocial(String usuario, String clave) {
+        this.usuario = usuario;
+        this.clave = clave;
+    }
+
+    public void registro (String usuarioRegistro, String claveRegistro) {
+        this.usuario = usuarioRegistro;
+        this.clave = claveRegistro;
+    }
+
+    public void loguin (String usuarioLoguin, String claveLoguin) {
+        if (this.usuario.equals(usuarioLoguin) && this.clave.equals(claveLoguin)) {
+            System.out.println("Inicio de sesión exitosa");
+        }else {
+            System.out.println("Usuario o contraseña incorrecta");
+        }
+    }
+}
+
 
 
 /*
@@ -71,4 +203,5 @@ class Sistema {
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
     }
+
 }
