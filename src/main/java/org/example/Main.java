@@ -6,6 +6,7 @@ import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.EjemploAntipatron;
 import org.example.liskovSubstitution.LiskovSubstitution;
 import org.example.openClose.OpenClose;
+import org.example.singleResponsibility.EjemploSingle;
 import org.example.singleResponsibility.SingleResponsibility;
 
 public class Main {
@@ -16,6 +17,9 @@ public class Main {
         System.out.println("----Anti patron sigle responsability---");
         single.ejecutarantipatron();
         System.out.println("");
+        System.out.println("---Ejemplo single responsability-----");
+        EjemploSingle ejemploSingle = new EjemploSingle();
+        ejemploSingle.ejecutar();
         System.out.println("----------Patron Openclose-----------");
         OpenClose openClose = new OpenClose();
         openClose.ejecutar();
