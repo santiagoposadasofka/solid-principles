@@ -9,6 +9,7 @@ public class Main {
         liskovSubstitution.ejecutar();
 
         SingleResponsibility single = new SingleResponsibility();
-        single.ejecutar();
+        //single.ejecutarCuenta();
+        single.ejecutarSistema();
     }
 }

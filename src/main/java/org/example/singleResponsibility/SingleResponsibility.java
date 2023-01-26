@@ -1,15 +1,107 @@
 package org.example.singleResponsibility;
 
+import java.util.Scanner;
+
 public class SingleResponsibility {
     /**
-     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
      * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
      * van a ejecutar sus comportamientos.
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
 
-    public void ejecutar(){
+    /**
+     * Atributos
+     */
+    public double cantidad;
+    public double saldo = 50000;
+    public int opcion = 0;
 
+    //Instancia de la clase cuenta bancaria
+    CuentaBancaria cuentaBancaria = new CuentaBancaria(saldo);
+
+    public void ejecutarCuenta(){
+        /**
+         * Repetir el menú, hasta que el usuario presione la opción salir.
+         */
+        do {
+            Scanner entrada = new Scanner(System.in);
+            System.out.println("Bienvenido(a) a tu cuenta bancaria\n" +
+                    "Por favor digita la actividad que deseas: \n" +
+                    "1. Depositar\n" +
+                    "2. Retirar\n" +
+                    "3. Consultar saldo\n" +
+                    "4. Retirar tarjeta");
+            opcion = entrada.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("¿Cuánto dinero desea depositar?");
+                    cantidad = entrada.nextDouble();
+                    cuentaBancaria.depositar(cantidad);
+                    break;
+
+                case 2:
+                    System.out.println("¿Cuánto dinero desea retirar?");
+                    cantidad = entrada.nextDouble();
+                    cuentaBancaria.retirar(cantidad);
+                    break;
+
+                case 3:
+                    System.out.println("Su saldo actual es: " + cuentaBancaria.getSaldo());
+                    break;
+
+                case 4:
+                    System.exit(0);
+                    break;
+                /**
+                 * Mensaje en caso de digitar un número que no esté en el menú
+                 */
+                default:
+                    System.out.println("Número no valido");
+            }
+        } while (opcion!=4);
+    }
+
+    Sistema sistema = new Sistema();
+    public void ejecutarSistema() {
+        saldo = 0;
+        /**
+         * Repetir el menú, hasta que el usuario presione la opción salir.
+         */
+        do {
+            Scanner entrada = new Scanner(System.in);
+            System.out.println("Bienvenido(a) a tu cuenta bancaria\n" +
+                    "Por favor digita la actividad que deseas: \n" +
+                    "1. Depositar\n" +
+                    "2. Retirar\n" +
+                    "3. Retirar tarjeta");
+            opcion = entrada.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("¿Cuánto dinero desea depositar?");
+                    cantidad = entrada.nextDouble();
+                    sistema.depositar(cantidad);
+                    break;
+
+                case 2:
+                    System.out.println("¿Cuánto dinero desea retirar?");
+                    cantidad = entrada.nextDouble();
+                    sistema.retirar(cantidad);
+                    System.out.println("Su saldo actual es de: " + saldo);
+                    break;
+
+                case 3:
+                    System.exit(0);
+                    break;
+                /**
+                 * Mensaje en caso de digitar un número que no esté en el menú
+                 */
+                default:
+                    System.out.println("Número no valido");
+            }
+        } while (opcion!=3);
     }
 }
 
