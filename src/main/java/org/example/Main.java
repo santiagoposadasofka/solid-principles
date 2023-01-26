@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.dependecyInversion.DependencyInvesion;
 import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.LiskovSubstitution;
 import org.example.singleResponsibility.SingleResponsibility;
@@ -14,5 +15,8 @@ public class Main {
 
         InterfaceSegregation interfaceSegregation = new InterfaceSegregation();
         interfaceSegregation.ejecutar();
+
+        DependencyInvesion dependencyInvesion = new DependencyInvesion();
+        dependencyInvesion.ejecutar();
     }
 }
