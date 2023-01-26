@@ -57,6 +57,8 @@ public class SingleResponsibility {
 
         }
 
+        List<AlquilerPelicula> alquilerPeliculaList = new ArrayList<>();
+        alquilerPeliculaList.add(new AlquilerPelicula(5678,800,"Interestelar"));
 
     }
 }
