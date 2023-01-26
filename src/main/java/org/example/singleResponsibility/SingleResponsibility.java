@@ -1,5 +1,7 @@
 package org.example.singleResponsibility;
 
+import java.util.Scanner;
+
 public class SingleResponsibility {
     /**
      * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
@@ -8,9 +10,32 @@ public class SingleResponsibility {
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
 
-    public void ejecutar(){
+    public void ejecutar() {
 
+        CuentaBancaria cuenta = new CuentaBancaria(1000000);
+        cuenta.depositar(86235);
+        cuenta.retirar(83456);
+        System.out.println(" Saldo Cuenta Bancaria: "+cuenta.getSaldo());
+        cuenta.cancelarCuenta(true);
+
+        System.out.println("______________________________________________________________");
+        Sistema sistema = new Sistema();
+        sistema.depositar(150000);
+        sistema.retirar(130000);
+
+        System.out.println("  ");
+        System.out.println("------Ejemplo------");
+        Puerta puerta = new Puerta(false);
+        puerta.abrir(false);
+        puerta.cerrar(true);
+        if(puerta.isEstado() == false){
+            System.out.println("La puerta quedo cerrada");
+        }else{
+            System.out.println("La puerta quedo abierta");
+        }
     }
+
+
 }
 
 
@@ -24,6 +49,7 @@ public class SingleResponsibility {
 
 class CuentaBancaria {
     private double saldo;
+    private boolean estado;
 
     public CuentaBancaria(double saldoInicial) {
         this.saldo = saldoInicial;
@@ -33,7 +59,7 @@ class CuentaBancaria {
         this.saldo += cantidad;
     }
 
-    public void retirar(double cantidad) {
+    public void retirar(double cantidad) throws IllegalArgumentException {
         if (cantidad > this.saldo) {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
@@ -43,7 +69,16 @@ class CuentaBancaria {
     public double getSaldo() {
         return this.saldo;
     }
+
+    public void cancelarCuenta(boolean estado){
+        if(this.estado == false) {
+            System.out.println("La cuenta esta activa");
+        } else {
+            System.out.println(" La cuenta ha sido cancelada");
+        }
+    }
 }
+
 
 /*
  * Un anti-patrón del principio de responsabilidad única en Java podría ser una clase "Sistema" que hace muchas cosas diferentes,
