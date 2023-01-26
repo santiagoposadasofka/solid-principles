@@ -19,7 +19,7 @@ public class SingleResponsibility {
         List<CuentaBancaria> cuenta = new ArrayList<>();
         cuenta.add(new CuentaBancaria(1000));
         cuenta.add(new CuentaBancaria(5000000));
-
+        cuenta.add(new CuentaBancaria(5000));
         /***
          * crear una nueva instancia de la clase y proporcionar un saldo inicial:
          */
@@ -100,7 +100,7 @@ class CuentaBancaria {
 
     public void retirar(double cantidad) {
         if (cantidad > this.saldo) {
-            throw new IllegalArgumentException("No hay suficientes fondos");
+            throw new IllegalArgumentException("No hay suficientes fondos para retirar esa cantidad");
         }
         this.saldo -= cantidad;
     }

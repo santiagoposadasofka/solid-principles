@@ -11,16 +11,31 @@ public class InterfaceSegregation {
 
     public void Ejecutar() {
         Avion miAvion = new Avion();
-        Helicoptero helicoptero = new Helicoptero();
-        Barco barco = new Barco();
-
         miAvion.despegar();
         miAvion.aterrizar();
 
+        Helicoptero helicoptero = new Helicoptero();
         helicoptero.despegar();
         helicoptero.aterrizar();
 
+        Barco barco = new Barco();
         barco.navegar();
+
+
+        AutoElectrico autoElectrico = new AutoElectrico();
+        autoElectrico.iniciarSistemaElectrico();
+        autoElectrico.encender();
+
+
+        AutoGasolina autoGasolina = new AutoGasolina();
+        autoGasolina.iniciarSistemaGasolina();
+        autoGasolina.encender();
+
+
+        AutoHibrido autoHibrido = new AutoHibrido();
+        autoHibrido.iniciarSistemaHibrido();
+        autoHibrido.encender();
+
 
     }
 }
@@ -82,7 +97,6 @@ class Barco implements Navegable {
 
 
 /**
- *
  * Creamos otro ejemplo de antipatronpara para el principop InterfaceSegregation donde vemos que solo hay un
  * metodo generico para todos las demas clases que exteniende de ella, pero cada caso es diferentes tanto
  * para un auto electrico, gasolina e hibrido
