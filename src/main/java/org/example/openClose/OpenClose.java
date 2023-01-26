@@ -13,6 +13,7 @@ public class OpenClose {
      * */
 
     public void ejecutar(){
+        CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
 
     }
 }
