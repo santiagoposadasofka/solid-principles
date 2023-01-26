@@ -11,6 +11,30 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
+
+    public void ejecutar(){
+        Carro carro = new Carro();
+        carro.acelerar();
+        carro.frenar();
+
+        Moto moto = new Moto();
+        moto.acelerar();
+        moto.frenar();
+
+        Carro carro2 = new Carro();
+        carro2.acelerar();
+        carro2.frenar();
+
+        Vehiculo[] listaVehiculos = new Vehiculo[3];
+        listaVehiculos[0] = carro;
+        listaVehiculos[1]= moto;
+        listaVehiculos[2]= carro2;
+        System.out.println();
+        for (Vehiculo miVehiculo : listaVehiculos) {
+            miVehiculo.acelerar();
+            miVehiculo.frenar();
+        }
+    }
 }
 
 
