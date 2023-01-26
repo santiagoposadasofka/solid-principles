@@ -13,6 +13,7 @@ public class OpenClose {
      * */
 
     public void ejecutar(){
+        System.out.println("Calculadora Impuestos");
         CalculadoraImpuestos calculadoraImpuestos1 = new CalculadoraImpuestos();
 
         List<Producto> productos = new ArrayList<>();
@@ -112,6 +113,8 @@ class CalculadoraImpuestosAntiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "Regional"){
+                totalImpuestos += producto.getPrecio() * 0.10;
             }
         }
         return totalImpuestos;
