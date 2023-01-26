@@ -1,6 +1,39 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
+    public void ejecutar(){
+
+        CuentaBancaria cb = new CuentaBancaria(0);
+        System.out.println( "Saldo Actual: "+ cb.getSaldo());
+        cb.depositar(200.000);
+        System.out.println( "Saldo Actual: "+ cb.getSaldo());
+        cb.retirar(20.000);
+        System.out.println( "Saldo Actual: "+ cb.getSaldo());
+
+    }
+    public void ejecutar2(){
+        Sistema sistema = new Sistema();
+        sistema.depositar(150.000);
+        sistema.retirar(50.000);
+    }
+
+    public void ejecutar3(){
+        Factura recibo = new Factura("HJ123");
+        Producto prod1 = new Producto("leche", 3500);
+        Producto prod2 = new Producto("huevo", 4000);
+        Producto prod3 = new Producto("pan", 500);
+        recibo.agregarProducto(prod1);
+        recibo.agregarProducto(prod2);
+        recibo.agregarProducto(prod3);
+        recibo.mostrarFactura();
+
+    }
 }
 
 
@@ -16,6 +49,7 @@ class CuentaBancaria {
     private double saldo;
 
     public CuentaBancaria(double saldoInicial) {
+
         this.saldo = saldoInicial;
     }
 
@@ -71,4 +105,5 @@ class Sistema {
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
     }
+
 }

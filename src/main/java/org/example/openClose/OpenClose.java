@@ -4,6 +4,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OpenClose {
+    /**
+     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     * y vamos a ejecutar sus comportamientos.
+     * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     * ej. impuestoDepartamental ...
+     * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
+     * */
+
+    public void ejecutar(){
+        Carro carro = new Carro();
+        carro.acelerar();
+        carro.frenar();
+
+        Moto moto = new Moto();
+        moto.acelerar();
+        moto.frenar();
+
+        Carro carro2 = new Carro();
+        carro2.acelerar();
+        carro2.frenar();
+
+        Vehiculo[] listaVehiculos = new Vehiculo[3];
+        listaVehiculos[0] = carro;
+        listaVehiculos[1]= moto;
+        listaVehiculos[2]= carro2;
+        System.out.println();
+        for (Vehiculo miVehiculo : listaVehiculos) {
+            miVehiculo.acelerar();
+            miVehiculo.frenar();
+        }
+    }
+
+    public void ejecutar1(){
+        CalculadoraImpuestos calculadora = new CalculadoraImpuestos();
+        Impuesto impuesto= new ImpuestoImportacion();
+        Producto producto = new Producto( 200);
+        Producto producto1 = new Producto(300);
+        Producto producto2 = new Producto(400);
+        System.out.println(impuesto.calcular(producto));
+        System.out.println();
+        List <Producto> miLista = new ArrayList<>();
+        miLista.add(producto);
+        miLista.add(producto1);
+        miLista.add(producto2);
+        System.out.println(calculadora.calcularImpuestos(miLista));
+
+    }
+    public void ejecutar2(){
+        CalculadoraImpuestosAntiPatron antipatron = new CalculadoraImpuestosAntiPatron();
+        Producto producto = new Producto( 200);
+        Producto producto1 = new Producto(300);
+        Producto producto2 = new Producto(400);
+       producto.setTipo("Nacional");
+        producto1.setTipo("Importado");
+        producto2.setTipo("Nacional");
+        List <Producto> miLista = new ArrayList<>();
+        miLista.add(producto);
+        miLista.add(producto1);
+        miLista.add(producto2);
+        System.out.println(antipatron.calcularImpuestosAtiPatron(miLista));
+    }
 }
 
 
@@ -26,6 +87,7 @@ abstract class Impuesto {
 class ImpuestoNacional extends Impuesto {
     @Override
     double calcular(Producto producto) {
+
         return producto.getPrecio() * 0.15;
     }
 }
@@ -47,6 +109,7 @@ class CalculadoraImpuestos {
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
+
         this.reglasImpuestos.add(impuesto);
     }
 
@@ -75,7 +138,7 @@ class CalculadoraImpuestos {
 * */
 
 
-class CalculadoraImpuestosAtiPatron {
+class CalculadoraImpuestosAntiPatron {
     public double calcularImpuestosAtiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
