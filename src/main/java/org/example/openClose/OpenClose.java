@@ -163,7 +163,7 @@ class CalculadoraImpuestosAntiPatron {
 
 
 /**
- * Creo otro antipatron donde calculo los impuestos donde si agrego otra regla de impuesto tendria que m
+ * Creo otro antipatron de ejemplo donde calculo los impuestos donde si agrego otra regla de impuesto tendria que m
  * modificar todo el metodo nuevamente
  */
 class CalculadoraSalarios {

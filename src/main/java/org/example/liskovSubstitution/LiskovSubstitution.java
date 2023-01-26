@@ -14,6 +14,19 @@ public class LiskovSubstitution {
         for (FiguraGeometrica figura : figuras) {
             System.out.println("Area: " + figura.area());
         }
+
+        List<Vehiculo> vehiculos = new ArrayList<>();
+        vehiculos.add(new Carro("spring"));
+        vehiculos.add(new Carro("Mazda 323"));
+        vehiculos.add(new Carro("Spark"));
+        vehiculos.add(new Carro("Twingo"));
+        vehiculos.add(new Moto("Honda invicta"));
+
+        for (Vehiculo vehiculo : vehiculos) {
+            System.out.println("los vehiculos son: " + "  " + vehiculo.nombre + " " + vehiculo.numRuedas);
+        }
+
+
     }
 }
 
@@ -131,12 +144,16 @@ class EmpleadoTemporal extends Empleado {
 }
 
 
-
-
-
+/***
+ * Un antipatron se representaria de esta manera donde una clase abstracta vehiculo implementa varios metodos
+ * en comunn pero aparte de eso tiene otros diferentes
+ *
+ */
 
 abstract class Vehiculo {
     protected int numRuedas;
+    protected String nombre;
+
 
     public abstract void encender();
 
@@ -146,9 +163,12 @@ abstract class Vehiculo {
 
 }
 
-class Coche extends Vehiculo {
-    public Coche() {
+class Carro extends Vehiculo {
+
+
+    public Carro(String nombre) {
         this.numRuedas = 4;
+        this.nombre = nombre;
     }
 
     @Override
@@ -169,10 +189,15 @@ class Coche extends Vehiculo {
     public void puertas() {
         //
     }
+
+
 }
 
 class Moto extends Vehiculo {
-    public Moto() {
+
+
+    public Moto(String nombre) {
+        this.nombre = nombre;
         this.numRuedas = 2;
     }
 
@@ -190,4 +215,6 @@ class Moto extends Vehiculo {
     public void frenar() {
 //Código para frenar la moto
     }
+
+
 }
