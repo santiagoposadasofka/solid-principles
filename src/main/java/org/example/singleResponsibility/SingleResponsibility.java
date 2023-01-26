@@ -1,14 +1,32 @@
 package org.example.singleResponsibility;
 
+import java.time.LocalDateTime;
+
 public class SingleResponsibility {
     /**
-     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * Van instanciar una cuenta Bancaria y van a generar varios comportamientos en ella,
      * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
      * van a ejecutar sus comportamientos.
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
 
     public void ejecutar(){
+        CuentaBancaria cuenta1 = new CuentaBancaria(1000);
+
+
+        System.out.println("usando CuentaBancaria...");
+        System.out.println("el saldo de la cuenta el "  + LocalDateTime.now() + " es de " + cuenta1.getSaldo());
+        cuenta1.depositar(1000);
+        cuenta1.retirar(500);
+        System.out.println("el saldo de la cuenta siendo las " + cuenta1.getSaldo() + " es de " + cuenta1.getSaldo());
+        System.out.println("-----------------------------------------------------------------------------------------");
+
+        Sistema sistema1 = new Sistema();
+
+        System.out.println("usando Sistema...");
+        sistema1.depositar(1000);
+        sistema1.retirar(200);
+        System.out.println("");
 
     }
 }
