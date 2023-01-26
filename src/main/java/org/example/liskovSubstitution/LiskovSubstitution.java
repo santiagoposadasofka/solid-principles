@@ -1,5 +1,6 @@
 package org.example.liskovSubstitution;
 
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,21 @@ public class LiskovSubstitution {
 
         for(FiguraGeometrica figura: figuras) {
             System.out.println("Area: " + figura.area());
+        }
+
+        List<Empleado> empleados = new ArrayList<>();
+        empleados.add(new EmpleadoEjecutivo());
+        empleados.add(new EmpleadoOperativo());
+        empleados.add(new EmpleadoTemporal());
+
+        for(Empleado empleado: empleados) {
+            if(empleado instanceof EmpleadoEjecutivo) {
+                ((EmpleadoEjecutivo) empleado).tomarDecision();
+            } else if(empleado instanceof EmpleadoOperativo) {
+                ((EmpleadoOperativo) empleado).realizarOperacion();
+            } else if(empleado instanceof EmpleadoTemporal) {
+                ((EmpleadoTemporal) empleado).realizarTareaTemporal();
+            }
         }
     }
 }
@@ -97,7 +113,7 @@ class EmpleadoEjecutivo extends Empleado {
         tomarDecision();
     }
     public void tomarDecision() {
-        //...
+        System.out.println("Tomando decision");
     }
 }
 
@@ -107,7 +123,7 @@ class EmpleadoOperativo extends Empleado {
         realizarOperacion();
     }
     public void realizarOperacion() {
-        //...
+        System.out.println("Realizando Operancion");
     }
 }
 
@@ -117,6 +133,6 @@ class EmpleadoTemporal extends Empleado {
         realizarTareaTemporal();
     }
     public void realizarTareaTemporal() {
-        //...
+        System.out.println("Realizando tarea temporal");
     }
 }

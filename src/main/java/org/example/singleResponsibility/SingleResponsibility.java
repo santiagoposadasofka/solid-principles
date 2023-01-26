@@ -1,6 +1,26 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
+
+    public void ejecutar(){
+        CuentaBancaria cuenta = new CuentaBancaria(1000);
+        cuenta.depositar(500);
+        System.out.println("Saldo actual: " + cuenta.getSaldo());
+        cuenta.retirar(200);
+        System.out.println("Saldo actual: " + cuenta.getSaldo());
+
+    }
+    public void ejecutarantipatron(){
+        Sistema sistema = new Sistema();
+        sistema.depositar(100);
+        sistema.retirar(50);
+    }
 }
 
 
@@ -27,9 +47,9 @@ class CuentaBancaria {
         if (cantidad > this.saldo) {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
+        System.out.println("Retirando");
         this.saldo -= cantidad;
     }
-
     public double getSaldo() {
         return this.saldo;
     }

@@ -1,6 +1,18 @@
 package org.example.dependecyInversion;
 
 public class DependencyInvesion {
+    /**
+     * Se Sigue con la dinamica de los principios previos
+     * */
+
+    public void ejecutar(){
+        Empleado empleado = new Empleado(new GmailService());
+        empleado.enviarCorreo("destinatario@example.com", "Asunto del correo", "Mensaje del correo");
+
+        empleado.setServicioDeCorreo(new OutlookService());
+        empleado.enviarCorreo("destinatario@example.com", "Asunto del correo", "Mensaje del correo");
+
+    }
 }
 
 
@@ -22,6 +34,7 @@ class GmailService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Gmail
+        System.out.println("Enviando correo via Gmail");
     }
 }
 
@@ -29,6 +42,7 @@ class OutlookService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Outlook
+        System.out.println("Enviando correo via Outlook");
     }
 }
 
