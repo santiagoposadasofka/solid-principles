@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.dependecyInversion.DependencyInvesion;
 import org.example.interfaceSegregation.EjemploInterfaz;
 import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.EjemploAntipatron;
@@ -30,7 +31,8 @@ public class Main {
         EjemploInterfaz ejemploInterfaz = new EjemploInterfaz();
         ejemploInterfaz.ejecutar();
         System.out.println("----------Inversion de Denpencias-----");
-
+        DependencyInvesion dependencyInvesion = new DependencyInvesion();
+        dependencyInvesion.ejecutar();
 
     }
 }
