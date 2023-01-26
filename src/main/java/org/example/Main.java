@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.dependecyInversion.DependencyInvesion;
 import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.LiskovSubstitution;
 import org.example.openClose.OpenClose;
@@ -26,5 +27,8 @@ public class Main {
         InterfaceSegregation interfaceSegregation = new InterfaceSegregation();
         interfaceSegregation.ejecutar();
         System.out.println("-------------------------------------------------------------");
+
+        System.out.println("DependencyInversion");
+
     }
 }

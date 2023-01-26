@@ -1,16 +1,23 @@
 package org.example.dependecyInversion;
 
+import jdk.jshell.Snippet;
+
 public class DependencyInvesion {
     /**
      * Se Sigue con la dinamica de los principios previos
      * */
+    public void ejecutar(){
+        GmailService gmailService = new GmailService();
+        OutlookService outlookService = new OutlookService();
 
-    GmailService gmailService = new GmailService();
+        Empleado SantiagoPosada = new Empleado(gmailService);
+        SantiagoPosada.enviarCorreo("Sergio", "Solicitud", "Por favor realizar el pull request");
+        System.out.println("Primer Correo electrónico enviado");
+        Empleado JesusMiguel = new Empleado(outlookService);
+        JesusMiguel.enviarCorreo("Sergio", "Solicitud", "Por favor revisar el pull request de Sergio");
+        System.out.println("Segundo Correo electrónico enviado");
+    }
 
-    OutlookService outlookService = new OutlookService();
-    Empleado SantiagoPosada = new Empleado(gmailService);
-
-    Empleado JesusMiguel = new Empleado(outlookService);
 }
 
 
