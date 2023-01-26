@@ -1,9 +1,18 @@
 package org.example.interfaceSegregation;
 
 public class InterfaceSegregation {
-    /**
-     * Se Sigue con la dinamica de los principios previos
-     * */
+
+    public void ejecutar(){
+        Avion avion1 = new Avion();
+        avion1.aterrizar();
+        avion1.despegar();
+
+        Barco barco1 = new Barco();
+        barco1.navegar();
+
+        Submarino submarino1 = new Submarino();
+        submarino1.sumergir();
+    }
 }
 
 
@@ -24,18 +33,26 @@ interface Navegable {
     void navegar();
 }
 
+interface Sumerger {
+    void sumergir();
+    void flota();
+}
+
 class Avion implements Volador, Navegable {
     @Override
     public void despegar() {
         //...
+        System.out.println("Despegando avión");
     }
     @Override
     public void aterrizar() {
         //...
+        System.out.println("Aterrizando avión");
     }
     @Override
     public void navegar() {
         //...
+        System.out.println("Aterrizó avión y navega en el mar");
     }
 }
 
@@ -43,16 +60,31 @@ class Helicoptero implements Volador {
     @Override
     public void despegar() {
         //...
+        System.out.println("Despegando helicoptero");
+
     }
     @Override
     public void aterrizar() {
         //...
+        System.out.println("Aterrizando helicoptero");
     }
 }
 
 class Barco implements Navegable {
     @Override
     public void navegar() {
-        //...
+        System.out.println("Navegando barco");
+    }
+}
+
+class Submarino implements Sumerger {
+    @Override
+    public void sumergir() {
+        System.out.println("Sumergir submarino");
+    }
+
+    @Override
+    public void flota() {
+        System.out.println("Flotar submarino");
     }
 }
