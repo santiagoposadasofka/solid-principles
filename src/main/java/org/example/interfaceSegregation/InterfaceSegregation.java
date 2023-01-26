@@ -1,6 +1,9 @@
 package org.example.interfaceSegregation;
 
 public class InterfaceSegregation {
+    /**
+     * Se Sigue con la dinamica de los principios previos
+     * */
 }
 
 

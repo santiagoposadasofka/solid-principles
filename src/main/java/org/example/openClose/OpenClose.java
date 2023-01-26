@@ -1,11 +1,47 @@
 package org.example.openClose;
 
+import jdk.dynalink.Operation;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OpenClose {
-}
+    /**
+     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     * y vamos a ejecutar sus comportamientos.
+     * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     * ej. impuestoDepartamental ...
+     * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
+     * */
 
+    public void ejecutar(){
+        /**
+         * Instanciando Clase CalcularImpuestos principio OpenClose
+         */
+        System.out.println("---------Clase CalcularImpuestos---------");
+
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(1500000));
+
+        CalculadoraImpuestos calcularImpuesto = new CalculadoraImpuestos();
+
+        System.out.println("Impuestos Calculados para pc HP: " + calcularImpuesto.calcularImpuestos(productos));
+
+        /**
+         * Instanciando Clase Antipatron
+         */
+        System.out.println("---------Clase CalcularImpuestosAntiPatron---------");
+        Producto producto = new Producto(750000);
+        producto.setTipo("Importado");
+
+        List<Producto> nuevosProductos = new ArrayList<>();
+        nuevosProductos.add(producto);
+
+        CalculadoraImpuestosAntiPatron calcularImpuestoAntiPatron = new CalculadoraImpuestosAntiPatron();
+        System.out.println("Calculo de Impuesto con antipatron " + calcularImpuestoAntiPatron.calcularImpuestosAtiPatron(nuevosProductos));
+
+    }
+}
 
 /*
 * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
@@ -37,6 +73,16 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+    /**
+     *     Nueva regla de Impuesto Departamental
+     */
+
+class ImpuestoDepartamental extends Impuesto{
+    double calcular(Producto producto){
+        return producto.getPrecio() * 0.5;
+    }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -44,6 +90,8 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+        //Agragando regla de Impuesto Departamental
+        reglasImpuestos.add(new ImpuestoDepartamental());
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
@@ -75,7 +123,7 @@ class CalculadoraImpuestos {
 * */
 
 
-class CalculadoraImpuestosAtiPatron {
+class CalculadoraImpuestosAntiPatron {
     public double calcularImpuestosAtiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
@@ -88,5 +136,81 @@ class CalculadoraImpuestosAtiPatron {
         return totalImpuestos;
     }
 }
+
+/**
+ * Nueva Clase con principio OpenClose
+ */
+
+abstract class Operaciones{
+    abstract double CalcularOperacion(int a, int b);
+}
+
+class Sumar extends Operaciones {
+
+    int resultado = 0;
+    @Override
+    double CalcularOperacion(int a, int b) {
+        return resultado = a + b;
+    }
+}
+
+class Restar extends Operaciones {
+
+    int resultado = 0;
+    @Override
+    double CalcularOperacion(int a, int b) {
+        return resultado = a - b;
+    }
+}
+
+class Multiplicar extends Operaciones {
+
+    int resultado = 0;
+    @Override
+    double CalcularOperacion(int a, int b) {
+        return resultado = a * b;
+    }
+}
+
+class Operations {
+    private String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+}
+
+class Resultados {
+    private List<Operaciones> results;
+
+    public Resultados() {
+        this.results = new ArrayList<>();
+        results.add(new Sumar());
+        results.add(new Multiplicar());
+
+    }
+
+    public void agregarOperaciones(Operaciones operaciones) {
+        this.results.add(operaciones);
+    }
+
+    public double calcularOperaciones(List<Operations> operaciones) {
+        double total = 0;
+        for (Operations operacion : operaciones) {
+            for (Operaciones resultado : this.results) {
+                total += resultado.CalcularOperacion(20, 5);
+            }
+        }
+        return total;
+    }
+}
+
+
+
+
 
 

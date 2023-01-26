@@ -1,6 +1,9 @@
 package org.example.dependecyInversion;
 
 public class DependencyInvesion {
+    /**
+     * Se Sigue con la dinamica de los principios previos
+     * */
 }
 
 
