@@ -10,6 +10,7 @@ public class LiskovSubstitution {
         figuras.add(new Cuadrado(10));
         figuras.add(new Triangulo(5, 10));
         figuras.add(new Circulo(2));
+        figuras.add(new Rectangulo(9, 6));
 
         for(FiguraGeometrica figura: figuras) {
             System.out.println("Area: " + figura.area());
@@ -70,6 +71,21 @@ class Circulo extends FiguraGeometrica {
         return Math.PI * radio * radio;
     }
 }
+class Rectangulo extends FiguraGeometrica{
+     private double altura;
+     private double longitud;
+
+    public Rectangulo(double altura, double longitud) {
+        this.altura = altura;
+        this.longitud = longitud;
+    }
+
+    @Override
+    public double area() {
+        return this.altura * this.longitud;
+    }
+}
+
 
 /*
 * Un anti-patrón de sustitución de Liskov en Java podría ser una jerarquía de clases "Empleado"
