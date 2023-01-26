@@ -14,6 +14,10 @@ public class LiskovSubstitution {
         for(FiguraGeometrica figura: figuras) {
             System.out.println("Area: " + figura.area());
         }
+
+       EmpleadoEjecutivo empleado1 = new EmpleadoEjecutivo();
+        empleado1.realizarTarea();
+
     }
 }
 
@@ -97,7 +101,8 @@ class EmpleadoEjecutivo extends Empleado {
         tomarDecision();
     }
     public void tomarDecision() {
-        //...
+        System.out.println("Toma decision: ");
+        System.out.println("Aceptar presupuesto");
     }
 }
 

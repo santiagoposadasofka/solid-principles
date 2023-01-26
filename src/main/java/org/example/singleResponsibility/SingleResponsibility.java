@@ -1,8 +1,29 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
-}
+    /**
+     * Van instanciar una cuenta Bancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
 
+    public void ejecutar(){
+       CuentaBancaria cuenta1 = new CuentaBancaria(82000.60);
+        System.out.println("saldo Inicial: " + cuenta1.getSaldo());
+        cuenta1.depositar(23000.00);
+        System.out.println("Saldo final: " + cuenta1.getSaldo());
+
+        System.out.println("****  Antipatrón -S- *************");
+        Sistema sistema1 = new Sistema();
+        sistema1.depositar(585);
+        sistema1.retirar(500);
+
+
+    }
+
+
+}
 
 /*
  * Un ejemplo de patrón de responsabilidad única en Java podría ser una clase "CuentaBancaria" que solo se encarga de las operaciones
@@ -14,6 +35,7 @@ public class SingleResponsibility {
 
 class CuentaBancaria {
     private double saldo;
+
 
     public CuentaBancaria(double saldoInicial) {
         this.saldo = saldoInicial;
@@ -33,7 +55,15 @@ class CuentaBancaria {
     public double getSaldo() {
         return this.saldo;
     }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+
 }
+
+
 
 /*
  * Un anti-patrón del principio de responsabilidad única en Java podría ser una clase "Sistema" que hace muchas cosas diferentes,
