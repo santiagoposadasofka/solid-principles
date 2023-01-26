@@ -1,6 +1,25 @@
 package org.example.interfaceSegregation;
 
 public class InterfaceSegregation {
+    /**
+     * Se Sigue con la dinamica de los principios previos
+     * */
+    public void ejecutar() {
+        Avion avion = new Avion();
+        avion.aterrizar();
+        avion.aterrizar();
+        avion.navegar();
+        Navegable barco = new Barco();
+        barco.navegar();
+        Volador helicoptero = new Helicoptero();
+        helicoptero.despegar();
+        helicoptero.aterrizar();
+        Programador programador = new QA();
+        programador.codea();
+        programador.tomaCafe();
+
+    }
+
 }
 
 
@@ -15,6 +34,13 @@ public class InterfaceSegregation {
 interface Volador {
     void despegar();
     void aterrizar();
+
+}
+
+interface Programador {
+    void codea();
+    void tomaCafe();
+
 }
 
 interface Navegable {
@@ -51,5 +77,18 @@ class Barco implements Navegable {
     @Override
     public void navegar() {
         //...
+    }
+}
+
+class QA implements Programador {
+
+    @Override
+    public void codea() {
+        System.out.println("Le aparecen muchos errores y no compila");
+    }
+
+    @Override
+    public void tomaCafe() {
+        System.out.println("Se toma un cafecito");
     }
 }
