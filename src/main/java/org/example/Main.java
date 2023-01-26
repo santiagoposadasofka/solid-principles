@@ -10,8 +10,12 @@ public class Main {
         //single.ejecutarSingleResponsibilityCuenta();
         //single.ejecutarSingleResponsibilitySistema();
         //||single.ejecutarSingleResponsibilityAntiPatron();
+
+
         //OpenClose openClose = new OpenClose();
         //openClose.ejecutarImpuesto();
         //openClose.ejecutarAntiPatron();
+        //openClose.ejecutarEjemploOpenClose();
+
     }
 }
