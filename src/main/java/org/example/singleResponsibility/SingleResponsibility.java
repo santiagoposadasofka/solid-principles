@@ -1,5 +1,7 @@
 package org.example.singleResponsibility;
 
+import java.util.Scanner;
+
 public class SingleResponsibility {
     /**
      * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
@@ -8,9 +10,20 @@ public class SingleResponsibility {
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
 
-    public void ejecutar(){
+    public void ejecutar() {
+
+        CuentaBancaria cuenta = new CuentaBancaria(1000000);
+        cuenta.depositar(86235);
+        cuenta.retirar(83456);
+        System.out.println(" Saldo Cuenta Bancaria: "+cuenta.getSaldo());
+
+        Sistema sistema = new Sistema();
+        sistema.depositar(150000);
+        sistema.retirar(130000);
 
     }
+
+
 }
 
 
@@ -33,7 +46,7 @@ class CuentaBancaria {
         this.saldo += cantidad;
     }
 
-    public void retirar(double cantidad) {
+    public void retirar(double cantidad) throws IllegalArgumentException {
         if (cantidad > this.saldo) {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
