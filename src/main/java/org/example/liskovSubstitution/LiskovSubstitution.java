@@ -36,10 +36,7 @@ public class LiskovSubstitution {
         for (Empleado empleado:misEmpleados) {
             empleado.realizarTarea();
         }
-
     }
-
-
 }
 
 
