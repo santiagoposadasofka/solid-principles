@@ -12,7 +12,7 @@ public class OpenClose {
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
 
-    public void Ejecutar(){
+    public void ejecutar(){
 
         List<Producto> productos = new ArrayList<>();
         productos.add(new Producto(500));
@@ -20,12 +20,18 @@ public class OpenClose {
         productos.add(new Producto(1500));
 
         CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
+
+        calculadoraImpuestos.agregarReglaImpuesto(new ImpuestoDepartamental());
+
         double TotalImpuesto = calculadoraImpuestos.calcularImpuestos(productos);
         System.out.println("" + ":" + TotalImpuesto);
+
+
 
         CalculadoraImpuestosAntiPatron calculadoraImpuestosAtiPatron = new CalculadoraImpuestosAntiPatron();
         double TotalImpuestoAntipatron = calculadoraImpuestosAtiPatron.calcularImpuestosAtiPatron(productos);
         System.out.println("" + ":" + TotalImpuestoAntipatron);
+
 
     }
 }
@@ -74,7 +80,7 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
-        reglasImpuestos.add(new ImpuestoDepartamental());
+
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
@@ -122,5 +128,62 @@ class CalculadoraImpuestosAntiPatron {
         return totalImpuestos;
     }
 }
+
+// Ejemplo
+interface Figura {
+    double calcularArea();
+}
+
+class Rectangulo implements Figura {
+    private double ancho;
+    private double alto;
+
+    public Rectangulo(double ancho, double alto) {
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
+    @Override
+    public double calcularArea() {
+        return ancho * alto;
+    }
+}
+
+class Circle implements Figura {
+    private double radio;
+
+    public Circle(double radio) {
+        this.radio = radio;
+    }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * Math.pow(radio, 2);
+    }
+}
+
+class AreaCalculator {
+    public double calcularFiguraArea(Figura Figura) {
+        return Figura.calcularArea();
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        AreaCalculator calculator = new AreaCalculator();
+
+        Figura Rectangulo = new Rectangulo(5, 10);
+        System.out.println("Area del rectangulo: " + calculator.calcularFiguraArea(Rectangulo));
+
+        Figura circle = new Circle(7);
+        System.out.println("Area del circulo: " + calculator.calcularFiguraArea(circle));
+    }
+}
+
+
+
+
+
+
 
 

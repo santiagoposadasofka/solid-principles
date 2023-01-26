@@ -5,18 +5,19 @@ public class DependencyInvesion {
      * Se Sigue con la dinamica de los principios previos
      * */
 
-    GmailService gmailService = new GmailService();
+    public void ejecutar(){
 
-    OutlookService outlookService = new OutlookService();
-    Empleado SantiagoPosada = new Empleado(gmailService);
+        GmailService gmailService = new GmailService();
+        OutlookService outlookService = new OutlookService();
+        YahooService yahooService = new YahooService();
+        Empleado SantiagoPosada = new Empleado(gmailService);
+        Empleado JesusMiguel = new Empleado(outlookService);
+        Empleado JamesMuñoz = new Empleado(gmailService);
+        Empleado ArleyBorja = new Empleado(yahooService);
 
-    Empleado JesusMiguel = new Empleado(outlookService);
+    }
 
-    Empleado JamesMuñoz = new Empleado(gmailService);
 }
-
-
-
 
 /*
 * Un ejemplo de inversión de dependencia en Java podría ser una clase "Empleado" que depende de una
@@ -25,6 +26,8 @@ public class DependencyInvesion {
 * se proporciona una instancia de "ServicioDeCorreo" a través de un constructor o un setter. De esta forma,
 * "Empleado" no tiene conocimiento de cómo se envían los correos electrónicos, sino que simplemente utiliza la interfaz.
  * */
+
+
 
 interface ServicioDeCorreo {
     void enviarCorreo(String destinatario, String asunto, String mensaje);
@@ -45,6 +48,16 @@ class OutlookService implements ServicioDeCorreo {
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Outlook
         System.out.println("Enviando email desde outlook " +
+                "a " + destinatario + " con el asunto "
+                + asunto + "diciendole: " + mensaje);
+    }
+}
+
+class YahooService implements ServicioDeCorreo {
+    @Override
+    public void enviarCorreo(String destinatario, String asunto, String mensaje) {
+        // Envia correo utilizando la API de Yahoo
+        System.out.println("Enviando email desde yahoo " +
                 "a " + destinatario + " con el asunto "
                 + asunto + "diciendole: " + mensaje);
     }
@@ -72,6 +85,51 @@ class Empleado {
         servicioDeCorreo.enviarCorreo(destinatario, asunto, mensaje);
     }
 }
+
+//Ejemplo
+
+class Computadora {
+    private boolean encendida;
+
+    public Computadora() {
+        encendida = false;
+    }
+
+    public void encender() {
+        encendida = true;
+        System.out.println("La computadora se ha encendido");
+    }
+
+    public void apagar() {
+        encendida = false;
+        System.out.println("La computadora se ha apagado");
+    }
+
+    public boolean estaEncendida() {
+        return encendida;
+    }
+}
+
+class ComputadoraEncenderDependiente extends Computadora {
+    private Computadora computadora;
+
+    public ComputadoraEncenderDependiente(Computadora computadora) {
+        super();
+        this.computadora = computadora;
+    }
+
+    @Override
+    public void encender() {
+        if (!computadora.estaEncendida()) {
+            System.out.println("La computadora principal no está encendida, no se puede encender esta");
+        } else {
+            super.encender();
+        }
+    }
+}
+
+
+
 
 
 

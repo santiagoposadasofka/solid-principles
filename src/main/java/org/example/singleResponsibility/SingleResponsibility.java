@@ -14,13 +14,14 @@ public class SingleResponsibility {
 
         miCuenta.depositar(500.00);
         miCuenta.retirar(200.00);
+        miCuenta.consignar(300.00);
 
         double saldo = miCuenta.getSaldo();
 
         Sistema miSistema = new Sistema();
         miSistema.depositar(500.00);
         miSistema.retirar(200.00);
-
+        miSistema.consignar(300.00);
 
     }
 }
@@ -50,6 +51,9 @@ class CuentaBancaria {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
         this.saldo -= cantidad;
+    }
+    public void consignar(double cantidad) {
+        this.saldo += cantidad;
     }
 
     public double getSaldo() {
@@ -95,7 +99,7 @@ class Sistema {
     }
 
     public void consignar(double cantidad) {
-        cuenta.depositar(cantidad);
+        cuenta.consignar(cantidad);
         String receipt = "Consignacion de: " + cantidad;
         printer.print(receipt);
         db.saveTransaction(receipt);
@@ -103,3 +107,52 @@ class Sistema {
     }
 
 }
+
+//Ejemplo
+
+class Empleado {
+    private String nombre;
+    private String apellido;
+    private String cargo;
+    private double salario;
+
+    public Empleado(String nombre, String apellido, String cargo, double salario) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cargo = cargo;
+        this.salario = salario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+}
+
