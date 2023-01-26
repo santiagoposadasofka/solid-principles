@@ -1,8 +1,6 @@
 package org.example.openClose;
-
 import java.util.ArrayList;
 import java.util.List;
-
 public class OpenClose {
     /**
      * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
@@ -11,7 +9,59 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
+
+    public  static void ejecutar(){
+
+        CalculadoraImpuestosAntiPatron antiPatron=new CalculadoraImpuestosAntiPatron();
+        CalculadoraImpuestos calculadoraImpuestos=new CalculadoraImpuestos();
+        calculadoraImpuestos.agregarReglaImpuesto(new ImpuestoGuerra());
+
+        List<Producto> productos=new ArrayList<>();
+       // Continuará
+
+
+
+    }
 }
+
+/*En este ejemplo, la clase "Rectangle" está "cerrada" para modificaciones, pero "abierta"
+para extensiones mediante la creación de la clase "Square", que hereda de "Rectangle" y
+sobrescribe el método de cálculo del área para adaptarse a su forma específica. De esta manera,
+se pueden añadir nuevas funcionalidades (como cálculo de área para un cuadrado) sin tener que modificar
+ el código existente de la clase "Rectangle"*/
+class Rectangle {
+    private int width;
+    private int height;
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+    public int getArea() {
+        return width * height;
+    }
+    public int getPerimeter() {
+        return 2 * (width + height);
+    }
+
+    protected int getWidth() {
+        return 0;
+    }
+
+    protected int getHeight() {
+        return 0;
+    }
+}
+
+class Square extends Rectangle {
+    public Square(int side) {
+        super(side, side);
+    }
+    @Override
+    public int getArea() {
+        return super.getWidth() * super.getHeight();
+    }
+}
+
 
 
 /*
@@ -44,6 +94,13 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+class ImpuestoGuerra extends Impuesto {
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio() * 0.30;
+    }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -55,7 +112,12 @@ class CalculadoraImpuestos {
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
         this.reglasImpuestos.add(impuesto);
+
     }
+
+
+
+
 
     public double calcularImpuestos(List<Producto> productos) {
         double totalImpuestos = 0;

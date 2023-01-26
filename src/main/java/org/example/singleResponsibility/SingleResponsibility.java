@@ -2,16 +2,38 @@ package org.example.singleResponsibility;
 
 public class SingleResponsibility {
     /**
-     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
      * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
      * van a ejecutar sus comportamientos.
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
 
+    //Pantron de responsabilidad unica
     public void ejecutar(){
+        CuentaBancaria cuentaBancaria1 = new CuentaBancaria(1000);
+        System.out.println("Saldo incial  = " + cuentaBancaria1.getSaldo());
+        cuentaBancaria1.depositar(1000);
+        System.out.println("Este es tu nuevo saldo = " + cuentaBancaria1.getSaldo());
+        cuentaBancaria1.retirar(500);
+    }
+
+    //Ejecutar el sistema
+    public void EjecutarSistema (){
+        System.out.println(" INSTANCIA ANTI PATRON " );
+        Sistema sistema = new Sistema();
+        sistema.depositar(2000);
+        System.out.println("\n" );
+        sistema.retirar(1000);
+    }
+
+    public void ejecutarTrabajador(){
+
+
+
 
     }
 }
+
 
 
 /*
@@ -30,6 +52,8 @@ class CuentaBancaria {
     }
 
     public void depositar(double cantidad) {
+
+
         this.saldo += cantidad;
     }
 
@@ -38,12 +62,35 @@ class CuentaBancaria {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
         this.saldo -= cantidad;
+        System.out.println("Tu saldo despues de retirar es " + saldo);
     }
 
     public double getSaldo() {
         return this.saldo;
     }
 }
+
+
+// Clase trabajador que tiene un metodo de consulta y un metodo de negocio
+ class  Trabajador {
+        private String nombre;
+        private String apellido;
+
+
+    public  Trabajador (String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
+    public void MostrarNombre(){
+        String nombreCompleto = nombre + " " + apellido;
+        System.out.println(" Su nombre completo es " );
+    }
+}
+
+
+
+
 
 /*
  * Un anti-patrón del principio de responsabilidad única en Java podría ser una clase "Sistema" que hace muchas cosas diferentes,

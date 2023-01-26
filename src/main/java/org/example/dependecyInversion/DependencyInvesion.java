@@ -1,9 +1,60 @@
 package org.example.dependecyInversion;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DependencyInvesion {
-    /**
-     * Se Sigue con la dinamica de los principios previos
-     * */
+    public static void ejecutar() {
+        // Probando la interfaz servicio
+        Empleado empleado = new Empleado(new GmailService());
+
+        empleado.enviarCorreo("Elbarto@gmail.com", "Mensaje del barto", "El basto estuvo aqui");
+        System.out.println("\n");
+
+        //Lista para computadores con diferente sistema operativo
+        List<Computador> computadores = new ArrayList<>();
+        computadores.add(new Computador(new Windows()));
+        computadores.add(new Computador(new Linux()));
+        for (Computador computador : computadores) {
+            computador.encender();
+        }
+      }
+    }
+
+    //interfaz para el sistema operativo
+    interface SistemaOperativo{
+        void encender();
+    }
+
+    class Windows implements SistemaOperativo{
+        @Override
+        public void encender() {
+            System.out.println("Windows encendido");
+        }
+    }
+
+    class Linux implements SistemaOperativo{
+        @Override
+        public void encender() {
+            System.out.println("Linux encendido");
+        }
+    }
+
+    class Computador{
+        private SistemaOperativo sistemaOperativo;
+
+        public Computador(SistemaOperativo sistemaOperativo) {
+            this.sistemaOperativo = sistemaOperativo;
+        }
+
+        public void encender(){
+            sistemaOperativo.encender();
+        }
+
+
+
+
+
+
 
     GmailService gmailService = new GmailService();
 
@@ -11,7 +62,10 @@ public class DependencyInvesion {
     Empleado SantiagoPosada = new Empleado(gmailService);
 
     Empleado JesusMiguel = new Empleado(outlookService);
+
 }
+
+
 
 
 
