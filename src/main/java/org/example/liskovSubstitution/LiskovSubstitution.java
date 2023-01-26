@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LiskovSubstitution {
 
-    public void ejecutar(){
+    public void ejecutarPatronliskov(){
         List<FiguraGeometrica> figuras = new ArrayList<>();
         figuras.add(new Cuadrado(10));
         figuras.add(new Triangulo(5, 10));
@@ -13,6 +13,23 @@ public class LiskovSubstitution {
 
         for(FiguraGeometrica figura: figuras) {
             System.out.println("Area: " + figura.area());
+        }
+    }
+
+    public void ejecutarAntiPatronLiskov() {
+        List<Empleado> empleados = new ArrayList<>();
+        empleados.add(new EmpleadoEjecutivo());
+        empleados.add(new EmpleadoOperativo());
+        empleados.add(new EmpleadoTemporal());
+
+        for (Empleado empleado: empleados) {
+            if (empleado instanceof EmpleadoEjecutivo) {
+                ((EmpleadoEjecutivo) empleado).tomarDecision();
+            } else if (empleado instanceof EmpleadoOperativo) {
+                ((EmpleadoOperativo) empleado).realizarOperacion();
+            } else if (empleado instanceof EmpleadoTemporal) {
+                ((EmpleadoTemporal) empleado).realizarTareaTemporal();
+            }
         }
     }
 }
@@ -97,7 +114,7 @@ class EmpleadoEjecutivo extends Empleado {
         tomarDecision();
     }
     public void tomarDecision() {
-        //...
+        System.out.println("Tomando decisión");
     }
 }
 
@@ -107,7 +124,7 @@ class EmpleadoOperativo extends Empleado {
         realizarOperacion();
     }
     public void realizarOperacion() {
-        //...
+        System.out.println("Realizando operación");
     }
 }
 
@@ -117,6 +134,6 @@ class EmpleadoTemporal extends Empleado {
         realizarTareaTemporal();
     }
     public void realizarTareaTemporal() {
-        //...
+        System.out.println("Realizando operación temporal");
     }
 }

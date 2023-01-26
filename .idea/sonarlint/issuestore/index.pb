@@ -9,7 +9,5 @@ o
 ?src/main/java/org/example/singleResponsibility/EmailSender.java,c\8\c8f3790a56cdb1d90972141486a75b3cca2daa6c
 x
 Hsrc/main/java/org/example/singleResponsibility/SingleResponsibility.java,f\0\f0576ee8de3bc087dee698ca63ffc831e3baf6c3
-t
-Dsrc/main/java/org/example/liskovSubstitution/LiskovSubstitution.java,6\8\68c61897e609ed2069e08ba0d45172f9fd359d3c
 a
 1src/main/java/org/example/openClose/Producto.java,0\c\0ccb5fdbbf1defab8cd7ec433e59916464b9ac6a

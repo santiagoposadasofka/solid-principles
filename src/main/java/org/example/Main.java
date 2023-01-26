@@ -17,5 +17,9 @@ public class Main {
         //openClose.ejecutarAntiPatron();
         //openClose.ejecutarEjemploOpenClose();
 
+        LiskovSubstitution liskovSubstitution = new LiskovSubstitution();
+        //liskovSubstitution.ejecutarPatronliskov();
+        //liskovSubstitution.ejecutarAntiPatronLiskov();
+
     }
 }
