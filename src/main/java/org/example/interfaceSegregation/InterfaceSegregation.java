@@ -25,6 +25,28 @@ public class InterfaceSegregation {
         }
     }
 
+    public void ejecutar1(){
+        System.out.println("   Modelo Antiguo");
+        List<ImpresoraMultifuncional> listaImpresoras = new ArrayList<>();
+        listaImpresoras.add(new ModeloAntigup());
+        for (ImpresoraMultifuncional impresoras: listaImpresoras) {
+            System.out.println(impresoras.Cancelar());
+            System.out.println(impresoras.Escanear());
+            System.out.println(impresoras.Imprimir());
+        }
+        System.out.println("    Modelo Actual");
+        List<ModeloActual> listaImpresoras2 = new ArrayList<>();
+        listaImpresoras2.add(new ModeloActual());
+        for (ModeloActual impresoras2: listaImpresoras2) {
+            System.out.println(impresoras2.Cancelar());
+            System.out.println(impresoras2.Escanear());
+            System.out.println(impresoras2.Imprimir());
+            System.out.println(impresoras2.Fotocopiar());
+        }
+
+    }
+
+
 }
 
 

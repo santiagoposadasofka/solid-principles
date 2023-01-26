@@ -20,7 +20,7 @@ public class Main {
         //liskov.ejecutar2();
 
         InterfaceSegregation interfaceSegregation = new InterfaceSegregation();
-        interfaceSegregation.ejecutar();
+        interfaceSegregation.ejecutar1();
 
 
     }
