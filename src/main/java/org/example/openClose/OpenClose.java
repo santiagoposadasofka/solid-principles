@@ -4,6 +4,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OpenClose {
+    /**
+     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     * y vamos a ejecutar sus comportamientos.
+     * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     * ej. impuestoDepartamental ...
+     * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
+     * */
+
+
+    public void ejecutar(){
+        CalculadoraImpuestos calculadora1 = new CalculadoraImpuestos();
+
+        Producto pera = new Producto(1200);
+        pera.setTipo("Nacional");
+        Producto manzana = new Producto(500);
+        manzana.setTipo("Nacional");
+
+        List <Producto> productos;
+        productos = new ArrayList<>();
+
+        productos.add(pera);
+        productos.add(manzana);
+
+        Impuesto impuesto1 = new Impuesto() {
+            @Override
+            double calcular(Producto producto) {
+                return producto.getPrecio() * 0.32;
+            }
+        };
+        calculadora1.agregarReglaImpuesto(impuesto1);
+        calculadora1.calcularImpuestos(productos);
+    }
+
+    public void ejecutarAnti(){
+        CalculadoraImpuestosAntiPatron antiCalculadora = new CalculadoraImpuestosAntiPatron();
+        Producto antiPera = new Producto(1200);
+        antiPera.setTipo("Nacional");
+        Producto antiManzana = new Producto(500);
+        antiManzana.setTipo("Nacional");
+
+        List <Producto> productos2;
+        productos2 = new ArrayList<>();
+
+        productos2.add(antiPera);
+        productos2.add(antiManzana);
+        antiCalculadora.calcularImpuestosAntiPatron(productos2);
+
+    }
+    public void ejemplo (){
+        Electrodoméstico electro1 = new Electrodoméstico("nevera", 12);
+        electro1.generarVoltaje();
+    }
+
 }
 
 
@@ -26,6 +79,11 @@ abstract class Impuesto {
 class ImpuestoNacional extends Impuesto {
     @Override
     double calcular(Producto producto) {
+        System.out.println("El valor a pagar del producto con impuesto incluido es "
+                + producto.getPrecio()*0.15 + " debido al tipo de impuesto que es " +
+                producto.getTipo());
+
+
         return producto.getPrecio() * 0.15;
     }
 }
@@ -33,9 +91,14 @@ class ImpuestoNacional extends Impuesto {
 class ImpuestoImportacion extends Impuesto {
     @Override
     double calcular(Producto producto) {
+        System.out.println("El valor a pagar del producto con impuesto incluido es " + producto.getPrecio()*0.25+
+                " debido al tipo de impuesto que es " +
+                producto.getTipo());
         return producto.getPrecio() * 0.25;
     }
 }
+
+
 
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
@@ -75,18 +138,65 @@ class CalculadoraImpuestos {
 * */
 
 
-class CalculadoraImpuestosAtiPatron {
-    public double calcularImpuestosAtiPatron(List<Producto> productos) {
+class CalculadoraImpuestosAntiPatron {
+    public double calcularImpuestosAntiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
             if (producto.getTipo() == "Nacional") {
                 totalImpuestos += producto.getPrecio() * 0.15;
+                System.out.println("Debe pagar por el producto "+
+                        producto.getPrecio() + " incluido el impuesto" + " porque su producto " +
+                        "tiene el tipo " + producto.getTipo());
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+                System.out.println("Debe pagar por el producto "+
+                        producto.getPrecio() + " incluido el impuesto" + " porque su producto " +
+                        "tiene el tipo " + producto.getTipo());
+            } else if (producto.getTipo()== "Municipal") {
+                totalImpuestos += producto.getPrecio() * 0.12;
+                System.out.println("Debe pagar por el producto "+
+                        producto.getPrecio() + " incluido el impuesto" + " porque su producto " +
+                        "tiene el tipo " + producto.getTipo());
             }
         }
         return totalImpuestos;
     }
 }
 
+//Ejemplo Antipatron OPENCLOSE
+
+class Electrodoméstico{
+    private String nombre;
+    private double voltaje;
+
+    public Electrodoméstico(String nombre, double voltaje) {
+        this.nombre = nombre;
+        this.voltaje = voltaje;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getVoltaje() {
+        return voltaje;
+    }
+
+    public void setVoltaje(double voltaje) {
+        this.voltaje = voltaje;
+    }
+
+    public void generarVoltaje (){
+        if(this.voltaje == 120){
+            this.nombre = "Nevera";
+        } else if (this.voltaje == 13) {
+            this.nombre = "Televisor";
+        }//Debo seguir añadiendo electrodomésticos a partir de su voltaje, ya que este necesita de este
+        //para saber el tipo de electrodoméstico
+    }
+}
 

@@ -1,6 +1,26 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
+
+    public void ejecutar(){
+
+        CuentaBancaria cuenta1 = new CuentaBancaria(5000);
+        System.out.println("Su cuenta tiene actualmente "+ cuenta1.getSaldo());
+        cuenta1.depositar(10000);
+        cuenta1.retirar(5000);
+    }
+
+    public void ejecutar2(){
+        Sistema sistema1 = new Sistema();
+        sistema1.depositar(40000);
+        sistema1.retirar(20000);
+    }
 }
 
 
@@ -21,6 +41,7 @@ class CuentaBancaria {
 
     public void depositar(double cantidad) {
         this.saldo += cantidad;
+        System.out.println("Usted depositó "+ cantidad + "y su saldo es "+ saldo);
     }
 
     public void retirar(double cantidad) {
@@ -28,6 +49,7 @@ class CuentaBancaria {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
         this.saldo -= cantidad;
+        System.out.println("Usted retiró " +  cantidad + " ahora tiene "+ saldo);
     }
 
     public double getSaldo() {
@@ -70,5 +92,22 @@ class Sistema {
         printer.print(receipt);
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
+    }
+}
+
+//  Esta es una clase con Single Responsibility
+class Vaca{
+    private String nombre;
+    private String color;
+    private int peso;
+
+    public Vaca(String nombre, String color, int peso) {
+        this.nombre = nombre;
+        this.color = color;
+        this.peso = peso;
+    }
+
+    public void haceMuu(){
+        System.out.println("La vaca hace muuuu");
     }
 }
