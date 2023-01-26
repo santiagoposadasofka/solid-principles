@@ -125,5 +125,47 @@ class CalculadoraImpuestosAntiPatron {
         return totalImpuestos;
     }
 }
+//creacion del ejemplo correcto
+abstract class Operacion {
+    protected double operando1;
+    protected double operando2;
+    public Operacion(double operando1, double operando2) {
+        this.operando1 = operando1;
+        this.operando2 = operando2;
+    }
+    public abstract double calcular();
+}
+
+class Suma extends Operacion {
+    public Suma(double operando1, double operando2) {
+        super(operando1, operando2);
+    }
+
+    @Override
+    public double calcular() {
+        return operando1 + operando2;
+    }
+}
+
+class Resta extends Operacion {
+    public Resta(double operando1, double operando2) {
+        super(operando1, operando2);
+    }
+
+    @Override
+    public double calcular() {
+        return operando1 - operando2;
+    }
+}
+
+class Calculadora {
+    private Operacion operacion;
+    public Calculadora(Operacion operacion) {
+        this.operacion = operacion;
+    }
+    public double calcular() {
+        return operacion.calcular();
+    }
+}
 
 

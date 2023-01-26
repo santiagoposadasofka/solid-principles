@@ -120,3 +120,45 @@ class EmpleadoTemporal extends Empleado {
         //...
     }
 }
+//creacion del ejemplo correcto
+
+abstract class Animals {
+    protected String name;
+    protected int legs;
+
+    public Animals(String name, int legs) {
+        this.name = name;
+        this.legs = legs;
+    }
+
+    public abstract void makeSound();
+}
+
+class Dog extends Animals {
+    public Dog(String name) {
+        super(name, 4);
+    }
+
+    @Override
+    public void makeSound() {
+        System.out.println("Woof woof");
+    }
+}
+
+class Snake extends Animals {
+    public Snake(String name) {
+        super(name, 0);
+    }
+
+    @Override
+    public void makeSound() {
+        System.out.println("Hissssssssss");
+    }
+}
+
+class ZooKeeper {
+    public void feedAnimals(Animals animal) {
+        System.out.println(animal.name + " is eating.");
+
+}}
+

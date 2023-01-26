@@ -84,6 +84,37 @@ class Empleado {
     }
 }
 
+//creacion del ejemplo correcto
+interface Engine {
+    void start();
+}
+
+class ElectricEngine implements Engine {
+    @Override
+    public void start() {
+        System.out.println("Electric engine started");
+    }
+}
+
+class GasEngine implements Engine {
+    @Override
+    public void start() {
+        System.out.println("Gas engine started");
+    }
+}
+
+class Car {
+    private Engine engine;
+
+    public Car(Engine engine) {
+        this.engine = engine;
+    }
+
+    public void start() {
+        engine.start();
+}}
+
+
 
 
 

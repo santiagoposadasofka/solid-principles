@@ -104,4 +104,58 @@ class cohete implements Volador{
     public void acelerar(){}
 }
 
+//creacion del ejemplo correcto
+
+interface Document {
+    void open();
+    void save();
+    void print();
+}
+
+interface WordDocument extends Document {
+    void spellCheck();
+    void grammarCheck();
+}
+
+interface PDFDocument extends Document {
+    void encrypt();
+    void decrypt();
+}
+
+class MicrosoftWord implements WordDocument {
+    public void open() {
+        // Microsoft Word open code
+    }
+    public void save() {
+        // Microsoft Word save code
+    }
+    public void print() {
+        // Microsoft Word print code
+    }
+    public void spellCheck() {
+        // Microsoft Word spell check code
+    }
+    public void grammarCheck() {
+        // Microsoft Word grammar check code
+    }
+}
+
+class AdobeAcrobat implements PDFDocument {
+    public void open() {
+        // Adobe Acrobat open code
+    }
+    public void save() {
+        // Adobe Acrobat save code
+    }
+    public void print() {
+        // Adobe Acrobat print code
+    }
+    public void encrypt() {
+        // Adobe Acrobat encrypt code
+    }
+    public void decrypt() {
+        // Adobe Acrobat decrypt code
+    }
+}
+
 

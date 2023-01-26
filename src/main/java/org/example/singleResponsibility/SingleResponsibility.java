@@ -1,5 +1,8 @@
 package org.example.singleResponsibility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SingleResponsibility {
     /**
      * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
@@ -101,5 +104,57 @@ class Sistema {
     db.saveTransaction(receipt);
     emailSender.send("Transferencia realizada exitosamente", receipt);
 
+    }
+
+    class Tarea {
+        private String descripcion;
+        private boolean estado;
+
+        public Tarea(String descripcion) {
+            this.descripcion = descripcion;
+            this.estado = false;
+        }
+
+        public String getDescripcion() {
+            return descripcion;
+        }
+
+        public boolean getEstado() {
+            return estado;
+        }
+
+        public void completar() {
+            this.estado = true;
+        }
+    }
+    //creacion del ejemplo correcto
+    class GestorTareas {
+        private List<Tarea> tareas;
+
+        public GestorTareas() {
+            tareas = new ArrayList<>();
+        }
+
+        public void agregarTarea(Tarea tarea) {
+            tareas.add(tarea);
+        }
+
+        public void eliminarTarea(Tarea tarea) {
+            tareas.remove(tarea);
+        }
+
+        public List<Tarea> obtenerTareas() {
+            return tareas;
+        }
+
+        public List<Tarea> obtenerTareasCompletadas() {
+            List<Tarea> completadas = new ArrayList<>();
+            for (Tarea t : tareas) {
+                if (t.getEstado()) {
+                    completadas.add(t);
+                }
+            }
+            return completadas;
+        }
     }
 }
