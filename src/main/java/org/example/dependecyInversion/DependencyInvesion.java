@@ -12,10 +12,8 @@ public class DependencyInvesion {
 
         Empleado SantiagoPosada = new Empleado(gmailService);
         SantiagoPosada.enviarCorreo("Sergio", "Solicitud", "Por favor realizar el pull request");
-        System.out.println("Primer Correo electrónico enviado");
         Empleado JesusMiguel = new Empleado(outlookService);
-        JesusMiguel.enviarCorreo("Sergio", "Solicitud", "Por favor revisar el pull request de Sergio");
-        System.out.println("Segundo Correo electrónico enviado");
+        JesusMiguel.enviarCorreo("Santiago", "Solicitud", "Por favor revisar el pull request de Sergio");
     }
 
 }
@@ -51,7 +49,7 @@ class OutlookService implements ServicioDeCorreo {
         // Envia correo utilizando la API de Outlook
         System.out.println("Enviando email desde outlook " +
                 "a " + destinatario + " con el asunto "
-                + asunto + "diciendole: " + mensaje);
+                + asunto + " diciendole: " + mensaje);
     }
 }
 
