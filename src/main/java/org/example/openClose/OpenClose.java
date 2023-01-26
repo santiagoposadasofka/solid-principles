@@ -4,6 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OpenClose {
+
+    public void ejecutar(){
+
+        System.out.println("Impuesto Importacion");
+        ImpuestoImportacion impuImportacion = new ImpuestoImportacion();
+        System.out.println(impuImportacion.calcular(new Producto(5000)));
+
+        System.out.println("Impuesto Consumo");
+        ImpuestoConsumo impuestoConsumo = new ImpuestoConsumo();
+        System.out.println(impuestoConsumo.calcular(new Producto(5000)));
+
+        System.out.println("Impuesto Importacion");
+        ImpuestoImportacion impuestoImportacion = new ImpuestoImportacion();
+        System.out.println(impuestoImportacion.calcular(new Producto(5000)));
+
+    }
     /**
      * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
      * y vamos a ejecutar sus comportamientos.
@@ -12,8 +28,6 @@ public class OpenClose {
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
 }
-
-
 
 /*
 * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
@@ -45,6 +59,20 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+/*
+ * Se adiciona la clase "Impuesto Consumo" adaptandose al patron O/C
+ * debido a que se pudo extender el metodo de la clase impuesto,
+ * pero se brinda el get para calcular sin problemas el impuesto al producto dado
+ * */
+
+class ImpuestoConsumo extends  Impuesto{
+
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio() * 0.4;
+    }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -69,7 +97,6 @@ class CalculadoraImpuestos {
     }
 }
 
-
 /*
 * Un anti-patrón del principio de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos"
 *  que tiene un método "calcularImpuestos" que toma una lista de objetos "Producto" y devuelve el total
@@ -87,9 +114,9 @@ class CalculadoraImpuestosAntiPatron {
     public double calcularImpuestosAtiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
-            if (producto.getTipo() == "Nacional") {
+            if (producto.getNombre() == "Nacional") {
                 totalImpuestos += producto.getPrecio() * 0.15;
-            } else if (producto.getTipo() == "Importado") {
+            } else if (producto.getNombre() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
             }
         }

@@ -24,5 +24,10 @@ public class Main {
         InterfaceSegregation interf = new InterfaceSegregation();
         interf.ejecutar();
 
+        System.out.println("---OPEN CLOSE----");
+
+        OpenClose openClose = new OpenClose();
+        openClose.ejecutar();
+
     }
 }
