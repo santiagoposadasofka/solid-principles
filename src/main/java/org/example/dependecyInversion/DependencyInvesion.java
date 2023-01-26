@@ -4,13 +4,30 @@ public class DependencyInvesion {
     /**
      * Se Sigue con la dinamica de los principios previos
      * */
+    public void ejecutar()
+    {
+        System.out.println("\nComportamientos de enviar correo");
+        GmailService gmailService = new GmailService();
 
-    GmailService gmailService = new GmailService();
+        OutlookService outlookService = new OutlookService();
+        Empleado SantiagoPosada = new Empleado(gmailService);
 
-    OutlookService outlookService = new OutlookService();
-    Empleado SantiagoPosada = new Empleado(gmailService);
+        Empleado JesusMiguel = new Empleado(outlookService);
+        SantiagoPosada.enviarCorreo("Rauk","Pagar","Pagar mensualidad");
+        JesusMiguel.enviarCorreo("Santiago","Saludo","Como estas?");
+    }
 
-    Empleado JesusMiguel = new Empleado(outlookService);
+    public void ejecutarDibujar(){
+        System.out.println("\nComportamientos de un ejemplo siguiendo el patron");
+        DibujoFisico dibujoFisico=new DibujoFisico();
+        DibujoVirtual dibujoVirtual=new DibujoVirtual();
+
+        Artista Pedro=new Artista(dibujoFisico);
+        Artista Camilo=new Artista(dibujoVirtual);
+
+        Pedro.crearDibujo("Perrito",10,"Color");
+        Camilo.crearDibujo("Gatito",20,"Blanco y negro");
+    }
 }
 
 
@@ -68,6 +85,41 @@ class Empleado {
 
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         servicioDeCorreo.enviarCorreo(destinatario, asunto, mensaje);
+    }
+}
+
+interface Dibujar{
+    void crearDibujo(String imagen,double tamanio,String tipo);
+}
+
+class DibujoFisico implements Dibujar{
+
+    @Override
+    public void crearDibujo(String imagen, double tamanio, String tipo) {
+        System.out.println("Dibujo en fisico de "+imagen+", de tamanio "+tamanio+" y de tipo"+tipo);
+    }
+}
+
+class DibujoVirtual implements Dibujar{
+    @Override
+    public void crearDibujo(String imagen, double tamanio, String tipo) {
+        System.out.println("Dibujar en digital de "+imagen+", de tamanio "+tamanio+" y de tipo"+tipo);
+    }
+}
+
+class Artista{
+    private Dibujar dibujar;
+
+    public Artista(Dibujar dibujar) {
+        this.dibujar = dibujar;
+    }
+
+    public void setDibujar(Dibujar dibujar) {
+        this.dibujar = dibujar;
+    }
+
+    public void crearDibujo(String imagen,double tamanio,String tipo){
+        dibujar.crearDibujo(imagen,tamanio,tipo);
     }
 }
 

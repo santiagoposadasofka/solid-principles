@@ -6,14 +6,38 @@ import java.util.List;
 public class LiskovSubstitution {
 
     public void ejecutar(){
+        System.out.println("Comportamientos figuras siguiendo el patron");
         List<FiguraGeometrica> figuras = new ArrayList<>();
         figuras.add(new Cuadrado(10));
         figuras.add(new Triangulo(5, 10));
         figuras.add(new Circulo(2));
+        figuras.add(new Cubo(3));
 
         for(FiguraGeometrica figura: figuras) {
             System.out.println("Area: " + figura.area());
         }
+    }
+
+    public void antipatronEmpleado(){
+        System.out.println("\nComportamientos antipatron empleado");
+        EmpleadoEjecutivo empleadoEjecutivo=new EmpleadoEjecutivo();
+        EmpleadoOperativo empleadoOperativo=new EmpleadoOperativo();
+        EmpleadoTemporal empleadoTemporal=new EmpleadoTemporal();
+        empleadoEjecutivo.realizarTarea();
+        empleadoOperativo.realizarTarea();
+        empleadoTemporal.realizarTarea();
+    }
+
+    public void patronServivo(){
+        System.out.println("\nComportamientos de ejemplo siguiendo el patron (Servivo)");
+
+        Planta planta=new Planta();
+        Humano humano=new Humano();
+        Animales animales=new Animales();
+
+        planta.alimentarse();
+        humano.alimentarse();
+        animales.alimentarse();
     }
 }
 
@@ -71,6 +95,19 @@ class Circulo extends FiguraGeometrica {
     }
 }
 
+class Cubo extends FiguraGeometrica{
+    private double lado;
+
+    public Cubo(double lado) {
+        this.lado = lado;
+    }
+
+    @Override
+    public double area() {
+        return lado*lado*6;
+    }
+}
+
 /*
 * Un anti-patrón de sustitución de Liskov en Java podría ser una jerarquía de clases "Empleado"
 * que tiene una clase base "Empleado" y varias subclases que representan diferentes tipos de
@@ -97,7 +134,7 @@ class EmpleadoEjecutivo extends Empleado {
         tomarDecision();
     }
     public void tomarDecision() {
-        //...
+        System.out.println("Este empleado no esta realizando tareas, esta tomando una decision");
     }
 }
 
@@ -107,6 +144,7 @@ class EmpleadoOperativo extends Empleado {
         realizarOperacion();
     }
     public void realizarOperacion() {
+        System.out.println("Este empleado realiza una operacion");
         //...
     }
 }
@@ -117,6 +155,32 @@ class EmpleadoTemporal extends Empleado {
         realizarTareaTemporal();
     }
     public void realizarTareaTemporal() {
+        System.out.println("Este empleado esta realizando una tarea");
         //...
+    }
+}
+
+abstract class SerVivo{
+    public abstract void alimentarse();
+}
+
+class Planta extends SerVivo{
+    @Override
+    public void alimentarse() {
+        System.out.println("La planta se alimenta por la fotosintesis");
+    }
+}
+
+class Humano extends SerVivo{
+    @Override
+    public void alimentarse() {
+        System.out.println("Los seres vivos se alimentan de plantas y animales");
+    }
+}
+
+class Animales extends SerVivo{
+    @Override
+    public void alimentarse() {
+        System.out.println("los animales se alimentan de animales y plantas");
     }
 }

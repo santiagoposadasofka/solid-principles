@@ -8,8 +8,26 @@ public class SingleResponsibility {
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
 
-    public void ejecutar(){
+    public void ejecutarCuentaBancaria(){
+        System.out.println("\nComportamientos cuenta bancaria patron");
+        CuentaBancaria cuentaBancaria=new CuentaBancaria(50000);
+        cuentaBancaria.depositar(10000);
+        //cuentaBancaria.retirar((500000));
+        cuentaBancaria.retirar((5000));
+    }
 
+    public void ejecutarSistema(){
+
+        System.out.println("\nComportamientos sistema antipatron");
+        Sistema sistema=new Sistema();
+        sistema.depositar(20000);
+        sistema.retirar(10000);
+    }
+
+    public void ejecutarAnimal(){
+        System.out.println("\nComportamiento ejemplo que sigue el patron");
+        Animal animal=new Animal("Pedro","alas");
+        animal.verAnimal();
     }
 }
 
@@ -30,7 +48,9 @@ class CuentaBancaria {
     }
 
     public void depositar(double cantidad) {
+        System.out.println("Saldo actual: "+saldo);
         this.saldo += cantidad;
+        System.out.println("Usted deposito: "+cantidad+", saldo actual: "+saldo);
     }
 
     public void retirar(double cantidad) {
@@ -38,6 +58,7 @@ class CuentaBancaria {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
         this.saldo -= cantidad;
+        System.out.println("Usted retiro: "+cantidad+ ", su saldo actual es "+saldo);
     }
 
     public double getSaldo() {
@@ -70,15 +91,42 @@ class Sistema {
     public void depositar(double cantidad) {
         cuenta.depositar(cantidad);
         String receipt = "Deposito de: " + cantidad;
-        printer.print(receipt);
+        //printer.print(receipt);
         db.saveTransaction(receipt);
     }
 
     public void retirar(double cantidad) {
         cuenta.retirar(cantidad);
         String receipt = "Retiro de: " + cantidad;
-        printer.print(receipt);
+        //printer.print(receipt);
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
     }
+
+}
+
+class Animal{
+    private String nombre;
+    private String movilidad;
+
+    public Animal(String nombre, String movilidad) {
+        this.nombre = nombre;
+        this.movilidad = movilidad;
+    }
+
+    public void verAnimal(){
+        String mov;
+        if(movilidad=="patas"){
+            mov="terrestre";
+        }else if(movilidad=="aletas"){
+            mov="acuatico";
+        }else if(movilidad=="alas"){
+            mov="volador";
+        }else{
+            mov="desconocida";
+        }
+        System.out.println("Este animal se llama "+nombre+", y es "+mov);
+    }
+
+
 }

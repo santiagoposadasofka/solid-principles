@@ -11,6 +11,59 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
+
+    public void ejecutarCalculadoraImpuestos(){
+        System.out.println("\nComportamientos calculadora de impuestos siguiendo el patron");
+
+        Producto producto1=new Producto(2000);
+        //producto1.setTipo("Nacional");
+        Producto producto2=new Producto(3000);
+        //producto1.setTipo("Importado");
+        Producto producto3=new Producto(4000);
+        //producto1.setTipo("Azucar");
+
+        ArrayList<Producto> productos = new ArrayList<>();
+        productos.add(producto1);
+        productos.add(producto2);
+        productos.add(producto3);
+
+        ImpuestoAlAzucar impuestoAlAzucar =new ImpuestoAlAzucar();
+
+
+        CalculadoraImpuestos calculadoraImpuestos=new CalculadoraImpuestos();
+        calculadoraImpuestos.agregarReglaImpuesto(impuestoAlAzucar);
+
+        System.out.println(calculadoraImpuestos.calcularImpuestos(productos));
+    }
+
+    public void ejecutarAntipatronCalculadora(){
+        System.out.println("\nComportamientos calculadora de impuestos antipatron");
+
+        Producto producto1=new Producto(2000);
+        producto1.setTipo("Nacional");
+        Producto producto2=new Producto(3000);
+        producto2.setTipo("Importado");
+        Producto producto3=new Producto(4000);
+        producto3.setTipo("Azucar");
+        ArrayList<Producto> productos = new ArrayList<>();
+        productos.add(producto1);
+        productos.add(producto2);
+        productos.add(producto3);
+        CalculadoraImpuestosAntiPatron calculadoraImpuestos=new CalculadoraImpuestosAntiPatron();
+        System.out.println(calculadoraImpuestos.calcularImpuestosAtiPatron(productos));
+    }
+
+    public void ejecutarAntipatronAnimal(){
+        System.out.println("\nComportamientos ejemplo animal antipatron");
+
+        Animal animal1=new Animal("Gato","Carnivoro");
+        Animal animal2=new Animal("Tortuga","Herbivoro");
+        ArrayList<Animal> animales = new ArrayList<>();
+        animales.add(animal1);
+        animales.add(animal2);
+        DecirTipoAntipatron decirTipoAntipatron=new DecirTipoAntipatron();
+        decirTipoAntipatron.DecirComida(animales);
+    }
 }
 
 
@@ -28,9 +81,22 @@ public class OpenClose {
 * */
 abstract class Impuesto {
     abstract double calcular(Producto producto);
+
+
 }
 
 class ImpuestoNacional extends Impuesto {
+    /*private String tipo="Nacional";
+    private double porcentaje=0.15;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public double getPorcentaje() {
+        return porcentaje;
+    }*/
+
     @Override
     double calcular(Producto producto) {
         return producto.getPrecio() * 0.15;
@@ -38,14 +104,25 @@ class ImpuestoNacional extends Impuesto {
 }
 
 class ImpuestoImportacion extends Impuesto {
+
     @Override
     double calcular(Producto producto) {
         return producto.getPrecio() * 0.25;
     }
 }
 
+class ImpuestoAlAzucar extends Impuesto {
+
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio() * 0.20;
+    }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
+    //private List<String> impuestosTipos;
+    //private List<Double> impuestosPorcentaje;
 
     public CalculadoraImpuestos() {
         this.reglasImpuestos = new ArrayList<>();
@@ -90,10 +167,68 @@ class CalculadoraImpuestosAntiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            }else if (producto.getTipo()== "Azucar"){
+                totalImpuestos += producto.getPrecio() * 0.20;
             }
         }
         return totalImpuestos;
     }
+}
+
+class Animal{
+
+    private String nombre;
+    private String tipo;
+
+    public Animal(String nombre, String tipo) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+}
+
+abstract class TipoAnimal{
+    abstract String decirTipo(Animal animal);
+}
+class Carnivoro extends TipoAnimal{
+
+    @Override
+    String decirTipo(Animal animal) {
+        return animal.getTipo();
+    }
+}
+
+class Herbivoro extends TipoAnimal{
+
+    @Override
+    String decirTipo(Animal animal) {
+        return animal.getTipo();
+    }
+}
+
+class DecirTipoAntipatron{
+
+    public void DecirComida(List<Animal> animales) {
+        for (Animal animal : animales) {
+            if (animal.getTipo() == "Carnivoro") {
+                System.out.println("El animal come carne");
+            } else if (animal.getTipo() == "Herbivoro") {
+                System.out.println("El animal come hirbas");
+            }
+        }
+        /* return ""; */
+    }
+
+
+
+
 }
 
 
