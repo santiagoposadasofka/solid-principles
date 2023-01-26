@@ -10,11 +10,12 @@ public class SingleResponsibility {
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
     private double cantidad;
-    private double saldo = 10000;
+    private double saldo;
     int opc = 0;
     CuentaBancaria cuentaBancaria = new CuentaBancaria(saldo);
     public void ejecutarSingleResponsibilityCuenta(){
         do{
+            saldo = 10000;
             Scanner in = new Scanner(System.in);
             System.out.println("Cuenta Bancaria");
             System.out.println("\nElige una opción");
@@ -45,10 +46,38 @@ public class SingleResponsibility {
 
     }
 
-    public void ejecutarSingleResponsibilitySistema() {
 
+    Sistema sistema = new Sistema();
+    public void ejecutarSingleResponsibilitySistema() {
+        do{
+            Scanner in = new Scanner(System.in);
+            System.out.println("Cuenta Bancaria");
+            System.out.println("\nElige una opción");
+            System.out.println("1. Depositar dinero. \n2. Retirar dinero. \n3. Salir");
+            opc = in.nextInt();
+
+            switch (opc) {
+                case 1:
+                    System.out.println("Cuanto dinero desea depositar");
+                    cantidad = in.nextDouble();
+                    sistema.depositar(cantidad);
+                    break;
+                case 2:
+                    System.out.println("Cuanto dinero desea retirar");
+                    cantidad = in.nextDouble();
+                    sistema.retirar(cantidad);
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción Incorrecta");
+            }
+        }while (opc!=4);
     }
 }
+
+
 
 
 /*
@@ -118,4 +147,5 @@ class Sistema {
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
     }
+
 }

@@ -6,6 +6,7 @@ import org.example.singleResponsibility.SingleResponsibility;
 public class Main {
     public static void main(String[] args) {
         SingleResponsibility single = new SingleResponsibility();
-        single.ejecutarSingleResponsibilityCuenta();
+        //single.ejecutarSingleResponsibilityCuenta();
+        single.ejecutarSingleResponsibilitySistema();
     }
 }
