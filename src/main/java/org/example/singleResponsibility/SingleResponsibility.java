@@ -1,10 +1,6 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
-    /**
-     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
-     */
-
     public void ejecutar() {
         System.out.println("Ejecutando ejemplos del patrón Single Responsibility");
         /*
@@ -35,7 +31,7 @@ public class SingleResponsibility {
          * Se mira el nombre y precio del producto antes de impuestos.
          * Se calcula el IVA
          * Se mira el precio del producto después de IVA.
-        */
+         */
         Producto producto = new Producto("Arepas", 3000);
         System.out.println(producto.getNombre() + " cuesta $" + producto.getPrecio() + " sin IVA");
         producto.setNuevoPrecio();
