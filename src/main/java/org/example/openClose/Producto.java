@@ -5,6 +5,8 @@ public class Producto {
 
     private String tipo;
 
+
+
     public String getTipo() {
         return tipo;
     }
