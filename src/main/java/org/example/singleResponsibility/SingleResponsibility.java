@@ -8,6 +8,8 @@ public class SingleResponsibility {
     public void ejecutar() {
        Vivienda precio = new Vivienda(5,10, 2000.000);
         System.out.println("El precio del inmueble es de: $ " + precio.calcularPrecio());
+        CuentaBancaria cuentaBancaria = new CuentaBancaria(50.000);
+        System.out.println("El saldo de su cuenta bancaria es de: "+cuentaBancaria.getSaldo());
     }
 }
 
