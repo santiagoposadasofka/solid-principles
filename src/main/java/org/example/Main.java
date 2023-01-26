@@ -8,8 +8,8 @@ import org.example.singleResponsibility.SingleResponsibility;
 
 public class Main {
     public static void main(String[] args) {
-       // LiskovSubstitution liskovSubstitution = new LiskovSubstitution();
-        //liskovSubstitution.ejecutar();
+       LiskovSubstitution liskovSubstitution = new LiskovSubstitution();
+        liskovSubstitution.ejecutar();
         System.out.println("--------------Cuenta bancaria------------------");
         System.out.println(" \n ");
         SingleResponsibility single = new SingleResponsibility();
@@ -37,6 +37,11 @@ public class Main {
         InterfaceSegregation inter = new InterfaceSegregation();
         inter.ejecutar();
 
+        System.out.println(" \n ");
+        System.out.println("--------------Interface Segregation------------------");
+        System.out.println(" \n ");
+        DependencyInvesion depend = new DependencyInvesion();
+        depend.ejecutar();
 
 
     }

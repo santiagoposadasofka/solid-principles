@@ -8,9 +8,10 @@ public class DependencyInvesion {
      * Se Sigue con la dinamica de los principios previos
      * */
 
-    public static void ejecutar() {
+    public void ejecutar() {
         // Probando la interfaz servicio
         Empleado empleado = new Empleado(new GmailService());
+
 
         empleado.enviarCorreo("empleado@gmail.com", "Mensaje del empleado", "Hola mundo");
         System.out.println("\n");
@@ -24,7 +25,7 @@ public class DependencyInvesion {
         }
     }
 }
-}
+
 
 
 
@@ -65,6 +66,8 @@ class Carro {
     public void arrancar() {
         marca.arrancar();
     }
+
+}
 
 
     interface ServicioDeCorreo {
@@ -113,7 +116,7 @@ class Carro {
             servicioDeCorreo.enviarCorreo(destinatario, asunto, mensaje);
         }
     }
-}
+
 
 
 
