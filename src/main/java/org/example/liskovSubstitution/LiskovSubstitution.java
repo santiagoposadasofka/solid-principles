@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LiskovSubstitution {
 
-    public void ejecutar(){
+    public void Ejecutar(){
         List<FiguraGeometrica> figuras = new ArrayList<>();
         figuras.add(new Cuadrado(10));
         figuras.add(new Triangulo(5, 10));

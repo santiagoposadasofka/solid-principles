@@ -4,13 +4,19 @@ public class DependencyInvesion {
     /**
      * Se Sigue con la dinamica de los principios previos
      * */
+    public void Ejecutar () {
+        GmailService gmailService = new GmailService();
+        OutlookService outlookService = new OutlookService();
+        HotmailPolService hotmailPolService = new HotmailPolService();
 
-    GmailService gmailService = new GmailService();
+        Empleado SantiagoPosada = new Empleado(gmailService);
+        Empleado JesusMiguel = new Empleado(outlookService);
+        Empleado BryanPolo = new Empleado(hotmailPolService);
+    }
 
-    OutlookService outlookService = new OutlookService();
-    Empleado SantiagoPosada = new Empleado(gmailService);
 
-    Empleado JesusMiguel = new Empleado(outlookService);
+    public void ejecutar() {
+    }
 }
 
 
@@ -39,6 +45,15 @@ class GmailService implements ServicioDeCorreo {
 }
 
 class OutlookService implements ServicioDeCorreo {
+    @Override
+    public void enviarCorreo(String destinatario, String asunto, String mensaje) {
+        // Envia correo utilizando la API de Outlook
+        System.out.println("Enviando email desde outlook " +
+                "a " + destinatario + " con el asunto "
+                + asunto + "diciendole: " + mensaje);
+    }
+}
+class HotmailPolService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Outlook

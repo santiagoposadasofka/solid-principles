@@ -8,7 +8,7 @@ public class SingleResponsibility {
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
 
-    public void ejecutar(){
+    public void Ejecutar(){
         CuentaBancaria miCuenta = new CuentaBancaria(1000);
 
         miCuenta.depositar(800.00);
