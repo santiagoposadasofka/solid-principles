@@ -4,6 +4,9 @@ public class Producto {
     private double precio;
 
     private String tipo;
+    public Producto(double precio) {
+        this.precio = precio;
+    }
 
     public String getTipo() {
         return tipo;
@@ -13,9 +16,7 @@ public class Producto {
         this.tipo = tipo;
     }
 
-    public Producto(double precio) {
-        this.precio = precio;
-    }
+
 
     public double getPrecio() {
         return precio;
