@@ -5,14 +5,63 @@ public class DependencyInvesion {
      * Se Sigue con la dinamica de los principios previos
      * */
 
-    GmailService gmailService = new GmailService();
+    public void ejecutarDependencyInversion() {
+        Empleado jesusMolina = new Empleado(new GmailService());
+        jesusMolina.enviarCorreo("santiagoposada@gmail.com", "urgente","reunion 4pm");
 
-    OutlookService outlookService = new OutlookService();
-    Empleado SantiagoPosada = new Empleado(gmailService);
+        Empleado  santiagoPosada = new Empleado(new OutlookService());
+        santiagoPosada.enviarCorreo("jesusmiguel@outlook.com","recibido","ok entendido");
+    }
 
-    Empleado JesusMiguel = new Empleado(outlookService);
+    public void ejecutarEjemploDependencyInversion() {
+        IMotor motorGasolina = new MotorGasolina();
+        Vehiculo miVehiculo = new Vehiculo(motorGasolina);
+        miVehiculo.encender();
+
+        IMotor motorElectrico = new MotorElectrico();
+        Vehiculo miVehiculo2 = new Vehiculo(motorElectrico);
+        miVehiculo2.apagar();
+    }
+
 }
 
+//ejemplo dependecy inversion
+
+interface IMotor {
+    void encender();
+    void apagar();
+}
+
+class MotorGasolina implements IMotor {
+    public void encender() {
+        System.out.println("Encendiendo motor a gasolina");
+    }
+    public void apagar() {
+        System.out.println("Apagando motor a gasolina");
+    }
+}
+
+class MotorElectrico implements IMotor {
+    public void encender() {
+        System.out.println("Encendiendo motor electrico");
+    }
+    public void apagar() {
+        System.out.println("Apagando motor electrico");
+    }
+}
+
+class Vehiculo {
+    private IMotor motor;
+    public Vehiculo(IMotor motor) {
+        this.motor = motor;
+    }
+    public void encender() {
+        motor.encender();
+    }
+    public void apagar() {
+        motor.apagar();
+    }
+}
 
 
 
