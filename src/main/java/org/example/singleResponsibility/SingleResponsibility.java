@@ -21,6 +21,15 @@ public class SingleResponsibility {
         sistema.depositar(150000);
         sistema.retirar(130000);
 
+        System.out.println("------Ejemplo------");
+        Puerta puerta = new Puerta(false);
+        puerta.abrir(false);
+        puerta.cerrar(true);
+        if(puerta.isEstado() == false){
+            System.out.println("La puerta quedo cerrada");
+        }else{
+            System.out.println("La puerta quedo abierta");
+        }
     }
 
 
@@ -57,6 +66,7 @@ class CuentaBancaria {
         return this.saldo;
     }
 }
+
 
 /*
  * Un anti-patrón del principio de responsabilidad única en Java podría ser una clase "Sistema" que hace muchas cosas diferentes,
