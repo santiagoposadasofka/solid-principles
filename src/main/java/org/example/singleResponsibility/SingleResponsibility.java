@@ -1,14 +1,38 @@
 package org.example.singleResponsibility;
 
+import java.sql.SQLOutput;
+
 public class SingleResponsibility {
     /**
-     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
      * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
      * van a ejecutar sus comportamientos.
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
 
-    public void ejecutar(){
+    /*
+     * Se realiza ejemplos de cada clase, usando cada metodo correspondiente
+     * para interactuar los comportamientos de cada una
+     * */
+
+    public void ejecutar()
+    {
+        CuentaBancaria cuenta = new CuentaBancaria(1000000);
+        cuenta.depositar(50000);
+        cuenta.retirar(25000);
+        cuenta.getSaldo();
+
+        System.out.println("------------------SISTEMA-----------------");
+
+        Sistema sistema = new Sistema();
+        sistema.depositar(1200);
+        sistema.retirar(1000);
+
+        System.out.println("------------------AUTOMOVIL-----------------");
+
+        Automovil automovil = new Automovil("Chevrolet");
+        automovil.cambiarMarca("Nissan");
+
 
     }
 }
@@ -27,10 +51,18 @@ class CuentaBancaria {
 
     public CuentaBancaria(double saldoInicial) {
         this.saldo = saldoInicial;
+        System.out.println("El saldo de la cuenta bancaria es: " + this.saldo);
+
+        System.out.println("------------------------DEPOSITO----------------------------");
     }
 
     public void depositar(double cantidad) {
         this.saldo += cantidad;
+        System.out.println("Usted ha depositado: " + cantidad);
+        System.out.println("-----------------SALDO--------------------");
+        System.out.println("El saldo actual es: " + getSaldo());
+
+        System.out.println("------------------------RETIRO----------------------------");
     }
 
     public void retirar(double cantidad) {
@@ -38,11 +70,15 @@ class CuentaBancaria {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
         this.saldo -= cantidad;
-    }
+        System.out.println("Ha retirado de su cuenta: " + cantidad);
+        System.out.println("-----------------SALDO--------------------");
+        System.out.println("El saldo actual es: " + getSaldo());
 
+    }
     public double getSaldo() {
         return this.saldo;
     }
+
 }
 
 /*
@@ -65,6 +101,8 @@ class Sistema {
         emailSender = new EmailSender();
         printer = new Printer();
         db = new Database();
+
+        System.out.println("----------------Depositar-------------------");
     }
 
     public void depositar(double cantidad) {
@@ -72,6 +110,9 @@ class Sistema {
         String receipt = "Deposito de: " + cantidad;
         printer.print(receipt);
         db.saveTransaction(receipt);
+
+
+        System.out.println("----------------RETIRAR-------------------");
     }
 
     public void retirar(double cantidad) {
@@ -80,5 +121,28 @@ class Sistema {
         printer.print(receipt);
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
+
+    }
+}
+
+/*
+ * Se agrega la clase automovil, cumpliendo el patron Single Responsibility
+ * debido a que solo se trata del cambio de marca y no depende de otras clases
+ * para gestionar sus metodos
+ * */
+
+class Automovil{
+    private String marca;
+
+    public Automovil(String marca) {
+        this.marca = marca;
+        System.out.println("Marca del Automovil: " + this.marca);
+
+        System.out.println("-----------CAMBIAR MARCA----------");
+    }
+
+    public void cambiarMarca(String marca){
+        this.marca = marca;
+        System.out.println("Haz cambiado la marca del automovil a: " + this.marca);
     }
 }
