@@ -14,19 +14,48 @@ public class SingleResponsibility {
     public void ejecutar(){
 
         System.out.println("-----------Cuenta Bancaria ----------------");
+        /**
+         * Instanciando Cuenta Bancaria y sus comportamientos
+         */
 
         CuentaBancaria transacciones = new CuentaBancaria(300.0);
 
-        System.out.println("Su saldo actual es de " + transacciones.getSaldo());
+        System.out.println("Saldo actual " + transacciones.getSaldo());
 
         transacciones.depositar(500.0);
-        System.out.println("Su saldo despues del depósito ahora es de " + transacciones.getSaldo());
+        System.out.println("Saldo despues del depósito " + transacciones.getSaldo());
 
         transacciones.retirar(200);
 
-        System.out.println("Su saldo despues del retiro ahora es de " + transacciones.getSaldo());
+        System.out.println("Saldo despues del retiro " + transacciones.getSaldo());
 
         System.out.println("-----------Sistema ----------------");
+
+        /**
+         * Instanciando Sistema y sus comportamientos
+         */
+        Sistema movimientos = new Sistema();
+
+        movimientos.depositar(1000);
+        movimientos.retirar(657);
+
+        /**
+         * Instanciando Clase Cliente como ejemplo de Single Responsability
+         */
+        System.out.println("\n");
+        System.out.println("-----------Clase Cliente ----------------");
+
+        List<Cliente> cliente = new ArrayList<>();
+        cliente.add(new Cliente("Carlos", "San Diego av 30 calle 12 - 20"));
+        cliente.add(new Cliente("Carla", "Cra 6 # 15 -17 Armenia"));
+
+        for (Cliente client:cliente) {
+            System.out.println("Nombre: " + client.getNombre());
+            System.out.println("Direccion: " + client.getDireccion());
+
+        }
+
+
 
     }
 }
@@ -98,5 +127,32 @@ class Sistema {
         printer.print(receipt);
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
+    }
+}
+
+/**
+ * Clase que cumple con el patron SingleResponsability puesto que solo se encarga de la informacion del Cliente, nombre y direccion
+ */
+class Cliente {
+    private String nombre;
+    private String direccion;
+
+    public Cliente(String nombre, String direccion) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getDireccion() {
+        return direccion;
+    }
+    public void setDireccion(String direccion){
+        this.direccion = direccion;
     }
 }
