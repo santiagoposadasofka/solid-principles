@@ -15,6 +15,23 @@ public class LiskovSubstitution {
             System.out.println("Area: " + figura.area());
         }
     }
+    public void ejecutar1(){
+        System.out.println("Carro");
+        Carro carro= new Carro();
+        carro.acelerar();
+        carro.frenar();
+        carro.numeroPersonas(5);
+        System.out.println("Carro de juguete");
+        CarroJueguete juguete = new CarroJueguete();
+        juguete.acelerar();
+        juguete.frenar();
+    }
+
+    public void ejecutar2(){
+        Empleado ejecutivo
+    }
+
+
 }
 
 

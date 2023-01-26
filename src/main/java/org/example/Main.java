@@ -13,12 +13,12 @@ public class Main {
         //single.ejecutar3();
 
         OpenClose open = new OpenClose();
-        open.ejecutar2();
+        //open.ejecutar2();
 
 
 
 
         LiskovSubstitution liskov = new LiskovSubstitution();
-        //liskov.ejecutar();
+        liskov.ejecutar1();
     }
 }
