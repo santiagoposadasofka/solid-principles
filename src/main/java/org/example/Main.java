@@ -17,9 +17,13 @@ public class Main {
         System.out.println("SingleResponsability");
         SingleResponsibility single = new SingleResponsibility();
         single.ejecutar();
-        System.out.println("---------------------------------------------------------");
+
+        System.out.println("----------------------------------------------------------------");
+        System.out.println("SingleResponsability Example...");
         SingleResponsabilityExample singleResponsabilityExample = new SingleResponsabilityExample();
         singleResponsabilityExample.ejecutar();
+        System.out.println("---------------------------------------------------------");
+
 
         System.out.println("OpenClose");
         OpenClose openClose = new OpenClose();
