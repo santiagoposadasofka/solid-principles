@@ -1,6 +1,35 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
+
+    public void ejecutarCuentaBancaria(){
+        System.out.println("\nComportamientos cuenta bancaria patron");
+        CuentaBancaria cuentaBancaria=new CuentaBancaria(50000);
+        cuentaBancaria.depositar(10000);
+        //cuentaBancaria.retirar((500000));
+        cuentaBancaria.retirar((5000));
+    }
+
+    public void ejecutarSistema(){
+
+        System.out.println("\nComportamientos sistema antipatron");
+        Sistema sistema=new Sistema();
+        sistema.depositar(20000);
+        sistema.retirar(10000);
+    }
+
+    public void ejecutarCarro(){
+        System.out.println("\nComportamiento ejemplo que sigue el patron");
+        Carro carro=new Carro(true);
+        carro.andar();
+        carro.frenar();
+    }
 }
 
 
@@ -20,7 +49,9 @@ class CuentaBancaria {
     }
 
     public void depositar(double cantidad) {
+        System.out.println("Saldo actual: "+saldo);
         this.saldo += cantidad;
+        System.out.println("Usted deposito: "+cantidad+", saldo actual: "+saldo);
     }
 
     public void retirar(double cantidad) {
@@ -28,6 +59,7 @@ class CuentaBancaria {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
         this.saldo -= cantidad;
+        System.out.println("Usted retiro: "+cantidad+ ", su saldo actual es "+saldo);
     }
 
     public double getSaldo() {
@@ -60,15 +92,36 @@ class Sistema {
     public void depositar(double cantidad) {
         cuenta.depositar(cantidad);
         String receipt = "Deposito de: " + cantidad;
-        printer.print(receipt);
+        //printer.print(receipt);
         db.saveTransaction(receipt);
     }
 
     public void retirar(double cantidad) {
         cuenta.retirar(cantidad);
         String receipt = "Retiro de: " + cantidad;
-        printer.print(receipt);
+        //printer.print(receipt);
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
     }
+
+}
+
+class Carro{
+    private boolean andando;
+
+
+    public Carro(boolean andando) {
+        this.andando = andando;
+    }
+
+    public void andar(){
+        andando=true;
+        System.out.println("El carro esta en movimiento "+andando);
+    }
+    public void frenar(){
+        andando=false;
+        System.out.println("El carro esta frenando "+andando);
+    }
+
+
 }
