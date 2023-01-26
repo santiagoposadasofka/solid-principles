@@ -1,8 +1,45 @@
 package org.example.dependecyInversion;
 
-public class DependencyInvesion {
-}
+import java.util.ArrayList;
+import java.util.List;
 
+public class DependencyInvesion {
+    public static void ejecutar(){
+        Empleado empleado=new Empleado(new GmailService());
+        empleado.enviarCorreo("idruizbe@gmail.com","Quinto Ejercicio","Ya terminé la actividad");
+        System.out.println("\n");
+        List<Auto> autos=new ArrayList<>();
+        autos.add(new Auto(new MotorAGasolina()));
+        autos.add(new Auto(new MotorADiesel()));
+        for (Auto auto:autos){
+            auto.encenderAuto();
+        }
+    }
+}
+interface Motor{
+    void encender();
+}
+class MotorAGasolina implements Motor{
+    @Override
+    public void encender() {
+        System.out.println("El suministro de gasolina hizo que el auto encendiera");
+    }
+}
+class MotorADiesel implements Motor{
+    @Override
+    public void encender() {
+        System.out.println("El suministro de diesel hizo que el auto encendiera");
+    }
+}
+class Auto{
+    private Motor motor;
+    public Auto(Motor motor) {
+        this.motor = motor;
+    }
+    public void encenderAuto(){
+        motor.encender();
+    }
+}
 
 /*
 * Un ejemplo de inversión de dependencia en Java podría ser una clase "Empleado" que depende de una
@@ -22,6 +59,8 @@ class GmailService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Gmail
+        System.out.println("Se le ha enviado un correo a: "+destinatario+", con " +
+                "el asunto: "+asunto+", diciendo: "+mensaje);
     }
 }
 
