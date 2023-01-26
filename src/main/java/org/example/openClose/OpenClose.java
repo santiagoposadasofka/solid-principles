@@ -4,21 +4,95 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OpenClose {
+    /**
+     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     * y vamos a ejecutar sus comportamientos.
+     * Vamos a instanciar el antipatrón, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     * ej. impuestoDepartamental ...
+     * añadir un ejemplo de un escenario en donde se siga este patrón o uno en donde no.
+     */
+
+    //Método calcular impuesto
+    public void ejecutarImpuesto() {
+
+        CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
+        calculadoraImpuestos.agregarReglaImpuesto(new ImpuestoDepartamento());
+
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(1000, "Departamental"));
+
+        double totalImpuestos = calculadoraImpuestos.calcularImpuestos(productos);
+
+        System.out.println("El impuesto: " + totalImpuestos);
+
+        CalculadoraImpuestosAntiPatron antiCalculadora = new CalculadoraImpuestosAntiPatron();
+        System.out.println("El impuesto antipatrón: " + antiCalculadora.calcularImpuestosAtiPatron(productos));
+    }
+
+    //Patron de Open/Close
+    public void ejecutarEjemplo() {
+        CalcularArea calculoArea = new CalcularArea();
+        Figura[] figuras = new Figura[]{new Rectangulo(3, 8), new Circle(5)};
+        double totalArea = calculoArea.sumArea(figuras);
+        System.out.println("Total area: " + totalArea);
+    }
 }
 
+//Clase ejemplo con figuras geométricas
+interface Figura {
+    double getArea();
+}
+
+class Rectangulo implements Figura {
+    private double ancho;
+    private double alto;
+
+    public Rectangulo(double ancho, double alto) {
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
+    @Override
+    public double getArea() {
+        return ancho * alto;
+    }
+}
+
+class Circle implements Figura {
+    private double radio;
+
+    public Circle(double radio) {
+        this.radio = radio;
+    }
+
+    @Override
+    public double getArea() {
+        return Math.PI * radio * radio;
+    }
+}
+
+class CalcularArea {
+    public double sumArea(Figura[] figuras) {
+        double sum = 0;
+        for (Figura figura : figuras) {
+            sum += figura.getArea();
+        }
+        return sum;
+    }
+}
 
 /*
-* Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
-*  encarga de calcular los impuestos de una lista de objetos "Producto". La clase tiene un método
-* "calcularImpuestos" que toma una lista de productos y devuelve el total de impuestos calculados.
-* La clase es "abierta" para la extensión, ya que se pueden agregar nuevas reglas de impuestos sin
-* necesidad de modificar el código existente.
-* En este ejemplo se ve como la clase CalculadoraImpuestos se encarga de calcular los impuestos de una
-* lista de productos, pero esta clase no tiene conocimiento de cuales son las reglas de impuestos, estas
-* reglas se encuentran en las clases ImpuestoNacional e ImpuestoImportacion, de esta forma se pueden agregar
-*  nuevas reglas de impuestos sin tener que modificar la clase CalculadoraImpuestos, cumpliendo con el principio
-* del patrón open close.
-* */
+ * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
+ *  encarga de calcular los impuestos de una lista de objetos "Producto". La clase tiene un método
+ * "calcularImpuestos" que toma una lista de productos y devuelve el total de impuestos calculados.
+ * La clase es "abierta" para la extensión, ya que se pueden agregar nuevas reglas de impuestos sin
+ * necesidad de modificar el código existente.
+ * En este ejemplo se ve como la clase CalculadoraImpuestos se encarga de calcular los impuestos de una
+ * lista de productos, pero esta clase no tiene conocimiento de cuales son las reglas de impuestos, estas
+ * reglas se encuentran en las clases ImpuestoNacional e ImpuestoImportacion, de esta forma se pueden agregar
+ *  nuevas reglas de impuestos sin tener que modificar la clase CalculadoraImpuestos, cumpliendo con el principio
+ * del patrón open close.
+ * */
 abstract class Impuesto {
     abstract double calcular(Producto producto);
 }
@@ -34,6 +108,13 @@ class ImpuestoImportacion extends Impuesto {
     @Override
     double calcular(Producto producto) {
         return producto.getPrecio() * 0.25;
+    }
+}
+
+class ImpuestoDepartamento extends Impuesto {
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio() * 0.10;
     }
 }
 
@@ -63,19 +144,19 @@ class CalculadoraImpuestos {
 
 
 /*
-* Un anti-patrón del principio de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos"
-*  que tiene un método "calcularImpuestos" que toma una lista de objetos "Producto" y devuelve el total
-* de impuestos calculados. Sin embargo, este método contiene una serie de "if-else" o "switch-case" que
-* determinan qué reglas de impuestos se deben aplicar a cada producto. Cada vez que se agrega una nueva regla
-* de impuestos, se debe modificar el código existente en el método "calcularImpuestos" lo que viola el principio de abierto-cerrado.
-* En este ejemplo se ve como la clase CalculadoraImpuestos tiene conocimiento de las reglas de impuestos, esto hace que cada
-* vez que se quiera agregar una nueva regla de impuestos, se tenga que modificar el código de la clase, violando el principio
-*  de abierto-cerrado. Es mejor separar las reglas de impuestos en clases diferentes y utilizar una estrategia de delegación para
-* aplicar las reglas de impuestos, de esta forma se pueden agregar nuevas reglas de impuestos sin modificar el código existente.
-* */
+ * Un anti-patrón del principio de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos"
+ *  que tiene un método "calcularImpuestos" que toma una lista de objetos "Producto" y devuelve el total
+ * de impuestos calculados. Sin embargo, este método contiene una serie de "if-else" o "switch-case" que
+ * determinan qué reglas de impuestos se deben aplicar a cada producto. Cada vez que se agrega una nueva regla
+ * de impuestos, se debe modificar el código existente en el método "calcularImpuestos" lo que viola el principio de abierto-cerrado.
+ * En este ejemplo se ve como la clase CalculadoraImpuestos tiene conocimiento de las reglas de impuestos, esto hace que cada
+ * vez que se quiera agregar una nueva regla de impuestos, se tenga que modificar el código de la clase, violando el principio
+ *  de abierto-cerrado. Es mejor separar las reglas de impuestos en clases diferentes y utilizar una estrategia de delegación para
+ * aplicar las reglas de impuestos, de esta forma se pueden agregar nuevas reglas de impuestos sin modificar el código existente.
+ * */
 
 
-class CalculadoraImpuestosAtiPatron {
+class CalculadoraImpuestosAntiPatron {
     public double calcularImpuestosAtiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
@@ -83,10 +164,10 @@ class CalculadoraImpuestosAtiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "Departamental") {
+                totalImpuestos += producto.getPrecio() * 0.10;
             }
         }
         return totalImpuestos;
     }
 }
-
-
