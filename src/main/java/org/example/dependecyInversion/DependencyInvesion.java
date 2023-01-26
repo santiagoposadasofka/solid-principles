@@ -4,26 +4,27 @@ public class DependencyInvesion {
     /**
      * Se Sigue con la dinamica de los principios previos
      * vamos a empezar con toda
-     * */
+     */
 
     GmailService gmailService = new GmailService();
-
     OutlookService outlookService = new OutlookService();
 
     Empleado SantiagoPosada = new Empleado(gmailService);
 
     Empleado JesusMiguel = new Empleado(outlookService);
+
+    Empleado Yeison = new Empleado(gmailService);
 }
 
 
 
 
 /*
-* Un ejemplo de inversión de dependencia en Java podría ser una clase "Empleado" que depende de una
-* interfaz "ServicioDeCorreo" para enviar correos electrónicos. En lugar de que "Empleado" dependa
-* directamente de una implementación específica de "ServicioDeCorreo", como "GmailService" o "OutlookService",
-* se proporciona una instancia de "ServicioDeCorreo" a través de un constructor o un setter. De esta forma,
-* "Empleado" no tiene conocimiento de cómo se envían los correos electrónicos, sino que simplemente utiliza la interfaz.
+ * Un ejemplo de inversión de dependencia en Java podría ser una clase "Empleado" que depende de una
+ * interfaz "ServicioDeCorreo" para enviar correos electrónicos. En lugar de que "Empleado" dependa
+ * directamente de una implementación específica de "ServicioDeCorreo", como "GmailService" o "OutlookService",
+ * se proporciona una instancia de "ServicioDeCorreo" a través de un constructor o un setter. De esta forma,
+ * "Empleado" no tiene conocimiento de cómo se envían los correos electrónicos, sino que simplemente utiliza la interfaz.
  * */
 
 interface ServicioDeCorreo {
@@ -51,12 +52,12 @@ class OutlookService implements ServicioDeCorreo {
 }
 
 /*
-* se puede ver como la clase Empleado tiene una dependencia de la interfaz ServicioDeCorreo,
-* pero no tiene conocimiento sobre como se envía el correo, sino que se le proporciona un
-* objeto que implementa la interfaz ServicioDeCorreo a través de un constructor o un setter,
-* de esta forma se cumple con el principio de inversión de dependencia, ya que la clase Empleado
-* no depende directamente de una implementación específica de ServicioDeCorreo.
-* */
+ * se puede ver como la clase Empleado tiene una dependencia de la interfaz ServicioDeCorreo,
+ * pero no tiene conocimiento sobre como se envía el correo, sino que se le proporciona un
+ * objeto que implementa la interfaz ServicioDeCorreo a través de un constructor o un setter,
+ * de esta forma se cumple con el principio de inversión de dependencia, ya que la clase Empleado
+ * no depende directamente de una implementación específica de ServicioDeCorreo.
+ * */
 class Empleado {
     private ServicioDeCorreo servicioDeCorreo;
 

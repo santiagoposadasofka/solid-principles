@@ -4,6 +4,14 @@ public class InterfaceSegregation {
     /**
      * Se Sigue con la dinamica de los principios previos
      * */
+
+    /***
+     * pregunta para mañana porque no puedo instanciar el objeto
+     */
+    Avion avion = new Avion();
+    Helicoptero helicoptero = new Helicoptero();
+
+
 }
 
 
