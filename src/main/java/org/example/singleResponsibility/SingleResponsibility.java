@@ -1,9 +1,32 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     */
+
+    public void ejecutarCuentaBanco() {
+        double saldo;
+        CuentaBancaria cuentaBancaria = new CuentaBancaria(145200);
+        cuentaBancaria.depositar(4800);
+        cuentaBancaria.retirar(12500.50);
+        saldo = cuentaBancaria.getSaldo();
+        System.out.println("Su saldo actual es" + saldo);
+
+
+        Sistema sistema = new Sistema();
+        sistema.depositar(14520.15);
+        sistema.retirar(5200.85);
+
+        empleadoBanco empleadobanco = new empleadoBanco();
+        empleadobanco.Empleado(541, "Juan Perez", 1452145.5,16.5);
+        System.out.println("\nEl ID de empleado es: "+empleadobanco.getIdEmpleado()+" y su nombre es: "+ empleadobanco.getNombre()+" y su salario es "+empleadobanco.getSalario());
+        System.out.println("\nEl salario actualizado del empleado "+empleadobanco.getNombre()+" es: "+ empleadobanco.calcularSalario());
+    }
 }
-
-
 /*
  * Un ejemplo de patrón de responsabilidad única en Java podría ser una clase "CuentaBancaria" que solo se encarga de las operaciones
  * relacionadas con una cuenta bancaria, como depositar o retirar dinero. Esta clase solo tendría responsabilidades relacionadas con la cuenta
@@ -71,4 +94,61 @@ class Sistema {
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
     }
+
+
 }
+
+class empleadoBanco {
+    private int IdEmpleado;
+    private String nombre;
+    private Double salario;
+    private Double incrementoSalarial;
+
+
+    public void Empleado(int id, String nom, Double sal, Double inc) {
+
+        nombre = nom;
+        IdEmpleado = id;
+        salario = sal;
+        incrementoSalarial=inc;
+    }
+
+
+    public int getIdEmpleado() {
+        return IdEmpleado;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Double getSalario() {
+        return salario;
+    }
+
+    public Double getincrementoSalarial() {
+        return incrementoSalarial;
+    }
+
+    public Double calcularSalario() {
+        Double salarioActualizado;
+        Double salarioActual = salario;
+        Double incrementoPorcentual = incrementoSalarial;
+
+
+        salarioActualizado = salarioActual + ((incrementoPorcentual / 100) + salarioActual);
+
+
+        return salarioActualizado;
+    }
+
+
+}
+
+
+
+
+
+
+
+
