@@ -17,6 +17,10 @@ public class Producto {
         this.precio = precio;
     }
 
+    public Producto(double precio, String tipo) {
+        this.precio = precio;
+        this.tipo = tipo;
+    }
     public double getPrecio() {
         return precio;
     }
