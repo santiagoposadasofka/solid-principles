@@ -18,7 +18,11 @@ public class OpenClose {
         productos.add(new Producto(1000));
         productos.add(new Producto(1500));
 
-        CalculadoraImpuestos calculation = new CalculadoraImpuestos();
+        CalculadoraImpuestos calculation=new CalculadoraImpuestos();
+
+        calculation.agregarReglaImpuesto(new ImpuestoMunicipal());
+
+
         double TotalImpuesto = calculation.calcularImpuestos(productos);
         System.out.println("" + ":" + TotalImpuesto);
 
@@ -74,7 +78,7 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
-        reglasImpuestos.add(new ImpuestoMunicipal());
+
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
