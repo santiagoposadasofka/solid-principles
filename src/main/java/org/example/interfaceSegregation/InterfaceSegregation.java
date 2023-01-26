@@ -4,6 +4,10 @@ public class InterfaceSegregation {
     /**
      * Se Sigue con la dinamica de los principios previos
      * */
+    public void ejecutar(){
+
+
+    }
 }
 
 

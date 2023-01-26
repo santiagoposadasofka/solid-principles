@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.LiskovSubstitution;
 import org.example.singleResponsibility.SingleResponsibility;
 
@@ -10,5 +11,8 @@ public class Main {
 
        SingleResponsibility single = new SingleResponsibility();
         single.ejecutar();
+
+        InterfaceSegregation interfaceSegregation = new InterfaceSegregation();
+        interfaceSegregation.ejecutar();
     }
 }
