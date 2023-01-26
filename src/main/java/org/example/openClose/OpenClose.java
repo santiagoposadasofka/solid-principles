@@ -1,5 +1,6 @@
 package org.example.openClose;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +22,11 @@ public class OpenClose {
 
 
         CalculadoraImpuestos calculadora = new CalculadoraImpuestos();
-
-
+        /**
+         * * le agregamos un impuesto a los productos
+         */
+        calculadora.calcularImpuestos(productos);
+        calculadora.agregarReglaImpuesto(new ImpuestoDepartamental());
         double totalImpuesto = calculadora.calcularImpuestos(productos);
         System.out.println("total impuestos" + ":" + totalImpuesto);
 
@@ -41,7 +45,21 @@ public class OpenClose {
         System.out.println("total impuestosAntipatron-->" + ":" + totalImpuestoAntipatron);
 
 
+        List<Empleado> empleados = new ArrayList<>();
+        empleados.add(new Empleado("yeison", 1000000, "Gerente"));
+        empleados.add(new Empleado("pedro", 2000000, "Gerente"));
+        empleados.add(new Empleado("yuli", 5000000, "Jefe de Departamento"));
+        empleados.add(new Empleado("emerson", 800000, "Empleado"));
 
+
+        for (Empleado empleado : empleados) {
+            System.out.println("los empleados son: " + empleado.getNombre() + " " +
+                    empleado.getSueldoBase() + " " + empleado.getCargo());
+        }
+
+        CalculadoraSalarios calculadoraSalarios = new CalculadoraSalarios();
+        double totalSalario = calculadoraSalarios.calcularSalarios(empleados);
+        System.out.println("el total del selario de los empleado es " + ":" + totalSalario);
 
 
     }
@@ -94,7 +112,6 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
-        reglasImpuestos.add(new ImpuestoDepartamental());
 
     }
 
@@ -164,46 +181,46 @@ class CalculadoraSalarios {
         return totalSalarios;
     }
 
+}
 
-    /**
-     * ++
-     * <p>
-     * la clase empleado
-     */
-    class Empleado {
-        private String nombre;
-        private double sueldoBase;
-        private String cargo;
+/**
+ * ++
+ * <p>
+ * la clase empleado
+ */
+class Empleado {
+    private String nombre;
+    private double sueldoBase;
+    private String cargo;
 
-        public Empleado(String nombre, double sueldoBase, String cargo) {
-            this.nombre = nombre;
-            this.sueldoBase = sueldoBase;
-            this.cargo = cargo;
-        }
-
-        public String getNombre() {
-            return nombre;
-        }
-
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
-
-        public double getSueldoBase() {
-            return sueldoBase;
-        }
-
-        public void setSueldoBase(double sueldoBase) {
-            this.sueldoBase = sueldoBase;
-        }
-
-        public String getCargo() {
-            return cargo;
-        }
-
-        public void setCargo(String cargo) {
-            this.cargo = cargo;
-        }
+    public Empleado(String nombre, double sueldoBase, String cargo) {
+        this.nombre = nombre;
+        this.sueldoBase = sueldoBase;
+        this.cargo = cargo;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getSueldoBase() {
+        return sueldoBase;
+    }
+
+    public void setSueldoBase(double sueldoBase) {
+        this.sueldoBase = sueldoBase;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
 }
+

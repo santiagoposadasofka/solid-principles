@@ -1,5 +1,6 @@
 package org.example.singleResponsibility;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,12 @@ public class SingleResponsibility {
         cuenta.add(new CuentaBancaria(1000));
         cuenta.add(new CuentaBancaria(5000000));
         cuenta.add(new CuentaBancaria(5000));
+
+
+        for (CuentaBancaria cuentas : cuenta) {
+            System.out.println("los saldos de las cuentas bancarias son: " + cuentas.getSaldo());
+        }
+
         /***
          * crear una nueva instancia de la clase y proporcionar un saldo inicial:
          */
@@ -73,6 +80,7 @@ public class SingleResponsibility {
 
 class CuentaBancaria {
     private double saldo;
+
 
     /**
      * cree otro atributo a cuenta bancaria que es su numero

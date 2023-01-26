@@ -5,9 +5,6 @@ public class InterfaceSegregation {
      * Se Sigue con la dinamica de los principios previos
      * */
 
-    /***
-     * pregunta para mañana porque no puedo instanciar el objeto
-     */
 
     public void Ejecutar() {
         Avion miAvion = new Avion();
@@ -20,6 +17,7 @@ public class InterfaceSegregation {
 
         Barco barco = new Barco();
         barco.navegar();
+
 
 
         AutoElectrico autoElectrico = new AutoElectrico();

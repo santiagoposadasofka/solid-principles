@@ -20,7 +20,7 @@ public class DependencyInvesion {
 
         TransporteTaxi transporteTaxi = new TransporteTaxi();
         transporteTaxi.realizarTransporte("Carrera al centro");
-        Persona ppito = new Persona(transporteTaxi);
+        Persona pepito = new Persona(transporteTaxi);
 
     }
 }

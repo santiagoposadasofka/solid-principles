@@ -16,7 +16,6 @@ public class Main {
         OpenClose openClose = new OpenClose();
         openClose.ejecutar();
 
-
         SingleResponsibility single = new SingleResponsibility();
         single.ejecutar();
 
