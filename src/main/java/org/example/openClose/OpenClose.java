@@ -5,7 +5,7 @@ import java.util.List;
 
 public class OpenClose {
     public void ejecutar() {
-        System.out.println("Ejecutando ejemplos del patrón Open Close");
+        System.out.println("Ejecutando ejemplos del patrón Open Close.");
         /*
          * Modificación de reglas anteriores para concordar con la clase "Producto".
          * Creación de nueva clase "ImpuestoMunicipal".
@@ -29,7 +29,7 @@ public class OpenClose {
         productos.add(flor);
         System.out.println("El impuesto total es: " + calc.calcularImpuestos(productos));
 
-        System.out.println("\nEjecutando anti-patrón de Open Close");
+        System.out.println("\nEjecutando anti-patrón de Open Close.");
         /*
          * Se añade una nueva regla dentro de la calculadora predefinida.
          * Instancia de la calculadora anti-patrón.
@@ -39,7 +39,7 @@ public class OpenClose {
         CalculadoraImpuestosAntiPatron antiCalc = new CalculadoraImpuestosAntiPatron();
         System.out.println("El impuesto total es: " + antiCalc.calcularImpuestosAtiPatron(productos));
 
-        System.out.println("\nEjecutando nuevo ejemplo anti-patrón de Open Close");
+        System.out.println("\nEjecutando nuevo ejemplo patrón de Open Close.");
         /*
          * Instancia de dos tipos diferentes de datos.
          * Instancia de un controlador de tipos.
@@ -181,13 +181,13 @@ interface Tipo {
 class Tipo1 implements Tipo {
     @Override
     public void control() {
-        System.out.println("Ejecutando acción para tipo 1");
+        System.out.println("Ejecutando acción para tipo 1.");
     }
 }
 
 class Tipo2 implements Tipo {
     @Override
     public void control() {
-        System.out.println("Ejecutando acción para tipo 2");
+        System.out.println("Ejecutando acción para tipo 2.");
     }
 }

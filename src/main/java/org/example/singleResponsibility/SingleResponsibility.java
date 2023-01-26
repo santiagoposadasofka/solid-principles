@@ -2,7 +2,7 @@ package org.example.singleResponsibility;
 
 public class SingleResponsibility {
     public void ejecutar() {
-        System.out.println("Ejecutando ejemplos del patrón Single Responsibility");
+        System.out.println("Ejecutando ejemplos del patrón Single Responsibility.");
         /*
          * Instancia de una cuenta bancaria con un saldo inicial de $1'000.000.
          * Se añaden $100.000 a la cuenta.
@@ -14,7 +14,7 @@ public class SingleResponsibility {
         cuentaBancaria.retirar(50000);
         System.out.println(cuentaBancaria.getSaldo());
 
-        System.out.println("\nEjecutando anti-patrón de Single Responsibility");
+        System.out.println("\nEjecutando anti-patrón de Single Responsibility.");
         /*
          * Instancia de un sistema.
          * Se añaden $100.000 a la cuenta del sistema, imprimiendo el recibo y guardándolo en la base de datos.
@@ -25,7 +25,7 @@ public class SingleResponsibility {
         sistema.depositar(100000);
         sistema.retirar(50000);
 
-        System.out.println("\n\nEjecutando nuevo ejemplo anti-patrón de Single Responsibility");
+        System.out.println("\n\nEjecutando nuevo ejemplo anti-patrón de Single Responsibility.");
         /*
          * Instancia de un producto.
          * Se mira el nombre y precio del producto antes de impuestos.
@@ -33,7 +33,7 @@ public class SingleResponsibility {
          * Se mira el precio del producto después de IVA.
          */
         Producto producto = new Producto("Arepas", 3000);
-        System.out.println(producto.getNombre() + " cuesta $" + producto.getPrecio() + " sin IVA");
+        System.out.println(producto.getNombre() + " cuesta $" + producto.getPrecio() + " sin IVA.");
         producto.setNuevoPrecio();
         System.out.println("Nuevo precio $" + producto.getPrecio());
     }
@@ -61,7 +61,7 @@ class CuentaBancaria {
 
     public void retirar(double cantidad) {
         if (cantidad > this.saldo) {
-            throw new IllegalArgumentException("No hay suficientes fondos");
+            throw new IllegalArgumentException("No hay suficientes fondos.");
         }
         this.saldo -= cantidad;
     }
