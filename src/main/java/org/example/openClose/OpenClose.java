@@ -13,7 +13,6 @@ public class OpenClose {
      * */
 
     public void ejecutar(){
-        CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
 
     }
 }
@@ -48,7 +47,18 @@ class ImpuestoImportacion extends Impuesto {
         return producto.getPrecio() * 0.25;
     }
 }
+class ImpuestoRenta extends Impuesto {
 
+    @Override
+    double calcular(Producto producto) { return producto.getPrecio() * 0.16; }
+
+}
+
+class ImpuestoTransito extends Impuesto {
+
+    @Override
+    double calcular(Producto producto) { return producto.getPrecio() * 0.10; }
+}
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -56,6 +66,8 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+        reglasImpuestos.add(new ImpuestoRenta());
+        reglasImpuestos.add(new ImpuestoTransito());
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {

@@ -1,6 +1,7 @@
 package org.example.singleResponsibility;
 
-public class Puerta {
+
+    public class Puerta {
 
         private boolean estado;
 
