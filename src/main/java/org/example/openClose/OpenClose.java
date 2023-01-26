@@ -4,9 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OpenClose {
+    /**
+     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     * y vamos a ejecutar sus comportamientos.
+     * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     * ej. impuestoDepartamental ...
+     * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
+     * */
+
+    public void ejecutar(){
+
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(500));
+        productos.add(new Producto(1000));
+        productos.add(new Producto(1500));
+
+        CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
+
+        calculadoraImpuestos.agregarReglaImpuesto(new ImpuestoDepartamental());
+
+        double TotalImpuesto = calculadoraImpuestos.calcularImpuestos(productos);
+        System.out.println("" + ":" + TotalImpuesto);
+
+
+
+        CalculadoraImpuestosAntiPatron calculadoraImpuestosAtiPatron = new CalculadoraImpuestosAntiPatron();
+        double TotalImpuestoAntipatron = calculadoraImpuestosAtiPatron.calcularImpuestosAtiPatron(productos);
+        System.out.println("" + ":" + TotalImpuestoAntipatron);
+
+
+    }
 }
-
-
 /*
 * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
 *  encarga de calcular los impuestos de una lista de objetos "Producto". La clase tiene un método
@@ -37,6 +65,14 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+class ImpuestoDepartamental extends Impuesto {
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio() * 0.25;
+    }
+}
+
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -44,6 +80,7 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
@@ -75,7 +112,7 @@ class CalculadoraImpuestos {
 * */
 
 
-class CalculadoraImpuestosAtiPatron {
+class CalculadoraImpuestosAntiPatron {
     public double calcularImpuestosAtiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
@@ -83,10 +120,70 @@ class CalculadoraImpuestosAtiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "ImpuestoDepartamental") {
+                totalImpuestos += producto.getPrecio() * 0.25;
             }
+
         }
         return totalImpuestos;
     }
 }
+
+// Ejemplo
+interface Figura {
+    double calcularArea();
+}
+
+class Rectangulo implements Figura {
+    private double ancho;
+    private double alto;
+
+    public Rectangulo(double ancho, double alto) {
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
+    @Override
+    public double calcularArea() {
+        return ancho * alto;
+    }
+}
+
+class Circle implements Figura {
+    private double radio;
+
+    public Circle(double radio) {
+        this.radio = radio;
+    }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * Math.pow(radio, 2);
+    }
+}
+
+class AreaCalculator {
+    public double calcularFiguraArea(Figura Figura) {
+        return Figura.calcularArea();
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        AreaCalculator calculator = new AreaCalculator();
+
+        Figura Rectangulo = new Rectangulo(5, 10);
+        System.out.println("Area del rectangulo: " + calculator.calcularFiguraArea(Rectangulo));
+
+        Figura circle = new Circle(7);
+        System.out.println("Area del circulo: " + calculator.calcularFiguraArea(circle));
+    }
+}
+
+
+
+
+
+
 
 

@@ -71,6 +71,7 @@ class Circulo extends FiguraGeometrica {
     }
 }
 
+
 /*
 * Un anti-patrón de sustitución de Liskov en Java podría ser una jerarquía de clases "Empleado"
 * que tiene una clase base "Empleado" y varias subclases que representan diferentes tipos de
@@ -120,3 +121,38 @@ class EmpleadoTemporal extends Empleado {
         //...
     }
 }
+
+// Ejemplo
+
+abstract class vehiculo {
+    public abstract void Arrancar();
+    public abstract void Detener();
+}
+
+class Car extends vehiculo {
+    public void Arrancar() {
+        System.out.println("El carro arranca.");
+    }
+    public void Detener() {
+        System.out.println("El carro se detiene.");
+    }
+}
+
+class ElectricCar extends Car {
+    public void Arrancar() {
+        System.out.println("El carro electrico arranca.");
+    }
+}
+
+class LiskovSubstitutionPrinciple {
+    public static void main(String[] args) {
+        vehiculo vehiculo = new Car();
+        vehiculo.Arrancar();
+        vehiculo.Detener();
+
+        vehiculo electricCar = new ElectricCar();
+        electricCar.Arrancar();
+        electricCar.Detener();
+    }
+}
+
