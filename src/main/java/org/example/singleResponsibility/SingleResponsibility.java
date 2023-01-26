@@ -34,7 +34,7 @@ public class SingleResponsibility {
          * para obtener el saldo actual de la cuenta:
          */
         double saldoActual = miCuentaBancaria.getSaldo();
-        System.out.println("saldo actual" + ": " + saldoActual);
+        // System.out.println("saldo actual" + ": " + saldoActual);
 
 
         /**
@@ -50,6 +50,13 @@ public class SingleResponsibility {
         EmailSender emailSender = new EmailSender();
         Printer printer = new Printer();
         Database db = new Database();
+
+
+        TarjetaDeCredito tarjeta = new TarjetaDeCredito(50000);
+        tarjeta.gastar(10000);
+        tarjeta.gastar(40000);
+        double tarjetaSaldo = tarjeta.getSaldo();
+        System.out.println("el saldo de la tarjeta es-->" + "  " + tarjetaSaldo);
 
 
     }
@@ -102,6 +109,41 @@ class CuentaBancaria {
         return this.saldo;
     }
 }
+
+
+/****
+ * el patron responsability un ejemplo de tarjeta de credito donde solo tiene las responsailidades de la tarjeta de credito
+ *
+ */
+class TarjetaDeCredito {
+    private double limite;
+    private double saldo;
+
+
+    public TarjetaDeCredito(double limiteInicial) {
+        this.limite = limiteInicial;
+        this.saldo = 0;
+    }
+
+    public void gastar(double cantidad) {
+        if (cantidad > this.limite - this.saldo) {
+            throw new IllegalArgumentException("Excediste el limite de la tarjeta");
+        }
+        this.saldo += cantidad;
+    }
+
+    public void pagar(double cantidad) {
+        this.saldo -= cantidad;
+    }
+
+    public double getSaldo() {
+        return this.saldo;
+    }
+
+}
+
+
+
 
 /*
  * Un anti-patrón del principio de responsabilidad única en Java podría ser una clase "Sistema" que hace muchas cosas diferentes,

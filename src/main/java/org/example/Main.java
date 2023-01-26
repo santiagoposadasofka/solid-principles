@@ -11,13 +11,13 @@ public class Main {
          LiskovSubstitution liskovSubstitution = new LiskovSubstitution();
          liskovSubstitution.ejecutar();
 
-         SingleResponsibility single = new SingleResponsibility();
-         single.ejecutar();
+
+         OpenClose openClose = new OpenClose();
+         openClose.ejecutar();
          **/
 
-        OpenClose openClose = new OpenClose();
-        openClose.ejecutar();
-
+        SingleResponsibility single = new SingleResponsibility();
+        single.ejecutar();
 
     }
 }

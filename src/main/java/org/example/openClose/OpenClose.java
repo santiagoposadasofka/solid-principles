@@ -14,26 +14,36 @@ public class OpenClose {
     public void ejecutar() {
 
         List<Producto> productos = new ArrayList<>();
+
         productos.add(new Producto(10000));
         productos.add(new Producto(2000));
         productos.add(new Producto(4000));
 
 
-        CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
-        double totalImpuesto = calculadoraImpuestos.calcularImpuestos(productos);
+        CalculadoraImpuestos calculadora = new CalculadoraImpuestos();
+        double totalImpuesto = calculadora.calcularImpuestos(productos);
+
         System.out.println("total impuestos" + ":" + totalImpuesto);
 
         /****
          * creame objeto
          */
-        CalculadoraImpuestosAntiPatron calculadoraImpuestosAntiPatron = new CalculadoraImpuestosAntiPatron();
-        double totalImpuestoAntipatron = calculadoraImpuestosAntiPatron.calcularImpuestosAntiPatron(productos);
+
+
+        List<Producto> productos1 = new ArrayList<>();
+        productos1.add(new Producto(10000));
+        productos1.add(new Producto(2000));
+        productos1.add(new Producto(4000));
+
+        CalculadoraImpuestosAntiPatron calculadoraAntiPatron = new CalculadoraImpuestosAntiPatron();
+        double totalImpuestoAntipatron = calculadoraAntiPatron.calcularImpuestosAntiPatron(productos1);
         System.out.println("total impuestosAntipatron-->" + ":" + totalImpuestoAntipatron);
+
 
     }
 
-
 }
+
 
 /*
  * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
@@ -131,5 +141,65 @@ class CalculadoraImpuestosAntiPatron {
 }
 
 
+/**
+ * Creo otro antipatron donde calculo los impuestos donde si agrego otra regla de impuesto tendria que m
+ * modificar todo el metodo nuevamente
+ */
+class CalculadoraSalarios {
+    public double calcularSalarios(List<Empleado> empleados) {
+        double totalSalarios = 0;
+        for (Empleado empleado : empleados) {
+            if (empleado.getCargo() == "Gerente") {
+                totalSalarios += empleado.getSueldoBase() + empleado.getSueldoBase() * 0.15;
+            } else if (empleado.getCargo() == "Jefe de Departamento") {
+                totalSalarios += empleado.getSueldoBase() + empleado.getSueldoBase() * 0.10;
+            } else if (empleado.getCargo() == "Empleado") {
+                totalSalarios += empleado.getSueldoBase();
+            }
+        }
+        return totalSalarios;
+    }
 
 
+    /**
+     * ++
+     * <p>
+     * la clase empleado
+     */
+    class Empleado {
+        private String nombre;
+        private double sueldoBase;
+        private String cargo;
+
+        public Empleado(String nombre, double sueldoBase, String cargo) {
+            this.nombre = nombre;
+            this.sueldoBase = sueldoBase;
+            this.cargo = cargo;
+        }
+
+        public String getNombre() {
+            return nombre;
+        }
+
+        public void setNombre(String nombre) {
+            this.nombre = nombre;
+        }
+
+        public double getSueldoBase() {
+            return sueldoBase;
+        }
+
+        public void setSueldoBase(double sueldoBase) {
+            this.sueldoBase = sueldoBase;
+        }
+
+        public String getCargo() {
+            return cargo;
+        }
+
+        public void setCargo(String cargo) {
+            this.cargo = cargo;
+        }
+    }
+
+}
