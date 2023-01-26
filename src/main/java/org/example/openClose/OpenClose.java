@@ -11,6 +11,26 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
+
+    CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
+    public void ejecutarImpuesto() {
+        calculadoraImpuestos.agregarReglaImpuesto(new ImpuestoDepartamental());
+
+        List<Producto> productos= new ArrayList<>();
+        productos.add(new Producto(50000, "Departamental"));
+
+        double totalImpustos = calculadoraImpuestos.calcularImpuestos(productos);
+        System.out.println("EL VALOR DEL IMPUESTO ES: $" + totalImpustos);
+
+    }
+    CalculadoraImpuestosAntiPatron calculadoraAntiPatron = new CalculadoraImpuestosAntiPatron();
+    public void ejecutarAntiPatron() {
+        List<Producto> productos= new ArrayList<>();
+        productos.add(new Producto(50000, "Departamental"));
+        System.out.println("EL VALOR DEL IMPUESTO ES: $" + calculadoraAntiPatron.calcularImpuestosAtiPatron(productos));
+    }
+
+
 }
 
 
@@ -39,9 +59,13 @@ class ImpuestoNacional extends Impuesto {
 
 class ImpuestoImportacion extends Impuesto {
     @Override
-    double calcular(Producto producto) {
-        return producto.getPrecio() * 0.25;
-    }
+    double calcular(Producto producto) { return producto.getPrecio() * 0.25; }
+
+}
+
+class ImpuestoDepartamental extends Impuesto {
+    @Override
+    double calcular(Producto producto) { return producto.getPrecio() * 0.10; }
 }
 
 class CalculadoraImpuestos {
@@ -51,6 +75,7 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+        reglasImpuestos.add(new ImpuestoDepartamental());
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
@@ -90,6 +115,8 @@ class CalculadoraImpuestosAntiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "Departamental") {
+                totalImpuestos += producto.getPrecio() * 0.10;
             }
         }
         return totalImpuestos;

@@ -21,6 +21,11 @@ public class Producto {
         return precio;
     }
 
+    public Producto(double precio, String tipo) {
+        this.precio = precio;
+        this.tipo = tipo;
+    }
+
     public void setPrecio(double precio) {
         this.precio = precio;
     }
