@@ -4,6 +4,30 @@ public class InterfaceSegregation {
     /**
      * Se Sigue con la dinamica de los principios previos
      * */
+    public void Ejecutar (){
+
+        Avion miAvion = new Avion();
+        Helicoptero miHelicoptero = new Helicoptero();
+        Barco miBarco = new Barco();
+        Pato miPato = new Pato();
+        Lancha miLancha = new Lancha();
+        BuqueDeGuerra miBuqueDeGuerra = new BuqueDeGuerra();
+
+
+        miAvion.despegar();
+        miAvion.aterrizar();
+        miAvion.navegar();
+
+
+        miBuqueDeGuerra.navegar();
+
+
+        miHelicoptero.despegar();
+        miHelicoptero.aterrizar();
+
+        miBarco.navegar();
+    }
+
 }
 
 
@@ -23,6 +47,11 @@ interface Volador {
 interface Navegable {
     void navegar();
 }
+
+interface LanzarMisiles {
+    void lanzarMisil();
+}
+
 
 class Avion implements Volador, Navegable {
     @Override
@@ -53,6 +82,34 @@ class Helicoptero implements Volador {
 class Barco implements Navegable {
     @Override
     public void navegar() {
+        //...
+    }
+}
+
+class Pato implements Volador {
+    @Override
+    public void despegar() {
+        //...
+    }
+    @Override
+    public void aterrizar() {
+        //...
+    }
+}
+
+class Lancha implements Navegable {
+    @Override
+    public void navegar() {
+        //...
+    }
+
+}
+
+class BuqueDeGuerra implements LanzarMisiles{
+    public void lanzarMisil() {
+        //...
+    }
+    public void navegar () {
         //...
     }
 }

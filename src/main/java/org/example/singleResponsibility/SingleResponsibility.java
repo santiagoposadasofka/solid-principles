@@ -9,6 +9,18 @@ public class SingleResponsibility {
      * */
 
     public void ejecutar(){
+        CuentaBancaria miCuenta = new CuentaBancaria(1000);
+
+        miCuenta.depositar(800.00);
+        miCuenta.retirar(150.00);
+
+
+        double saldo = miCuenta.getSaldo();
+
+        Sistema miSistema = new Sistema();
+        miSistema.depositar(800.00);
+        miSistema.retirar(150.00);
+        miSistema.consignar(300.00);
 
     }
 }
@@ -80,5 +92,13 @@ class Sistema {
         printer.print(receipt);
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
+    }
+
+    public void consignar(double cantidad) {
+        cuenta.depositar(cantidad);
+        String receipt = "Consignacion de: " + cantidad;
+        printer.print(receipt);
+        db.saveTransaction(receipt);
+        emailSender.send("Consignacion realizada", receipt);
     }
 }
