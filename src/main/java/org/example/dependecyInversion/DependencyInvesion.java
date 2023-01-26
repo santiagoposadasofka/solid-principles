@@ -3,11 +3,13 @@ package org.example.dependecyInversion;
 public class DependencyInvesion {
     /**
      * Se Sigue con la dinamica de los principios previos
+     * vamos a empezar con toda
      * */
 
     GmailService gmailService = new GmailService();
 
     OutlookService outlookService = new OutlookService();
+
     Empleado SantiagoPosada = new Empleado(gmailService);
 
     Empleado JesusMiguel = new Empleado(outlookService);
