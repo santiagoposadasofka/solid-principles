@@ -9,8 +9,17 @@ public class SingleResponsibility {
      * */
 
     public void ejecutar(){
+        CuentaBancaria cuenta = new CuentaBancaria(1000);
+        cuenta.depositar(500);
+        System.out.println("Saldo actual: " + cuenta.getSaldo());
+        cuenta.retirar(200);
+        System.out.println("Saldo actual: " + cuenta.getSaldo());
 
-
+    }
+    public void ejecutarantipatron(){
+        Sistema sistema = new Sistema();
+        sistema.depositar(100);
+        sistema.retirar(50);
     }
 }
 
@@ -38,9 +47,9 @@ class CuentaBancaria {
         if (cantidad > this.saldo) {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
+        System.out.println("Retirando");
         this.saldo -= cantidad;
     }
-
     public double getSaldo() {
         return this.saldo;
     }

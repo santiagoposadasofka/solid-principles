@@ -11,10 +11,11 @@ import org.example.singleResponsibility.SingleResponsibility;
 public class Main {
     public static void main(String[] args) {
         System.out.println("------Patron SingleResponsability-----");
-        /**
         SingleResponsibility single = new SingleResponsibility();
         single.ejecutar();
-        **/
+        System.out.println("----Anti patron sigle responsability---");
+        single.ejecutarantipatron();
+        System.out.println("");
         System.out.println("----------Patron Openclose-----------");
         OpenClose openClose = new OpenClose();
         openClose.ejecutar();
