@@ -11,6 +11,82 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
+
+    /**
+     * El ejemplo que planteo es  un patron de una clase abstracta embotellara en donde se le puedden agregar mas productos creando clase del producto
+     * nuevo a embotellar
+     */
+    abstract class Embotelladora{
+
+        public abstract Void llenarBotellas();
+    }
+
+    class BotellasTe extends Embotelladora{
+        int numeroBotellas;
+
+        public BotellasTe(int numeroBotellas) {
+            this.numeroBotellas = numeroBotellas;
+        }
+
+        @Override
+        public Void llenarBotellas(){
+            System.out.println("Se llenaron:" + this.numeroBotellas+ "té");
+            return null;
+        };
+    }
+
+    class BotellasAguar extends Embotelladora{
+        int numeroBotellas;
+
+        public BotellasAguar(int numeroBotellas) {
+            this.numeroBotellas = numeroBotellas;
+        }
+
+        @Override
+        public Void llenarBotellas() {
+            System.out.println("Se llenaron:" + this.numeroBotellas+ "agua");
+            return null;
+        }
+    }
+
+
+    public void ejecutar (){
+
+        /**
+         * instancia de la clase calculadoraImpuesto.
+         */
+        Producto producto1 = new Producto(20000);
+        Iva iva = new Iva();
+        ImpuestoImportacion impuestoImportacion = new ImpuestoImportacion();
+        CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
+        calculadoraImpuestos.agregarReglaImpuesto(impuestoImportacion);
+        List<Producto> productos = new ArrayList<Producto>();
+        Producto producto2 = new Producto(24000);
+        productos.add(producto1);
+        calculadoraImpuestos.calcularImpuestos(productos);
+
+        /**
+         * instancia de la clase CalculaoraImpuestoAntiPatron
+         */
+        CalculadoraImpuestosAntiPatron calculadoraImpuestosAntiPatron = new CalculadoraImpuestosAntiPatron();
+
+        productos.add(producto2);
+        producto2.setTipo("Nacional");
+        producto2.getTipo();
+        calculadoraImpuestosAntiPatron.calcularImpuestosAtiPatron(productos);
+
+        /*
+        instancia clase BotellasAgua y Té
+         */
+
+        BotellasAguar botellasAguar = new BotellasAguar(11000);
+        botellasAguar.llenarBotellas();
+
+        BotellasTe botellasTe = new BotellasTe(2000000);
+        botellasTe.llenarBotellas();
+
+
+    }
 }
 
 
@@ -44,6 +120,16 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+/**
+ * Se añadio
+ */
+class Iva extends Impuesto {
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio() * 0.19;
+    }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -51,9 +137,11 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+        reglasImpuestos.add(new Iva());
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
+
         this.reglasImpuestos.add(impuesto);
     }
 
@@ -64,8 +152,10 @@ class CalculadoraImpuestos {
                 totalImpuestos += reglaImpuesto.calcular(producto);
             }
         }
+        System.out.println("\nEl impueto total de los productos es: " + totalImpuestos);
         return totalImpuestos;
     }
+
 }
 
 
@@ -90,10 +180,18 @@ class CalculadoraImpuestosAntiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "Iva"){
+                totalImpuestos += producto.getPrecio() * 0.19;
             }
         }
+        System.out.println("\nEl impueto total de los productos es: " + totalImpuestos);
         return totalImpuestos;
     }
-}
+
+    public static void main(String[] args) {
+
+    }
+};
+
 
 

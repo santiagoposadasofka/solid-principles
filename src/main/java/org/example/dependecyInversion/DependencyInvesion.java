@@ -1,9 +1,57 @@
 package org.example.dependecyInversion;
 
+import java.security.PublicKey;
+
 public class DependencyInvesion {
     /**
      * Se Sigue con la dinamica de los principios previos
+     *
      * */
+
+    interface Ielectricidad{
+        void pasaElectridad(boolean pasa);
+    }
+
+    class Boton implements Ielectricidad{
+        boolean prende = false;
+
+        public Boton() {
+            this.prende = prende;
+        }
+
+        @Override
+        public void pasaElectridad(boolean pasa) {
+            if (pasa == true) {
+                this.prende = pasa;
+            }else {this.prende= false;
+        }
+    }
+
+    class Lampara{
+
+        }
+    }
+
+
+
+
+
+    public void  ejecutar() {
+        /**
+         * se instancia la clase GmailService y OutlookService.
+          */
+        GmailService gmailService = new GmailService();
+        gmailService.enviarCorreo("efrain", "hola","hihioui");
+        OutlookService outlookService = new OutlookService();
+        outlookService.enviarCorreo("efrain", "hola","hih");
+
+        /**
+         * se instancia la clase empleao
+         */
+
+        Empleado empleado = new Empleado(gmailService);
+        empleado.enviarCorreo("efrain", "hola","hih");
+    }
 }
 
 

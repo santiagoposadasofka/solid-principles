@@ -4,6 +4,82 @@ public class InterfaceSegregation {
     /**
      * Se Sigue con la dinamica de los principios previos
      * */
+
+    /**
+     * El ejemplo que planteo para el patron InterfaceSegregation, se crean 3 interface con diferentes
+     * comportamientos para implementar en las clases Portatil, Calculadora y Celular. Como los comportamientos
+     * implementaor en la clases son iguales, se hace un aislamiento de interface.
+     */
+
+    interface Iprogramar{
+        void programar();
+        };
+
+    interface Icalcular{
+        void calcular();
+    }
+
+    interface Illamar{
+        void llamar();
+    }
+
+    class Portatil implements Iprogramar, Icalcular{
+
+        @Override
+        public void programar() {
+            System.out.println("El portatil esta desarrollando un software");
+        }
+
+        @Override
+        public void calcular() {
+            System.out.println("El portatil esta haciendo calculos");
+        }
+
+        class Celular implements Illamar,Icalcular{
+
+            @Override
+            public void calcular() {
+                System.out.println("El celular esta haciendo calculos");
+            }
+
+            @Override
+            public void llamar() {
+                System.out.println("El celular esta haciendo una llamada");
+            }
+        }
+
+        class Calculadora implements Icalcular{
+
+            @Override
+            public void calcular() {
+                System.out.println("La calculadora esta haciendo calculos");
+            }
+        }
+    }
+    public void ejecutar() {
+        /**
+         * instancia de la clase avion, helicoptero y barco
+         */
+        Avion avion = new Avion();
+        avion.aterrizar();
+        avion.despegar();
+        avion.navegar();
+
+        Helicoptero helicoptero = new Helicoptero();
+        helicoptero.aterrizar();
+        helicoptero.despegar();
+
+        Barco barco = new Barco();
+        barco.navegar();
+
+        /**
+         * instancia de InterfaceSegregation
+         */
+
+        Portatil portatil = new Portatil();
+        portatil.calcular();
+        portatil.programar();
+    }
 }
 
 
