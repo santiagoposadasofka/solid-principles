@@ -1,6 +1,17 @@
 package org.example.dependecyInversion;
 
 public class DependencyInvesion {
+
+    public void ejecutar(){
+
+        Empleado empleado = new Empleado();
+        empleado.enviarCorreo("Carlos Gomez", "Trabajo", "Trabajo listo");
+        empleado.llamar("Liliana Perez", "Nos encontramos en la salida");
+    }
+
+    /**
+     * Se Sigue con la dinamica de los principios previos
+     * */
 }
 
 
@@ -16,6 +27,14 @@ public class DependencyInvesion {
 
 interface ServicioDeCorreo {
     void enviarCorreo(String destinatario, String asunto, String mensaje);
+}
+
+/*
+ * Se implementa la interface "Telefono" para que el empleado pueda
+ * realizar la acción de acceder al telefono, pero la accion de llamar no la hace el.
+ * */
+interface Telefono {
+    void llamar(String destinatario, String mensaje);
 }
 
 class GmailService implements ServicioDeCorreo {
@@ -39,19 +58,36 @@ class OutlookService implements ServicioDeCorreo {
 * de esta forma se cumple con el principio de inversión de dependencia, ya que la clase Empleado
 * no depende directamente de una implementación específica de ServicioDeCorreo.
 * */
-class Empleado {
+class Empleado  implements ServicioDeCorreo, Telefono {
     private ServicioDeCorreo servicioDeCorreo;
+    private Telefono telefono;
 
-    public Empleado(ServicioDeCorreo servicioDeCorreo) {
+    public Empleado() {
         this.servicioDeCorreo = servicioDeCorreo;
     }
 
+    public Empleado(Telefono telefono) {
+        this.telefono = telefono;
+    }
     public void setServicioDeCorreo(ServicioDeCorreo servicioDeCorreo) {
         this.servicioDeCorreo = servicioDeCorreo;
     }
 
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
-        servicioDeCorreo.enviarCorreo(destinatario, asunto, mensaje);
+
+        System.out.println("Correo enviado a " + destinatario);
+        System.out.println("Asunto " + asunto);
+        System.out.println("mensaje " + mensaje);
+    }
+
+    public void setTelefono(Telefono telefono){
+        this.telefono = telefono;
+
+    }
+
+    public void llamar(String destinatario, String mensaje){
+        System.out.println("Llamada realizada a: " + destinatario);
+        System.out.println("Mensaje " + mensaje);
     }
 }
 

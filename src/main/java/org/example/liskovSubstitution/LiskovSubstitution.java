@@ -6,8 +6,10 @@ import java.util.List;
 public class LiskovSubstitution {
 
     public void ejecutar(){
+        System.out.println("----AREAS---");
         List<FiguraGeometrica> figuras = new ArrayList<>();
         figuras.add(new Cuadrado(10));
+        figuras.add(new Rectangulo(2,5));
         figuras.add(new Triangulo(5, 10));
         figuras.add(new Circulo(2));
 
@@ -44,6 +46,26 @@ class Cuadrado extends FiguraGeometrica {
     @Override
     public double area() {
         return lado * lado;
+    }
+}
+
+/*
+ * Se crea clase "Rectangulo" tal que cumpla con el patron indicado, heredando completamente
+ * los parametros especificados en su clase padre "FiguraGeometrica" cuya clase se basa especificamente
+ * en el area de la figura como lo refleja el area creada
+ * */
+
+class Rectangulo extends FiguraGeometrica{
+    private double altura;
+    private double base;
+    public Rectangulo(double lado, double base) {
+        this.base = base;
+        this.altura = lado;
+    }
+
+    @Override
+    public double area() {
+        return base * altura;
     }
 }
 
