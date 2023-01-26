@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.LiskovSubstitution;
 
 import org.example.openClose.OpenClose;
@@ -13,9 +14,15 @@ public class Main {
         vivienda.ejecutar();
         SingleResponsibility cuentaBancaria = new SingleResponsibility();
         cuentaBancaria.ejecutar();
+        System.out.println();
 
         var liskovSubstitution = new LiskovSubstitution();
         liskovSubstitution.ejecutar();
+        System.out.println();
+
+        InterfaceSegregation interfaceSegregation = new InterfaceSegregation();
+        interfaceSegregation.ejecutar();
+        System.out.println();
 
         OpenClose openClose = new OpenClose();
         openClose.ejecutar();

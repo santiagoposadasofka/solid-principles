@@ -1,7 +1,14 @@
 package org.example.interfaceSegregation;
 
+
+import org.example.singleResponsibility.Vivienda;
+
 public class InterfaceSegregation {
-}
+    public void ejecutar() {
+        Dron dron = new Dron();
+         dron.despegar();
+         dron.recargar();
+    }}
 
 
 /*
@@ -19,6 +26,32 @@ interface Volador {
 
 interface Navegable {
     void navegar();
+}
+
+interface Electrico{
+    void recargar();
+}
+class Dron implements Volador,Navegable,Electrico{
+
+    @Override
+    public void despegar() {
+        System.out.println("El dron despegó con éxito");
+    }
+
+    @Override
+    public void aterrizar() {
+        System.out.println("El dron aterrizo con éxito");
+    }
+
+    @Override
+    public void navegar() {
+        System.out.println("Ell dron está navegando a control remoton ");
+    }
+
+    @Override
+    public void recargar() {
+        System.out.println("Nivel de batería 10%");
+    }
 }
 
 class Avion implements Volador, Navegable {
