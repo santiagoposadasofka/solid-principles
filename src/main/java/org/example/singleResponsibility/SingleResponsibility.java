@@ -7,10 +7,23 @@ public class SingleResponsibility {
      * van a ejecutar sus comportamientos.
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
-
     public void ejecutar(){
 
+        CuentaBancaria cb = new CuentaBancaria(0);
+        System.out.println( "Saldo Actual: "+ cb.getSaldo());
+        cb.depositar(200.000);
+        System.out.println( "Saldo Actual: "+ cb.getSaldo());
+        cb.retirar(20.000);
+        System.out.println( "Saldo Actual: "+ cb.getSaldo());
+
     }
+    public void ejecutar2(){
+        Sistema sistema = new Sistema();
+        sistema.depositar(150.000);
+        sistema.retirar(50.000);
+    }
+
+
 }
 
 
@@ -26,6 +39,7 @@ class CuentaBancaria {
     private double saldo;
 
     public CuentaBancaria(double saldoInicial) {
+
         this.saldo = saldoInicial;
     }
 
@@ -81,4 +95,5 @@ class Sistema {
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
     }
+
 }

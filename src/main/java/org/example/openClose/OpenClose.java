@@ -33,6 +33,7 @@ abstract class Impuesto {
 class ImpuestoNacional extends Impuesto {
     @Override
     double calcular(Producto producto) {
+
         return producto.getPrecio() * 0.15;
     }
 }
