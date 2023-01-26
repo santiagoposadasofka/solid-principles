@@ -19,6 +19,6 @@ public class Main {
 
 
         LiskovSubstitution liskov = new LiskovSubstitution();
-        liskov.ejecutar1();
+        liskov.ejecutar2();
     }
 }

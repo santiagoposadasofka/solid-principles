@@ -28,7 +28,15 @@ public class LiskovSubstitution {
     }
 
     public void ejecutar2(){
-        Empleado ejecutivo
+        List<Empleado> misEmpleados = new ArrayList<>();
+        misEmpleados.add(new EmpleadoEjecutivo());
+        misEmpleados.add(new EmpleadoOperativo());
+        misEmpleados.add(new EmpleadoTemporal());
+
+        for (Empleado empleado:misEmpleados) {
+            empleado.realizarTarea();
+        }
+
     }
 
 
@@ -114,6 +122,7 @@ class EmpleadoEjecutivo extends Empleado {
         tomarDecision();
     }
     public void tomarDecision() {
+        System.out.println("El empleado ejecutivo esta tomando una decision");
         //...
     }
 }
@@ -124,6 +133,7 @@ class EmpleadoOperativo extends Empleado {
         realizarOperacion();
     }
     public void realizarOperacion() {
+        System.out.println("El empleado opertativo esta realizando operaciones");
         //...
     }
 }
@@ -134,6 +144,7 @@ class EmpleadoTemporal extends Empleado {
         realizarTareaTemporal();
     }
     public void realizarTareaTemporal() {
+        System.out.println("El empleado esta realizando tareas temporales");
         //...
     }
 }
