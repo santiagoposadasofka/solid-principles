@@ -11,6 +11,55 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
+
+    //Creando instancias y usando el principio Open Close
+    public void ejecutarPrincipio(){
+        //
+        Producto yuca = new Producto(5000);
+        Producto tomate = new Producto(3000);
+
+        List<Producto> productos;
+        productos = new ArrayList<>();
+
+        productos.add(yuca);
+        productos.add(tomate);
+        System.out.println("\n------------------Principio Open Close-----------\n");
+        CalculadoraImpuestos calculadora = new CalculadoraImpuestos();
+        //Creando un Nuevo Tipo de Impuesto
+        Impuesto impuestoExtra = new Impuesto() {
+            @Override
+            double calcular(Producto producto) {
+                System.out.println("Impuesto Extra:  "+ producto.getPrecio());
+                return producto.getPrecio() * 0.30;
+            }
+        };
+        calculadora.agregarReglaImpuesto(impuestoExtra);
+        calculadora.calcularImpuestos(productos);
+    }
+
+    public void ejecutarAntiPatron() {
+        Producto papa = new Producto(6000);
+        Producto harina = new Producto(2600);
+        papa.setTipo("Nacional");
+        papa.setTipo("Importado");
+
+        List<Producto> productos;
+        productos = new ArrayList<>();
+        productos.add(papa);
+        productos.add(harina);
+        System.out.println("\n------------------Anti Patron de Open Close-----------\n");
+        CalculadoraImpuestosAntiPatron calcu = new CalculadoraImpuestosAntiPatron();
+        calcu.calcularImpuestosAntiPatron(productos);
+    }
+
+    public void ejecutarnuevoAntiPatron() {
+        Persona persona1 = new Persona("Andrea", "Plata");
+        Persona persona2 = new Persona("Paul", "Diamante");
+        System.out.println("\n------------------Nuevo Anti Patron de Open Close-----------\n");
+        CalcularadoraValorEntrada precio = new CalcularadoraValorEntrada();
+        precio.calcularValor(persona1);
+        precio.calcularValor(persona2);
+    }
 }
 
 
@@ -55,6 +104,7 @@ class CalculadoraImpuestos {
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
         this.reglasImpuestos.add(impuesto);
+        System.out.println("Nueva Regla Agregada");
     }
 
     public double calcularImpuestos(List<Producto> productos) {
@@ -64,6 +114,7 @@ class CalculadoraImpuestos {
                 totalImpuestos += reglaImpuesto.calcular(producto);
             }
         }
+        System.out.println("El total de todos los impuestos es: "+totalImpuestos);
         return totalImpuestos;
     }
 }
@@ -83,17 +134,39 @@ class CalculadoraImpuestos {
 
 
 class CalculadoraImpuestosAntiPatron {
-    public double calcularImpuestosAtiPatron(List<Producto> productos) {
+    public double calcularImpuestosAntiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
             if (producto.getTipo() == "Nacional") {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "Departamental") {//Nuevo else if para Impuesto Departamental
+                totalImpuestos += producto.getPrecio() * 0.13;
             }
         }
+        System.out.println("El total de impuestos usando antipatron es: "+totalImpuestos);
         return totalImpuestos;
     }
+}
+
+//Esta clase es un antipatron
+class CalcularadoraValorEntrada{
+
+    public double calcularValor(Persona persona){
+        double valorGeneral = 50000;
+        if (persona.getMembresia() == "Plata"){
+            valorGeneral = valorGeneral - 5000;
+        }else if(persona.getMembresia() == "Oro"){
+            valorGeneral = valorGeneral - 10000;
+        }else if(persona.getMembresia() == "Diamante"){
+            valorGeneral = valorGeneral - 20000;
+        }
+
+        System.out.println("El valor de la entrada para "+persona.getNombre()+" es de "+valorGeneral);
+        return valorGeneral;
+    }
+
 }
 
 
