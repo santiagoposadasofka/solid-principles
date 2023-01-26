@@ -9,14 +9,13 @@ public class SingleResponsibility {
      * van a ejecutar sus comportamientos.
      * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
      * */
+    Scanner in = new Scanner(System.in);
     private double cantidad;
     private double saldo;
     int opc = 0;
     CuentaBancaria cuentaBancaria = new CuentaBancaria(saldo);
     public void ejecutarSingleResponsibilityCuenta(){
         do{
-            saldo = 10000;
-            Scanner in = new Scanner(System.in);
             System.out.println("Cuenta Bancaria");
             System.out.println("\nElige una opción");
             System.out.println("1. Depositar dinero. \n2. Retirar dinero. \n3. Ver saldo. \n4. Salir");
@@ -50,7 +49,6 @@ public class SingleResponsibility {
     Sistema sistema = new Sistema();
     public void ejecutarSingleResponsibilitySistema() {
         do{
-            Scanner in = new Scanner(System.in);
             System.out.println("Cuenta Bancaria");
             System.out.println("\nElige una opción");
             System.out.println("1. Depositar dinero. \n2. Retirar dinero. \n3. Salir");
@@ -75,8 +73,66 @@ public class SingleResponsibility {
             }
         }while (opc!=4);
     }
-}
+    private String usuario;
+    private String clave;
 
+    RedSocial redSocial = new RedSocial(usuario, clave);
+
+    public void ejecutarSingleResponsibilityAntiPatron() {
+        do{
+            System.out.println("Bienvenido a tu Red Social");
+            System.out.println("1. Inicar Sesión \n2. Registrate \n3. Salir");
+            opc = in.nextInt();
+
+            switch (opc) {
+                case 1:
+                    in.nextLine();
+                    System.out.println("Digite su nombre de usuario");
+                    usuario = in.nextLine();
+                    System.out.println("Digite su contraseña");
+                    clave = in.nextLine();
+                    redSocial.loguin(usuario,clave);
+                    break;
+                case 2:
+                    in.nextLine();
+                    System.out.println("Usuario que desea utilizar");
+                    usuario = in.nextLine();
+                    System.out.println("Digite una contraseña");
+                    clave = in.nextLine();
+                    redSocial.registro(usuario,clave);
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción Incorrecta");
+            }
+        }while (opc!=3);
+    }
+
+}
+class RedSocial {
+    private String usuario;
+    private String clave;
+
+    public RedSocial(String usuario, String clave) {
+        this.usuario = usuario;
+        this.clave = clave;
+    }
+
+    public void registro (String usuarioRegistro, String claveRegistro) {
+        this.usuario = usuarioRegistro;
+        this.clave = claveRegistro;
+    }
+
+    public void loguin (String usuarioLoguin, String claveLoguin) {
+        if (this.usuario.equals(usuarioLoguin) && this.clave.equals(claveLoguin)) {
+            System.out.println("Inicio de sesión exitosa");
+        }else {
+            System.out.println("Usuario o contraseña incorrecta");
+        }
+    }
+}
 
 
 
