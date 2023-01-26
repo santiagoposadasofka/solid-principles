@@ -1,11 +1,34 @@
 package org.example.interfaceSegregation;
 
 public class InterfaceSegregation {
-    /**
-     * Se Sigue con la dinamica de los principios previos
-     * */
-}
 
+
+    /*
+     * Se verifican comportamientos de las diferentes clases, para así verificar
+     * que el programa funcione sin problemas, respetando el patron creando interfaces para diferentes metodos
+     * esperando que las clases no dependan de una sola interface para ejecutar sus metodos correspondientes
+     * */
+    public void ejecutar(){
+
+        Avion avion = new Avion();
+        avion.despegar();
+        System.out.println("El avión despegó");
+        Helicoptero helicoptero = new Helicoptero();
+        helicoptero.despegar();
+        System.out.println("El helicoptero despegó");
+        helicoptero.disparar();
+        System.out.println("El helicopteró disparó");
+        Submarino submarino = new Submarino();
+        submarino.navegar();
+        System.out.println("El submarino ya está navengando");
+        submarino.disparar();
+        System.out.println("El submarino disparó");
+
+    }
+}
+/**
+ * Se Sigue con la dinamica de los principios previos
+ * */
 
 /*
 * Un ejemplo de aislamiento de interfaz en Java podría ser una interfaz "Volador" que tiene métodos
@@ -24,6 +47,15 @@ interface Navegable {
     void navegar();
 }
 
+/*
+ * Se implementa otra interface para interactur
+ * con nuevo metodo al agregar la clase de "submarino"
+ * */
+
+interface Ataque{
+    void disparar();
+}
+
 class Avion implements Volador, Navegable {
     @Override
     public void despegar() {
@@ -39,7 +71,7 @@ class Avion implements Volador, Navegable {
     }
 }
 
-class Helicoptero implements Volador {
+class Helicoptero implements Volador, Ataque {
     @Override
     public void despegar() {
         //...
@@ -48,11 +80,36 @@ class Helicoptero implements Volador {
     public void aterrizar() {
         //...
     }
+
+    @Override
+    public void disparar() {
+
+    }
+
 }
 
-class Barco implements Navegable {
+/*
+ * Se crea clase "submarino" la cual utiliza dos interfaces,
+ * pero que no depende de niguna otra para ejecutar sus
+ * metodos correspondientes
+ * */
+
+class Submarino implements Navegable, Ataque {
+
     @Override
     public void navegar() {
-        //...
+
+    }
+
+    @Override
+    public void disparar() {
+
+    }
+
+    class Barco implements Navegable {
+        @Override
+        public void navegar() {
+            //...
+        }
     }
 }

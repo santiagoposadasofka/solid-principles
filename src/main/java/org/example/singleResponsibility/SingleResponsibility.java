@@ -15,8 +15,7 @@ public class SingleResponsibility {
      * para interactuar los comportamientos de cada una
      * */
 
-    public void ejecutar()
-    {
+    public void ejecutar() {
         CuentaBancaria cuenta = new CuentaBancaria(1000000);
         cuenta.depositar(50000);
         cuenta.retirar(25000);
@@ -27,8 +26,6 @@ public class SingleResponsibility {
         Sistema sistema = new Sistema();
         sistema.depositar(1200);
         sistema.retirar(1000);
-
-        System.out.println("------------------AUTOMOVIL-----------------");
 
         Automovil automovil = new Automovil("Chevrolet");
         automovil.cambiarMarca("Nissan");
@@ -50,6 +47,9 @@ class CuentaBancaria {
     private double saldo;
 
     public CuentaBancaria(double saldoInicial) {
+
+        System.out.println("------------------CUENTA BANCARIA-----------------");
+
         this.saldo = saldoInicial;
         System.out.println("El saldo de la cuenta bancaria es: " + this.saldo);
 
@@ -135,6 +135,9 @@ class Automovil{
     private String marca;
 
     public Automovil(String marca) {
+
+        System.out.println("------------------AUTOMOVIL-----------------");
+
         this.marca = marca;
         System.out.println("Marca del Automovil: " + this.marca);
 

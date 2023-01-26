@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.LiskovSubstitution;
 
 import org.example.openClose.OpenClose;
@@ -17,6 +18,11 @@ public class Main {
 
         LiskovSubstitution liskov = new LiskovSubstitution();
         liskov.ejecutar();
+
+        System.out.println("---INTERFACE SEGREGATION");
+
+        InterfaceSegregation interf = new InterfaceSegregation();
+        interf.ejecutar();
 
     }
 }
