@@ -4,6 +4,30 @@ public class InterfaceSegregation {
     /**
      * Se Sigue con la dinamica de los principios previos
      * */
+
+    public void Ejecutar(){
+        Avion avioncito = new Avion();
+        Helicoptero helicoptercito = new Helicoptero();
+        Barco barquito = new Barco();
+        motoAcuatica motico =new motoAcuatica();
+        cohete Cohete =new cohete();
+
+        avioncito.despegar();
+        avioncito.aterrizar();
+        avioncito.navegar();
+
+        helicoptercito.despegar();
+        helicoptercito.aterrizar();
+
+        barquito.navegar();
+
+        motico.saltarOlas();
+        motico.navegar();
+
+        Cohete.acelerar();
+        Cohete.aterrizar();
+        Cohete.despegar();
+    }
 }
 
 
@@ -56,3 +80,28 @@ class Barco implements Navegable {
         //...
     }
 }
+
+class motoAcuatica implements Navegable{
+
+    @Override
+    public void navegar() {
+
+    }
+    public void saltarOlas(){}
+}
+
+class cohete implements Volador{
+
+    @Override
+    public void despegar() {
+
+    }
+
+    @Override
+    public void aterrizar() {
+
+    }
+    public void acelerar(){}
+}
+
+
