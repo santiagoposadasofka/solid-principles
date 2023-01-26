@@ -13,7 +13,7 @@ public class Main {
         //single.ejecutar3();
 
         OpenClose open = new OpenClose();
-        open.ejecutar();
+        open.ejecutar2();
 
 
 
