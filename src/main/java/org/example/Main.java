@@ -1,8 +1,10 @@
 package org.example;
 
+
 import org.example.singleResponsibility.SingleResponsibility;
 import org.example.openClose.OpenClose;
 import org.example.liskovSubstitution.LiskovSubstitution;
+import org.example.interfaceSegregation.InterfaceSegregation;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,10 +18,15 @@ public class Main {
         openClose.ejecutar();
         System.out.println("\n< - - - >");
 
+        // Se ejecutan los ejemplos de uso de este principio
         LiskovSubstitution liskovSubstitution = new LiskovSubstitution();
         liskovSubstitution.ejecutar();
         System.out.println("\n< - - - >");
 
+        // Se ejecutan los ejemplos de uso de este principio
+        InterfaceSegregation interfaceSegregation = new InterfaceSegregation();
+        interfaceSegregation.ejecutar();
+        System.out.println("\n< - - - >");
 
     }
 }
