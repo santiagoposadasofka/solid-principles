@@ -11,8 +11,35 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
-}
 
+    public void ejecutar(){
+        /**
+         * Instanciando Clase CalcularImpuestos principio OpenClose
+         */
+        System.out.println("---------Clase CalcularImpuestos---------");
+
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(1500000));
+
+        CalculadoraImpuestos calcularImpuesto = new CalculadoraImpuestos();
+
+        System.out.println("Impuestos Calculados para pc HP: " + calcularImpuesto.calcularImpuestos(productos));
+
+        /**
+         * Instanciando Clase Antipatron
+         */
+        System.out.println("---------Clase CalcularImpuestosAntiPatron---------");
+        Producto producto = new Producto(750000);
+        producto.setTipo("Importado");
+
+        List<Producto> nuevosProductos = new ArrayList<>();
+        nuevosProductos.add(producto);
+
+        CalculadoraImpuestosAntiPatron calcularImpuestoAntiPatron = new CalculadoraImpuestosAntiPatron();
+        System.out.println("Calculo de Impuesto con antipatron " + calcularImpuestoAntiPatron.calcularImpuestosAtiPatron(nuevosProductos));
+
+    }
+}
 
 /*
 * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
@@ -44,6 +71,16 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+    /**
+     *     Nueva regla de Impuesto Departamental
+     */
+
+class ImpuestoDepartamental extends Impuesto{
+    double calcular(Producto producto){
+        return producto.getPrecio() * 0.5;
+    }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -51,6 +88,8 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+        //Agragando regla de Impuesto Departamental
+        reglasImpuestos.add(new ImpuestoDepartamental());
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
