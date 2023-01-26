@@ -4,6 +4,7 @@ import org.example.dependecyInversion.DependencyInvesion;
 import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.LiskovSubstitution;
 import org.example.openClose.OpenClose;
+import org.example.singleResponsibility.SingleResponsabilityExample;
 import org.example.singleResponsibility.SingleResponsibility;
 
 public class Main {
@@ -17,6 +18,8 @@ public class Main {
         SingleResponsibility single = new SingleResponsibility();
         single.ejecutar();
         System.out.println("---------------------------------------------------------");
+        SingleResponsabilityExample singleResponsabilityExample = new SingleResponsabilityExample();
+        singleResponsabilityExample.ejecutar();
 
         System.out.println("OpenClose");
         OpenClose openClose = new OpenClose();
