@@ -21,7 +21,7 @@ public class LiskovSubstitution {
 /*
 * Un ejemplo de sustitución de Liskov en Java podría ser una jerarquía de clases "FiguraGeometrica"
 * que tiene una clase base "FiguraGeometrica" y varias subclases que representan diferentes tipos
-* de figuras geométricas, como "Cuadrado", "Triangulo" y "Circulo". Todas las subclases tienen un método
+* de figuras geométricas, como "Medida", "Triangulo" y "Circulo". Todas las subclases tienen un método
 * "area()" que devuelve el área de la figura geométrica. La clase "FiguraGeometrica" es una superclase abstracta
 * y no se puede instanciar.
 * En este ejemplo, se puede ver como todas las subclases de FiguraGeometrica tienen un método area, el cual tiene
@@ -29,7 +29,7 @@ public class LiskovSubstitution {
 * de Liskov, ya que se puede utilizar cualquier objeto de una de las subclases en lugar de un objeto de la superclase
 * sin causar problemas en el funcionamiento del sistema.
 * En este ejemplo se puede ver como se utiliza una lista de objetos de la superclase FiguraGeometrica pero se pueden
-* utilizar objetos de las subclases Cuadrado, Triangulo y Circulo sin causar problemas, esto cumple con el principio de sustitución de Liskov
+* utilizar objetos de las subclases Medida, Triangulo y Circulo sin causar problemas, esto cumple con el principio de sustitución de Liskov
 * */
 
 abstract class FiguraGeometrica {
