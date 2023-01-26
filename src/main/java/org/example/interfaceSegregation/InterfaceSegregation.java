@@ -4,6 +4,24 @@ public class InterfaceSegregation {
     /**
      * Se Sigue con la dinamica de los principios previos
      * */
+
+    public void ejecutar(){
+        System.out.println("InterfaceSegregation");
+
+        Avion avion = new Avion();
+        avion.despegar();
+        System.out.println("Avión despegando");
+        avion.navegar();
+        System.out.println("Avión navegando");
+
+        Helicoptero helicoptero = new Helicoptero();
+        helicoptero.despegar();
+        System.out.println("Helicoptero despegando");
+        helicoptero.aterrizar();
+        System.out.println("Helicoptero aterrizando");
+
+
+    }
 }
 
 
