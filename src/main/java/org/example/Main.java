@@ -10,7 +10,7 @@ public class Main {
         System.out.println("\n");
         OpenClose.ejecutar();
         System.out.println("\n");
-        LiskovSubstitution liskovSubstitution = new LiskovSubstitution();
-        liskovSubstitution.ejecutar();
+        LiskovSubstitution.ejecutar();
+        System.out.println("\n");
     }
 }

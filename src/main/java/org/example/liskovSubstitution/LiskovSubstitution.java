@@ -5,19 +5,39 @@ import java.util.List;
 
 public class LiskovSubstitution {
 
-    public void ejecutar(){
+    public static void ejecutar(){
         List<FiguraGeometrica> figuras = new ArrayList<>();
         figuras.add(new Cuadrado(10));
         figuras.add(new Triangulo(5, 10));
         figuras.add(new Circulo(2));
-
         for(FiguraGeometrica figura: figuras) {
             System.out.println("Area: " + figura.area());
         }
+        System.out.println("\n");
+        List<Animal>animales=new ArrayList<>();
+        animales.add(new Perro());
+        animales.add(new Gato());
+        for (Animal animal:animales){
+            animal.producirSonido();
+        }
     }
 }
-
-
+abstract class Animal{
+    private String nombre,especie,edad;
+    public abstract void producirSonido();
+}
+class Perro extends Animal{
+    @Override
+    public void producirSonido() {
+        System.out.println("Guau");
+    }
+}
+class Gato extends Animal{
+    @Override
+    public void producirSonido() {
+        System.out.println("Miau");
+    }
+}
 /*
 * Un ejemplo de sustitución de Liskov en Java podría ser una jerarquía de clases "FiguraGeometrica"
 * que tiene una clase base "FiguraGeometrica" y varias subclases que representan diferentes tipos
@@ -29,7 +49,8 @@ public class LiskovSubstitution {
 * de Liskov, ya que se puede utilizar cualquier objeto de una de las subclases en lugar de un objeto de la superclase
 * sin causar problemas en el funcionamiento del sistema.
 * En este ejemplo se puede ver como se utiliza una lista de objetos de la superclase FiguraGeometrica pero se pueden
-* utilizar objetos de las subclases Cuadrado, Triangulo y Circulo sin causar problemas, esto cumple con el principio de sustitución de Liskov
+* utilizar objetos de las subclases Cuadrado, Triangulo y Circulo sin causar problemas, esto cumple con el principio de
+* sustitución de Liskov
 * */
 
 abstract class FiguraGeometrica {
