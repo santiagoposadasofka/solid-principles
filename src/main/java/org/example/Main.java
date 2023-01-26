@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.interfaceSegregation.EjemploInterfaz;
+import org.example.interfaceSegregation.InterfaceSegregation;
 import org.example.liskovSubstitution.EjemploAntipatron;
 import org.example.liskovSubstitution.LiskovSubstitution;
 import org.example.openClose.OpenClose;
@@ -22,6 +24,13 @@ public class Main {
         EjemploAntipatron ejemploAntipatron = new EjemploAntipatron();
         ejemploAntipatron.ejecutar();
         System.out.println("-----------Patron interfaz-----------");
+        InterfaceSegregation interfaceSegregation = new InterfaceSegregation();
+        interfaceSegregation.ejecutar();
+        System.out.println("-----------Ejemplo Interfaz-----------");
+        EjemploInterfaz ejemploInterfaz = new EjemploInterfaz();
+        ejemploInterfaz.ejecutar();
+        System.out.println("----------Inversion de Denpencias-----");
+
 
     }
 }
