@@ -1,5 +1,6 @@
 package org.example.openClose;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,25 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
-}
+
+    public void ejecutar(){
+
+        CalculadoraImpuestos calculadora = new CalculadoraImpuestos();
+        calculadora.agregarReglaImpuesto(new ImpuestoDepartamental());
+
+
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(1000, "Departamental"));
+
+        double totalimpuestos = calculadora.calcularImpuestos(productos);
+
+        System.out.println("El impuesto es: " + totalimpuestos);
+
+        CalculadoraImpuestosAntiPatron antiCalculadora = new CalculadoraImpuestosAntiPatron();
+        System.out.println("El impuesto en antiparton es : " + antiCalculadora.calcularImpuestosAtiPatron(productos));
+        }
+    }
+
 
 
 /*
@@ -26,6 +45,7 @@ public class OpenClose {
 *  nuevas reglas de impuestos sin tener que modificar la clase CalculadoraImpuestos, cumpliendo con el principio
 * del patrón open close.
 * */
+
 abstract class Impuesto {
     abstract double calcular(Producto producto);
 }
@@ -44,6 +64,13 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+class ImpuestoDepartamental extends Impuesto {
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio() * 0.10;
+    }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -54,6 +81,7 @@ class CalculadoraImpuestos {
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
+
         this.reglasImpuestos.add(impuesto);
     }
 
@@ -90,6 +118,8 @@ class CalculadoraImpuestosAntiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "Departamental") {
+                totalImpuestos += producto.getPrecio() * 0.10;
             }
         }
         return totalImpuestos;
