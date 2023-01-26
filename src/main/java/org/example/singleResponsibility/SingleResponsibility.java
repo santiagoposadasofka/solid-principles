@@ -24,10 +24,11 @@ public class SingleResponsibility {
         sistema.retirar(10000);
     }
 
-    public void ejecutarAnimal(){
+    public void ejecutarCarro(){
         System.out.println("\nComportamiento ejemplo que sigue el patron");
-        Animal animal=new Animal("Pedro","alas");
-        animal.verAnimal();
+        Carro carro=new Carro(true);
+        carro.andar();
+        carro.frenar();
     }
 }
 
@@ -105,27 +106,21 @@ class Sistema {
 
 }
 
-class Animal{
-    private String nombre;
-    private String movilidad;
+class Carro{
+    private boolean andando;
 
-    public Animal(String nombre, String movilidad) {
-        this.nombre = nombre;
-        this.movilidad = movilidad;
+
+    public Carro(boolean andando) {
+        this.andando = andando;
     }
 
-    public void verAnimal(){
-        String mov;
-        if(movilidad=="patas"){
-            mov="terrestre";
-        }else if(movilidad=="aletas"){
-            mov="acuatico";
-        }else if(movilidad=="alas"){
-            mov="volador";
-        }else{
-            mov="desconocida";
-        }
-        System.out.println("Este animal se llama "+nombre+", y es "+mov);
+    public void andar(){
+        andando=true;
+        System.out.println("El carro esta en movimiento "+andando);
+    }
+    public void frenar(){
+        andando=false;
+        System.out.println("El carro esta frenando "+andando);
     }
 
 

@@ -6,7 +6,7 @@ import java.util.List;
 public class LiskovSubstitution {
 
     public void ejecutar(){
-        System.out.println("Comportamientos figuras siguiendo el patron");
+        System.out.println("\nComportamientos figuras siguiendo el patron");
         List<FiguraGeometrica> figuras = new ArrayList<>();
         figuras.add(new Cuadrado(10));
         figuras.add(new Triangulo(5, 10));
