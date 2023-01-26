@@ -1,6 +1,37 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     */
+
+    public void ejecutar() {
+        //  * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+        CuentaBancaria cuentaBancaria = new CuentaBancaria(4000);
+        cuentaBancaria.depositar(1000);
+        cuentaBancaria.retirar(3000);
+        cuentaBancaria.getSaldo();
+        // Metodo generado
+        cuentaBancaria.getValorUltimoRetiro();
+
+
+        // * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+        //* van a ejecutar sus comportamientos.
+        Sistema sistema = new Sistema();
+        sistema.depositar(1000);
+        sistema.retirar(500);
+
+        // * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+        // Ejemplo
+        Contador contador = new Contador(33);
+        contador.aumentar(23);
+        contador.disminuir(10);
+        contador.toString();
+
+    }
 }
 
 
@@ -14,6 +45,7 @@ public class SingleResponsibility {
 
 class CuentaBancaria {
     private double saldo;
+    private double valorUltimoRetiro;
 
     public CuentaBancaria(double saldoInicial) {
         this.saldo = saldoInicial;
@@ -27,12 +59,19 @@ class CuentaBancaria {
         if (cantidad > this.saldo) {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
+        this.valorUltimoRetiro = cantidad;
         this.saldo -= cantidad;
     }
 
     public double getSaldo() {
         return this.saldo;
     }
+
+    public double getValorUltimoRetiro() {
+        return this.valorUltimoRetiro;
+    }
+
+
 }
 
 /*
@@ -70,5 +109,29 @@ class Sistema {
         printer.print(receipt);
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
+    }
+}
+
+class Contador {
+    private double contadorinicial = 0;
+
+
+    public Contador(double contadorinicial) {
+        this.contadorinicial = contadorinicial;
+    }
+
+    public void aumentar(double aumentar) {
+        this.contadorinicial += aumentar;
+    }
+
+    public void disminuir(double disminuir) {
+        this.contadorinicial -= disminuir;
+    }
+
+    @Override
+    public String toString() {
+        return "contador{" +
+                "contadorinicial=" + contadorinicial +
+                '}';
     }
 }
