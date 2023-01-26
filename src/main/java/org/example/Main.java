@@ -10,6 +10,7 @@ public class Main {
 
         SingleResponsibility single = new SingleResponsibility();
         //single.ejecutarCuenta();
-        single.ejecutarSistema();
+        //single.ejecutarSistema();
+        single.ejecutarEjemplo();
     }
 }
