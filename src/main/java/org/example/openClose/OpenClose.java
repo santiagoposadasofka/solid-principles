@@ -1,5 +1,7 @@
 package org.example.openClose;
 
+import jdk.dynalink.Operation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,5 +136,81 @@ class CalculadoraImpuestosAntiPatron {
         return totalImpuestos;
     }
 }
+
+/**
+ * Nueva Clase con principio OpenClose
+ */
+
+abstract class Operaciones{
+    abstract double CalcularOperacion(int a, int b);
+}
+
+class Sumar extends Operaciones {
+
+    int resultado = 0;
+    @Override
+    double CalcularOperacion(int a, int b) {
+        return resultado = a + b;
+    }
+}
+
+class Restar extends Operaciones {
+
+    int resultado = 0;
+    @Override
+    double CalcularOperacion(int a, int b) {
+        return resultado = a - b;
+    }
+}
+
+class Multiplicar extends Operaciones {
+
+    int resultado = 0;
+    @Override
+    double CalcularOperacion(int a, int b) {
+        return resultado = a * b;
+    }
+}
+
+class Operations {
+    private String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+}
+
+class Resultados {
+    private List<Operaciones> results;
+
+    public Resultados() {
+        this.results = new ArrayList<>();
+        results.add(new Sumar());
+        results.add(new Multiplicar());
+
+    }
+
+    public void agregarOperaciones(Operaciones operaciones) {
+        this.results.add(operaciones);
+    }
+
+    public double calcularOperaciones(List<Operations> operaciones) {
+        double total = 0;
+        for (Operations operacion : operaciones) {
+            for (Operaciones resultado : this.results) {
+                total += resultado.CalcularOperacion(20, 5);
+            }
+        }
+        return total;
+    }
+}
+
+
+
+
 
 
