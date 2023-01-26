@@ -5,6 +5,14 @@ public class DependencyInvesion {
      * Se Sigue con la dinamica de los principios previos
      * */
 
+    public void ejecutarServicio(){
+        Empleado empleado = new Empleado(new GmailService());
+        empleado.enviarCorreo("nombreUsuario@organizacion.com\n", "Texto del correo ", "Cuerpo del mensaje");
+
+        empleado.setServicioDeCorreo(new OutlookService());
+        empleado.enviarCorreo("nombreUsuario@organizacion.com\n", "Texto del correo ", "Cuerpo del mensaje");
+    }
+
     GmailService gmailService = new GmailService();
 
     OutlookService outlookService = new OutlookService();
@@ -12,9 +20,6 @@ public class DependencyInvesion {
 
     Empleado JesusMiguel = new Empleado(outlookService);
 }
-
-
-
 
 /*
 * Un ejemplo de inversión de dependencia en Java podría ser una clase "Empleado" que depende de una
@@ -70,8 +75,3 @@ class Empleado {
         servicioDeCorreo.enviarCorreo(destinatario, asunto, mensaje);
     }
 }
-
-
-
-
-
