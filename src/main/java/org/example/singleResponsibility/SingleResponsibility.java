@@ -1,6 +1,37 @@
 package org.example.singleResponsibility;
 
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
+    public void ejecutar(){
+        System.out.println("\n");
+        System.out.println("-----------------Principio Single Responsibility------------------");
+        CuentaBancaria cuenta1 = new CuentaBancaria(20000);
+        System.out.println("Este es tu saldo inicial: "+cuenta1.getSaldo());
+        cuenta1.depositar(50000);
+        cuenta1.retirar(50000);
+    }
+
+    public void ejecutarSistema(){
+        System.out.println("\n");
+        System.out.println("-----------Instancia del anti patron Sistema----------");
+        Sistema sistema = new Sistema();
+        sistema.depositar(100000);
+        System.out.println("\n");
+        sistema.retirar(20000);
+    }
+
+    public void ejecutarStudent(){
+        System.out.println("\n");
+        System.out.println("--------Instancia de Student que aplica Single Responsibility");
+        Student estudiante = new Student("Juan", "Cardona");
+        estudiante.llamarEstudiante();
+        System.out.println("\n");
+    }
 }
 
 
@@ -21,6 +52,7 @@ class CuentaBancaria {
 
     public void depositar(double cantidad) {
         this.saldo += cantidad;
+        System.out.printf("Tu saldo despues de depositar es: "+ saldo+"\n");
     }
 
     public void retirar(double cantidad) {
@@ -28,10 +60,27 @@ class CuentaBancaria {
             throw new IllegalArgumentException("No hay suficientes fondos");
         }
         this.saldo -= cantidad;
+        System.out.printf("Tu saldo despues de retirar es: "+ saldo+"\n");
     }
 
     public double getSaldo() {
         return this.saldo;
+    }
+}
+
+//Clase estudiante que usa el principio de Single Responsibility
+class Student {
+    private String nombre;
+    private String apellido;
+
+    public Student(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
+    public void llamarEstudiante(){
+        String nombrecompleto = nombre+" "+apellido;
+        System.out.printf("El estudiante "+nombrecompleto+" es solicitado en Coordinacion");
     }
 }
 
