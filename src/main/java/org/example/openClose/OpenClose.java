@@ -1,5 +1,6 @@
 package org.example.openClose;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,19 @@ public class OpenClose {
      * ej. impuestoDepartamental ...
      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
      * */
+    public void ejecutar(){
+        System.out.println("CALCULADORA DE IMPUESTOS");
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(23333));
+        productos.add(new Producto(9000000));
+        CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
+
+
+
+        System.out.println("Total impuestos: "+ calculadoraImpuestos.calcularImpuestos(productos)+"$");
+
+
+    }
 }
 
 
