@@ -49,7 +49,7 @@ public class SingleResponsibility {
         for(Sistema sistema: sistemasList){
             System.out.println( "==========================================");
             System.out.println("SISTEMA");
-            System.out.println( "==========================================");
+            System.out.println( "==========================================\n");
 
             sistema.depositar(890);
             sistema.retirar(89);
@@ -59,6 +59,13 @@ public class SingleResponsibility {
 
         List<AlquilerPelicula> alquilerPeliculaList = new ArrayList<>();
         alquilerPeliculaList.add(new AlquilerPelicula(5678,800,"Interestelar"));
+        for(AlquilerPelicula alquilerPelicula: alquilerPeliculaList){
+
+            System.out.println("\nALQUILAR PELICULA");
+            System.out.println( "==========================================");
+            System.out.println( "Saldo usuario: " + alquilerPelicula.getSaldo());
+            System.out.println( "Costo: " + alquilerPelicula.getCosto());
+        }
 
     }
 }
@@ -156,11 +163,16 @@ class AlquilerPelicula {
     }
 
     public double getSaldo() {
-        return this.saldo;
+
+       return this.saldo;
      }
 
     public double getCosto() {
            return this.costo;
+    }
+
+    public String getNombre() {
+        return this.nombre;
     }
   }
 
