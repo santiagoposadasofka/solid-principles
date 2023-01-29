@@ -2,9 +2,28 @@ package org.example.dependecyInversion;
 
 public class DependencyInvesion {
     /**
-     * Se Sigue con la dinamica de los principios previos
+     *
+     *      * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     *      * y vamos a ejecutar sus comportamientos.
+     *      * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     *      * ej. impuestoDepartamental ...
+     *      * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
+     *
      * */
     public void ejecutar(){
+        System.out.println("DEPENDENCY INVERSION");
+        System.out.println(" " );
+        System.out.println("Servicio de correo Gmail" );
+        GmailService gmailService = new GmailService();
+        gmailService.enviarCorreo("July", "Saludo", "Prueba de mensaje por gmail.");
+
+        System.out.println(" " );
+        System.out.println("Servicio de correo OutlookService" );
+        OutlookService outlookService = new OutlookService();
+        outlookService.enviarCorreo("July", "Saludo", "Prueba de mensaje por outlook.");
+
+
+
 
 
     }
@@ -27,8 +46,12 @@ interface ServicioDeCorreo {
 
 class GmailService implements ServicioDeCorreo {
     @Override
+
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
-        // Envia correo utilizando la API de Gmail
+
+        System.out.println("Destinatario: " + destinatario );
+        System.out.println("Asunto: " + asunto );
+        System.out.println("Mensaje: " + mensaje );
     }
 }
 
@@ -36,6 +59,9 @@ class OutlookService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Outlook
+        System.out.println("Destinatario: " + destinatario );
+        System.out.println("Asunto: " + asunto );
+        System.out.println("Mensaje: " + mensaje );
     }
 }
 
