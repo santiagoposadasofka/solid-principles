@@ -15,18 +15,15 @@ public class OpenClose {
     public void ejecutar(){
         System.out.println("CALCULADORA DE IMPUESTOS");
         List<Producto> productos = new ArrayList<>();
+        //Lista de productos
         productos.add(new Producto(23333));
         productos.add(new Producto(9000000));
         CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
 
-
-
         System.out.println("Total impuestos: "+ calculadoraImpuestos.calcularImpuestos(productos)+"$");
-
 
     }
 }
-
 
 /*
 * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
@@ -40,6 +37,7 @@ public class OpenClose {
 *  nuevas reglas de impuestos sin tener que modificar la clase CalculadoraImpuestos, cumpliendo con el principio
 * del patrón open close.
 * */
+
 abstract class Impuesto {
     abstract double calcular(Producto producto);
 }
@@ -58,6 +56,12 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+class ImpuestoCompercial extends  Impuesto{
+    double calcular(Producto producto){
+        return producto.getPrecio()*0.11;
+    }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -65,6 +69,7 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+        reglasImpuestos.add(new ImpuestoCompercial());
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
