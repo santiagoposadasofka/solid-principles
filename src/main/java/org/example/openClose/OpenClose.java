@@ -1,11 +1,58 @@
 package org.example.openClose;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OpenClose {
-}
+    /**
+     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     * y vamos a ejecutar sus comportamientos.
+     * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     * ej. impuestoDepartamental ...
+     * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
+     */
 
+    public void Ejecutar() {
+        /**
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(500));
+        productos.add(new Producto(1000));
+        productos.add(new Producto(1500));
+
+        CalculadoraImpuestos calculation=new CalculadoraImpuestos();
+
+        calculation.agregarReglaImpuesto(new ImpuestoMunicipal());
+
+
+        double TotalImpuesto = calculation.calcularImpuestos(productos);
+        System.out.println("" + ":" + TotalImpuesto);
+
+        CalculadoraImpuestosAntiPatron calculadoraImpuestosAtiPatron = new CalculadoraImpuestosAntiPatron();
+        double TotalImpuestoAntipatron = calculadoraImpuestosAtiPatron.calcularImpuestosAtiPatron(productos);
+        System.out.println("" + ":" + TotalImpuestoAntipatron);**/
+
+
+
+        CalculadoraImpuestos calculadora = new CalculadoraImpuestos();
+        ImpuestoMunicipal impuestoMunicipal = new ImpuestoMunicipal();
+        calculadora.agregarReglaImpuesto(impuestoMunicipal);
+        List<Producto> productos = Arrays.asList(new Producto( 100.0),
+                new Producto( 55.0));
+        double totalImpuestos = calculadora.calcularImpuestos(productos);
+        System.out.println("Total Impuestos: " + totalImpuestos);
+
+        //instancio mi ejemplo
+
+        Calculadora calculadoraSuma = new Calculadora(new Suma(5.0, 2.0));
+        double resultadoSuma = calculadoraSuma.calcular();
+        System.out.println("Resultado Suma: " + resultadoSuma);
+
+        Calculadora calculadoraResta = new Calculadora(new Resta(5.0, 2.0));
+        double resultadoResta = calculadoraResta.calcular();
+        System.out.println("Resultado Resta: " + resultadoResta);
+    }
+}
 
 /*
 * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
@@ -26,6 +73,7 @@ abstract class Impuesto {
 class ImpuestoNacional extends Impuesto {
     @Override
     double calcular(Producto producto) {
+
         return producto.getPrecio() * 0.15;
     }
 }
@@ -33,7 +81,15 @@ class ImpuestoNacional extends Impuesto {
 class ImpuestoImportacion extends Impuesto {
     @Override
     double calcular(Producto producto) {
+
         return producto.getPrecio() * 0.25;
+    }
+}
+class ImpuestoMunicipal extends Impuesto{
+
+    @Override
+    double calcular(Producto producto) {
+        return producto.getPrecio() * 0.015;
     }
 }
 
@@ -44,6 +100,7 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
@@ -75,7 +132,7 @@ class CalculadoraImpuestos {
 * */
 
 
-class CalculadoraImpuestosAtiPatron {
+class CalculadoraImpuestosAntiPatron {
     public double calcularImpuestosAtiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
@@ -83,9 +140,58 @@ class CalculadoraImpuestosAtiPatron {
                 totalImpuestos += producto.getPrecio() * 0.15;
             } else if (producto.getTipo() == "Importado") {
                 totalImpuestos += producto.getPrecio() * 0.25;
+            } else if (producto.getTipo() == "ImpuestoMunicipal") {
+                totalImpuestos += producto.getPrecio() * 0.015;
             }
         }
         return totalImpuestos;
+    }
+}
+
+
+//creacion del ejemplo correcto
+abstract class Operacion {
+    protected double operando1;
+    protected double operando2;
+
+    //creo constructor de mi nueva clase
+    public Operacion(double operando1, double operando2) {
+        this.operando1 = operando1;
+        this.operando2 = operando2;
+    }
+    //creo mi metodo
+    public abstract double calcular();
+}
+//creo la clase SUMA que hereda de operacion
+class Suma extends Operacion {
+    public Suma(double operando1, double operando2) {
+        super(operando1, operando2);
+    }
+
+    @Override
+    public double calcular() {
+        return operando1 + operando2;
+    }
+}
+//clase resta que hereda de operacion
+class Resta extends Operacion {
+    public Resta(double operando1, double operando2) {
+        super(operando1, operando2);
+    }
+
+    @Override
+    public double calcular() {
+        return operando1 - operando2;
+    }
+}
+
+class Calculadora {
+    private Operacion operacion;
+    public Calculadora(Operacion operacion) {
+        this.operacion = operacion;
+    }
+    public double calcular() {
+        return operacion.calcular();
     }
 }
 

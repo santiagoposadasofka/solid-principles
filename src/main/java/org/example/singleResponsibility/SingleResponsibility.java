@@ -1,6 +1,46 @@
 package org.example.singleResponsibility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta bancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
+
+    public void ejecutar(){
+        CuentaBancaria cuentica = new CuentaBancaria(2000);
+
+        cuentica.depositar(1200.00);
+        cuentica.retirar(395.00);
+
+
+        double saldo = cuentica.getSaldo();
+
+        Sistema miSistema = new Sistema();
+        miSistema.depositar(1200.00);
+        miSistema.retirar(395.00);
+        miSistema.tranferir(115);
+
+        //instancio mi ejemplo
+        GestorTareas gestor = new GestorTareas();
+        Tarea tarea1 = new Tarea("Hacer la tarea de programacion)");
+        gestor.agregarTarea(tarea1);
+        System.out.println(tarea1);
+
+        Tarea tarea2 = new Tarea("Sacar la ropa de la lavadora");
+        gestor.agregarTarea(tarea2);
+
+        List<Tarea> todasLasTareas = gestor.obtenerTareas();
+        System.out.println(todasLasTareas);
+
+        List<Tarea> tareasCompletadas = gestor.obtenerTareasCompletadas();
+        System.out.println(tareasCompletadas);
+
+    }
 }
 
 
@@ -71,4 +111,69 @@ class Sistema {
         db.saveTransaction(receipt);
         emailSender.send("Retiro realizado", receipt);
     }
+
+    public void tranferir(double cantidad){
+    cuenta.retirar(cantidad);
+    String receipt = "Tranferencia realizada por una cantidad  de: " + cantidad;
+    printer.print(receipt);
+    db.saveTransaction(receipt);
+    emailSender.send("Transferencia realizada exitosamente", receipt);
+
+    }
 }
+
+
+    //creacion del ejemplo correcto
+    class Tarea {
+        private String descripcion;
+        private boolean estado;
+
+        public Tarea(String descripcion) {
+            this.descripcion = descripcion;
+            this.estado = false;
+        }
+
+        public String getDescripcion() {
+            return descripcion;
+        }
+
+        public boolean getEstado() {
+            return estado;
+        }
+
+        public void completar() {
+            this.estado = true;
+        }
+    }
+     class GestorTareas {
+        private List<Tarea> tareas;
+    //creo el constructor
+        public GestorTareas() {
+            tareas = new ArrayList<>();
+        }
+    //creo los metodos que necesito
+        public void agregarTarea(Tarea tarea) {
+            tareas.add(tarea);
+        }
+
+        public void eliminarTarea(Tarea tareita) {
+            tareas.remove(tareita);
+        }
+
+        public List<Tarea> obtenerTareas() {
+            return tareas;
+        }
+
+        public List<Tarea> obtenerTareasCompletadas() {
+            List<Tarea> completadas = new ArrayList<>();
+            //recorro mi lista
+            for (Tarea t : tareas) {
+                if (t.getEstado()) {
+                    completadas.add(t);
+                }
+            }
+            return completadas;
+        }
+
+    }
+

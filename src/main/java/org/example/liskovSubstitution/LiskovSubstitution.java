@@ -6,14 +6,35 @@ import java.util.List;
 public class LiskovSubstitution {
 
     public void ejecutar(){
-        List<FiguraGeometrica> figuras = new ArrayList<>();
+        /**List<FiguraGeometrica> figuras = new ArrayList<>();
         figuras.add(new Cuadrado(10));
         figuras.add(new Triangulo(5, 10));
         figuras.add(new Circulo(2));
 
         for(FiguraGeometrica figura: figuras) {
             System.out.println("Area: " + figura.area());
-        }
+        }**/
+
+        Cuadrado cuadrado = new Cuadrado(5);
+        double areaCuadrado = cuadrado.area();
+
+        Triangulo triangulo = new Triangulo(4, 6);
+        double areaTriangulo = triangulo.area();
+
+        Circulo circulo = new Circulo(3);
+        double areaCirculo = circulo.area();
+        System.out.println("Area cuadrado: " + cuadrado.area());
+        System.out.println("Area triangulo: " + triangulo.area());
+        System.out.println("Area circulo: " + circulo.area());
+
+        //instancio mi ejemplo
+        Perro miPerro = new Perro("El perro Felipe ");
+        Serpiente miSerpiente = new Serpiente("La serpiente Cobra bonita");
+
+        Cuidador miCuidador = new Cuidador();
+        miCuidador.alimentarAnimal(miPerro);
+        miCuidador.alimentarAnimal(miSerpiente);
+
     }
 }
 
@@ -120,3 +141,47 @@ class EmpleadoTemporal extends Empleado {
         //...
     }
 }
+
+//creacion del ejemplo correcto
+
+abstract class Animales{
+    //creo mis atributos
+    protected String nombre;
+    protected int patas;
+//creo el constructor
+    public Animales(String nombre, int patas) {
+        this.nombre = nombre;
+        this.patas = patas;
+    }
+    //creo mi metodo de hacer sonido
+    public abstract void makeSound();
+}
+//creo una clase perro que hereda de Animales
+class Perro extends Animales {
+    public Perro(String nombre) {
+        super(nombre, 4);
+    }
+
+    @Override
+    public void makeSound() {
+        System.out.println("Woof woof");
+    }
+}
+//creo una clase serpiente que hereda de Animales
+class Serpiente extends Animales {
+    public Serpiente(String nombre) {
+        super(nombre, 0);
+    }
+
+    @Override
+    public void makeSound() {
+        System.out.println("Sissssssssss");
+    }
+}
+//creo una clase cuidador
+class Cuidador {
+    public void alimentarAnimal(Animales animal) {
+        System.out.println(animal.nombre + " esta comiendo muy rico");
+
+}}
+

@@ -1,8 +1,32 @@
 package org.example.dependecyInversion;
 
 public class DependencyInvesion {
-}
+    /**
+     * Se Sigue con la dinamica de los principios previos
+     */
+    public void Ejecutar() {
 
+        DependencyInvesion claseDI = new DependencyInvesion();
+        GmailService gmail = new GmailService();
+        OutlookService outlook = new OutlookService();
+        AmMensajes amMensajes = new AmMensajes();
+        Empleado empleadoConGmail = new Empleado(gmail);
+        Empleado empleadoConOutlook = new Empleado(outlook);
+        Empleado empleadoConAmMensajes = new Empleado(amMensajes);
+        empleadoConGmail.enviarCorreo("camila cordoba","tarea de matematicas","cami hola, hay que hacer esa tarea rapido, comunicate conmigo");
+        empleadoConAmMensajes.enviarCorreo("luisito perez","contacto empresa","hola amigo luis, te envio el contacto de la empresa de la que me hablaste, hasta luego");
+        empleadoConOutlook.enviarCorreo("mami","de caracter urgente","hola mami, deje la lavadora funcionando, recuerda sacar la ropa por favor. chao, te veo mas tarde");
+
+        //instancio mi ejemplo
+
+        Ingeniero electrico = new IngenieroElecetrico();
+        Ingeniero gas = new GasIngeniero();
+        Carro carroElectrico = new Carro(electrico);
+        Carro carroGas = new Carro(gas);
+        carroElectrico.start();
+        carroGas.start();
+    }
+}
 
 /*
 * Un ejemplo de inversión de dependencia en Java podría ser una clase "Empleado" que depende de una
@@ -10,8 +34,6 @@ public class DependencyInvesion {
 * directamente de una implementación específica de "ServicioDeCorreo", como "GmailService" o "OutlookService",
 * se proporciona una instancia de "ServicioDeCorreo" a través de un constructor o un setter. De esta forma,
 * "Empleado" no tiene conocimiento de cómo se envían los correos electrónicos, sino que simplemente utiliza la interfaz.
-
-
  * */
 
 interface ServicioDeCorreo {
@@ -22,6 +44,9 @@ class GmailService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Gmail
+        System.out.println("Enviando email desde google " +
+                "a " + destinatario + " con el asunto "
+                + asunto + " "+" diciendole: " + mensaje);
     }
 }
 
@@ -29,6 +54,19 @@ class OutlookService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Outlook
+        System.out.println("Enviando email desde outlook " +
+                "a " + destinatario + " con el asunto "
+                + asunto + " diciendole: " + mensaje);
+    }
+}
+
+class AmMensajes implements ServicioDeCorreo{
+
+    @Override
+    public void enviarCorreo(String destinatario, String asunto, String mensaje) {
+        System.out.println("Enviando email desde AmMensajes " +
+                "a " + destinatario + " con el asunto "
+                + asunto + " diciendole: " + mensaje);
     }
 }
 
@@ -54,6 +92,38 @@ class Empleado {
         servicioDeCorreo.enviarCorreo(destinatario, asunto, mensaje);
     }
 }
+
+
+//creacion del ejemplo correcto
+interface Ingeniero {
+    void start();
+}
+
+class IngenieroElecetrico implements Ingeniero {
+    @Override
+    public void start() {
+        System.out.println("ingeniero electrico iniciado");
+    }
+}
+
+class GasIngeniero implements Ingeniero {
+    @Override
+    public void start() {
+        System.out.println("ingeniero de gas iniciado");
+    }
+}
+
+class Carro {
+    private Ingeniero Ingeniero;
+
+    public Carro(Ingeniero Ingeniero) {
+        this.Ingeniero = Ingeniero;
+    }
+
+    public void start() {
+        Ingeniero.start();
+}}
+
 
 
 
