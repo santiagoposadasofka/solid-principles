@@ -25,6 +25,21 @@ public class SingleResponsibility {
         miSistema.retirar(395.00);
         miSistema.tranferir(115);
 
+        //instancio mi ejemplo
+        GestorTareas gestor = new GestorTareas();
+        Tarea tarea1 = new Tarea("Hacer la tarea de programacion)");
+        gestor.agregarTarea(tarea1);
+        System.out.println(tarea1);
+
+        Tarea tarea2 = new Tarea("Sacar la ropa de la lavadora");
+        gestor.agregarTarea(tarea2);
+
+        List<Tarea> todasLasTareas = gestor.obtenerTareas();
+        System.out.println(todasLasTareas);
+
+        List<Tarea> tareasCompletadas = gestor.obtenerTareasCompletadas();
+        System.out.println(tareasCompletadas);
+
     }
 }
 
@@ -105,7 +120,10 @@ class Sistema {
     emailSender.send("Transferencia realizada exitosamente", receipt);
 
     }
+}
 
+
+    //creacion del ejemplo correcto
     class Tarea {
         private String descripcion;
         private boolean estado;
@@ -127,20 +145,19 @@ class Sistema {
             this.estado = true;
         }
     }
-    //creacion del ejemplo correcto
-    class GestorTareas {
+     class GestorTareas {
         private List<Tarea> tareas;
-
+    //creo el constructor
         public GestorTareas() {
             tareas = new ArrayList<>();
         }
-
+    //creo los metodos que necesito
         public void agregarTarea(Tarea tarea) {
             tareas.add(tarea);
         }
 
-        public void eliminarTarea(Tarea tarea) {
-            tareas.remove(tarea);
+        public void eliminarTarea(Tarea tareita) {
+            tareas.remove(tareita);
         }
 
         public List<Tarea> obtenerTareas() {
@@ -149,6 +166,7 @@ class Sistema {
 
         public List<Tarea> obtenerTareasCompletadas() {
             List<Tarea> completadas = new ArrayList<>();
+            //recorro mi lista
             for (Tarea t : tareas) {
                 if (t.getEstado()) {
                     completadas.add(t);
@@ -156,5 +174,6 @@ class Sistema {
             }
             return completadas;
         }
+
     }
-}
+

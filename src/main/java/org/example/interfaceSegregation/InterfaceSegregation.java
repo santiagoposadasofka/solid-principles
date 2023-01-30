@@ -6,27 +6,49 @@ public class InterfaceSegregation {
      * */
 
     public void Ejecutar(){
-        Avion avioncito = new Avion();
-        Helicoptero helicoptercito = new Helicoptero();
-        Barco barquito = new Barco();
-        motoAcuatica motico =new motoAcuatica();
-        cohete Cohete =new cohete();
+        Avion miAvion = new Avion();
+        miAvion.despegar();
+        miAvion.aterrizar();
+        miAvion.navegar();
+        System.out.println("mi avion esta despegando, mas tarde navegando y luego aterrizando");
 
-        avioncito.despegar();
-        avioncito.aterrizar();
-        avioncito.navegar();
+        Helicoptero miHelicoptero = new Helicoptero();
+        miHelicoptero.despegar();
+        miHelicoptero.aterrizar();
+        System.out.println("mi helicoptero esta despegando  y luego aterrizando");
 
-        helicoptercito.despegar();
-        helicoptercito.aterrizar();
+        Barco miBarco = new Barco();
+        miBarco.navegar();
+        System.out.println("mi barco esta navengando ");
 
-        barquito.navegar();
+        motoAcuatica miMotoAcuatica = new motoAcuatica();
+        miMotoAcuatica.navegar();
+        miMotoAcuatica.saltarOlas();
+        System.out.println("mi moto acuatica esta navegando y luego saltando las olas");
 
-        motico.saltarOlas();
-        motico.navegar();
+        cohete miCohete = new cohete();
+        miCohete.despegar();
+        miCohete.aterrizar();
+        miCohete.acelerar();
+        System.out.println("mi cohete esta acelerando, despegando y luego aterrizando en la luna");
 
-        Cohete.acelerar();
-        Cohete.aterrizar();
-        Cohete.despegar();
+        //instancio mi ejemplo
+
+        MicrosoftWord doc = new MicrosoftWord();
+        doc.abrir();
+        doc.guardar();
+        doc.imprimir();
+        doc.CorrectorOrtografico();
+        doc.chequeoDeGramatica();
+        System.out.println("Estoy abriendo, guardando , imprimiendo, validando ortografia y gramatica en mi Documento :) ");
+
+        AdobeAcrobat pdf = new AdobeAcrobat();
+        pdf.abrir();
+        pdf.guardar();
+        pdf.imprimir();
+        pdf.encriptar();
+        pdf.desencriptar();
+        System.out.println("Estoy abriendo, guardando , imprimiendo, encriptando y desencriptando mi PDF :)");
     }
 }
 
@@ -106,55 +128,55 @@ class cohete implements Volador{
 
 //creacion del ejemplo correcto
 
-interface Document {
-    void open();
-    void save();
-    void print();
+interface Documento {
+    void abrir();
+    void guardar();
+    void imprimir();
 }
 
-interface WordDocument extends Document {
-    void spellCheck();
-    void grammarCheck();
+interface WordDocumento extends Documento {
+    void CorrectorOrtografico();
+    void chequeoDeGramatica();
 }
 
-interface PDFDocument extends Document {
-    void encrypt();
-    void decrypt();
+interface PDFDocumento extends Documento {
+    void encriptar();
+    void desencriptar();
 }
 
-class MicrosoftWord implements WordDocument {
-    public void open() {
-        // Microsoft Word open code
+class MicrosoftWord implements WordDocumento {
+    public void abrir() {
+        // Microsoft Word abrir codigo
     }
-    public void save() {
-        // Microsoft Word save code
+    public void guardar() {
+        // Microsoft Word guardar codigo
     }
-    public void print() {
-        // Microsoft Word print code
+    public void imprimir() {
+        // Microsoft Word imprimir codigo
     }
-    public void spellCheck() {
-        // Microsoft Word spell check code
+    public void CorrectorOrtografico() {
+        // Microsoft Word chequea ortografia
     }
-    public void grammarCheck() {
-        // Microsoft Word grammar check code
+    public void chequeoDeGramatica() {
+        // Microsoft Word chequeo de gramatica en el codigo
     }
 }
 
-class AdobeAcrobat implements PDFDocument {
-    public void open() {
-        // Adobe Acrobat open code
+class AdobeAcrobat implements PDFDocumento {
+    public void abrir() {
+        // Adobe Acrobat abrir codigo
     }
-    public void save() {
-        // Adobe Acrobat save code
+    public void guardar() {
+        // Adobe Acrobat guardar codigo
     }
-    public void print() {
-        // Adobe Acrobat print code
+    public void imprimir() {
+        // Adobe Acrobat imprimir codigo
     }
-    public void encrypt() {
-        // Adobe Acrobat encrypt code
+    public void encriptar() {
+        // Adobe Acrobat encriptar codigo
     }
-    public void decrypt() {
-        // Adobe Acrobat decrypt code
+    public void desencriptar() {
+        // Adobe Acrobat desencriptar codigo
     }
 }
 
