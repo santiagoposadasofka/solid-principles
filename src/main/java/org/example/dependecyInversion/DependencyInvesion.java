@@ -1,7 +1,73 @@
 package org.example.dependecyInversion;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DependencyInvesion {
+    public static void ejecutar() {
+        // Probando la interfaz servicio
+        Empleado empleado = new Empleado(new GmailService());
+
+        empleado.enviarCorreo("Elbarto@gmail.com", "Mensaje del barto", "El basto estuvo aqui");
+        System.out.println("\n");
+
+        //Lista para computadores con diferente sistema operativo
+        List<Computador> computadores = new ArrayList<>();
+        computadores.add(new Computador(new Windows()));
+        computadores.add(new Computador(new Linux()));
+        for (Computador computador : computadores) {
+            computador.encender();
+        }
+      }
+    }
+
+    //interfaz para el sistema operativo
+    interface SistemaOperativo{
+        void encender();
+    }
+
+    class Windows implements SistemaOperativo{
+        @Override
+        public void encender() {
+            System.out.println("Windows encendido");
+        }
+    }
+
+    class Linux implements SistemaOperativo{
+        @Override
+        public void encender() {
+            System.out.println("Linux encendido");
+        }
+    }
+
+    class Computador{
+        private SistemaOperativo sistemaOperativo;
+
+        public Computador(SistemaOperativo sistemaOperativo) {
+            this.sistemaOperativo = sistemaOperativo;
+        }
+
+        public void encender(){
+            sistemaOperativo.encender();
+        }
+
+
+
+
+
+
+
+    GmailService gmailService = new GmailService();
+
+    OutlookService outlookService = new OutlookService();
+    Empleado SantiagoPosada = new Empleado(gmailService);
+
+    Empleado JesusMiguel = new Empleado(outlookService);
+
 }
+
+
+
+
 
 
 /*
@@ -10,8 +76,6 @@ public class DependencyInvesion {
 * directamente de una implementación específica de "ServicioDeCorreo", como "GmailService" o "OutlookService",
 * se proporciona una instancia de "ServicioDeCorreo" a través de un constructor o un setter. De esta forma,
 * "Empleado" no tiene conocimiento de cómo se envían los correos electrónicos, sino que simplemente utiliza la interfaz.
-
-
  * */
 
 interface ServicioDeCorreo {
@@ -22,6 +86,9 @@ class GmailService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Gmail
+        System.out.println("Enviando email desde google " +
+                "a " + destinatario + " con el asunto "
+                + asunto + "diciendole: " + mensaje);
     }
 }
 
@@ -29,6 +96,9 @@ class OutlookService implements ServicioDeCorreo {
     @Override
     public void enviarCorreo(String destinatario, String asunto, String mensaje) {
         // Envia correo utilizando la API de Outlook
+        System.out.println("Enviando email desde outlook " +
+                "a " + destinatario + " con el asunto "
+                + asunto + "diciendole: " + mensaje);
     }
 }
 

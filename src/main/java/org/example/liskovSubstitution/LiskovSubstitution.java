@@ -3,9 +3,10 @@ package org.example.liskovSubstitution;
 import java.util.ArrayList;
 import java.util.List;
 
+//  Liskov Substitution Principle
 public class LiskovSubstitution {
 
-    public void ejecutar(){
+    public static void ejecutar(){
         List<FiguraGeometrica> figuras = new ArrayList<>();
         figuras.add(new Cuadrado(10));
         figuras.add(new Triangulo(5, 10));
@@ -14,12 +15,38 @@ public class LiskovSubstitution {
         for(FiguraGeometrica figura: figuras) {
             System.out.println("Area: " + figura.area());
         }
+        System.out.println ("\n");
+        List <Vehiculo>vehiculos = new ArrayList<>();
+        vehiculos.add(new AutoElectrico());
+        vehiculos.add(new AutoGasolina());
+        for (Vehiculo vehiculo: vehiculos){
+            vehiculo.acelerarVehiculo();
+        }
     }
 }
 
+// Clase que representa el principio de sustitución de Liskov
+abstract class Vehiculo{
+    private String Tipo, Marca;
+    public abstract void acelerarVehiculo();
+}
+class AutoElectrico extends Vehiculo{
+    public void acelerarVehiculo(){
+        System.out.println("Acelerando auto electrico");
+    }
+}
+class AutoGasolina extends Vehiculo{
+    public void acelerarVehiculo(){
+        System.out.println("Acelerando auto a gasolina");
+    }
+}
 
 /*
-* Un ejemplo de sustitución de Liskov en Java podría ser una jerarquía de clases "FiguraGeometrica"
+    Liskov Substitution Principle
+    Las clases derivadas deben ser sustituibles por sus clases base
+    (Las clases derivadas deben ser capaces de sustituir a sus clases base)
+
+*     Un ejemplo de sustitución de Liskov en Java podría ser una jerarquía de clases "FiguraGeometrica"
 * que tiene una clase base "FiguraGeometrica" y varias subclases que representan diferentes tipos
 * de figuras geométricas, como "Cuadrado", "Triangulo" y "Circulo". Todas las subclases tienen un método
 * "area()" que devuelve el área de la figura geométrica. La clase "FiguraGeometrica" es una superclase abstracta
