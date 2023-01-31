@@ -1,4 +1,7 @@
-package org.example.SingleResponsabilityOpenBootcamp;
+package org.example.SingleResponsabilityOpenBootcamp.EjemploUno;
+
+import org.example.SingleResponsabilityOpenBootcamp.EjemploUno.Emailer;
+
 /*
 public class Vehiculo {
     private int velocidad;

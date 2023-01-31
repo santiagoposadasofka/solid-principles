@@ -1,4 +1,4 @@
-package org.example.SingleResponsabilityOpenBootcamp;
+package org.example.SingleResponsabilityOpenBootcamp.EjemploUno;
 
 // se crea una clase dedicada a la gestion de correos, se puede comunicar con los objetos dentro de la clase
 //Una clase de usuario no se va a dedidacar a enviar correos, se va a dedicar a gestionar usuarios
