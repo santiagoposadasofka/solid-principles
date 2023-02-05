@@ -18,9 +18,14 @@ public class OpenClose {
         //Lista de productos
         productos.add(new Producto(23333));
         productos.add(new Producto(9000000));
+        productos.add(new Producto(760000));
         CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
 
         System.out.println("Total impuestos: "+ calculadoraImpuestos.calcularImpuestos(productos)+"$");
+
+        //Instanciando Antipatron
+        CalculadoraImpuestosAntiPatron calculadora = new CalculadoraImpuestosAntiPatron();
+        double impuestos = calculadora.calcularImpuestosAtiPatron(productos);
 
     }
 }
@@ -112,6 +117,33 @@ class CalculadoraImpuestosAntiPatron {
             }
         }
         return totalImpuestos;
+    }
+}
+
+/**
+ * Ejemplo de principio Open Close en el contexto de telefonos moviles
+ */
+interface Telefono {
+    void llamar();
+}
+
+class CelularBasico implements Telefono {
+    @Override
+    public void llamar() {
+        System.out.println("Llamando desde un celular básico");
+    }
+}
+
+class Smartphone implements Telefono {
+    @Override
+    public void llamar() {
+        System.out.println("Llamando desde un smartphone");
+    }
+}
+class CelularInteligente implements Telefono {
+    @Override
+    public void llamar() {
+        System.out.println("Llamando desde un celular inteligente");
     }
 }
 
