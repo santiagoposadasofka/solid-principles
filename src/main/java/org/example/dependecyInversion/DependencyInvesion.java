@@ -85,6 +85,7 @@ class Empleado {
         servicioDeCorreo.enviarCorreo(destinatario, asunto, mensaje);
     }
 }
+
 /**
  * Ejemplo: Terminal de transportes
  * 1. Caso cuando no se cumple el principio DependencyInversion.
@@ -94,21 +95,22 @@ class ServicioTransporte {
 
     private List<String> servicioDisponibles = new ArrayList<>();
 
-    public ServicioTransporte(){
+    public ServicioTransporte() {
         servicioDisponibles.add("Servicio 1");
         servicioDisponibles.add("Servicio 2");
     }
-    public List<String> obtenerServiciosDisponibles(){
+
+    public List<String> obtenerServiciosDisponibles() {
         return servicioDisponibles;
     }
 
-    public void compraTikets(String service, String pasajero){
+    public void compraTikets(String service, String pasajero) {
         System.out.println("Servicio 1: " + service);
         System.out.println("Pasajero: " + pasajero);
     }
 }
 
-class Terminal{
+class Terminal {
 
     private ServicioTransporte servicioTransporte;
 
@@ -116,16 +118,51 @@ class Terminal{
         this.servicioTransporte = servicioTransporte;
     }
 
-    public void mostrarSericiosDisponibles(){
+    public void mostrarServicioDisponibles() {
         List<String> servicioDisponible = servicioTransporte.obtenerServiciosDisponibles();
     }
 
-    public void compraTickets(String servicio, String pasajero){
+    public void compraTickets(String servicio, String pasajero) {
         servicioTransporte.compraTikets(servicio, pasajero);
     }
 }
 
 
+/**
+ * Ejemplo: Terminal de transportes
+ * 2. Caso cuando  se cumple el principio DependencyInversion.
+ */
+
+interface IservicioTransporte {
+    void  obtenerServiciosDisponibles();
+
+    void compraTikets(String service, String pasajero);
+
+}
+
+class servicioTransporte implements IservicioTransporte{
 
 
+    @Override
+    public void obtenerServiciosDisponibles() {
+       System.out.println("Servicio de transporte 1");
 
+    }
+
+    @Override
+    public void compraTikets(String service, String pasajero) {
+
+    }
+}
+
+class Terminal1 {
+    private IservicioTransporte iservicioTransporte;
+
+    public Terminal1(IservicioTransporte iservicioTransporte) {
+        this.iservicioTransporte = iservicioTransporte;
+    }
+
+    public void mostrarServiciosDisponible(){
+        mostrarServiciosDisponible();
+    }
+}
