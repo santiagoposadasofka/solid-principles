@@ -1,11 +1,34 @@
 package org.example.openClose;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OpenClose {
-}
+    /**
+     * Vamos a instanciar una clase calculadora de impuestos, vamos a añadir mas reglas de calculos de impuestos,
+     * y vamos a ejecutar sus comportamientos.
+     * Vamos a instanciar el antipatron, vamos a ejecutar sus comportamientos, vamos añadir mas reglas de impuestos,
+     * ej. impuestoDepartamental ...
+     * añadir un ejmplo de un escenario en donde se siga este patron o uno en donde no.
+     * */
+    public void ejecutar(){
+        System.out.println("CALCULADORA DE IMPUESTOS");
+        List<Producto> productos = new ArrayList<>();
+        //Lista de productos
+        productos.add(new Producto(23333));
+        productos.add(new Producto(9000000));
+        productos.add(new Producto(760000));
+        CalculadoraImpuestos calculadoraImpuestos = new CalculadoraImpuestos();
 
+        System.out.println("Total impuestos: "+ calculadoraImpuestos.calcularImpuestos(productos)+"$");
+
+        //Instanciando Antipatron
+        CalculadoraImpuestosAntiPatron calculadora = new CalculadoraImpuestosAntiPatron();
+        double impuestos = calculadora.calcularImpuestosAtiPatron(productos);
+
+    }
+}
 
 /*
 * Un ejemplo de patrón de abierto-cerrado en Java podría ser una clase "CalculadoraImpuestos" que se
@@ -19,6 +42,7 @@ public class OpenClose {
 *  nuevas reglas de impuestos sin tener que modificar la clase CalculadoraImpuestos, cumpliendo con el principio
 * del patrón open close.
 * */
+
 abstract class Impuesto {
     abstract double calcular(Producto producto);
 }
@@ -37,6 +61,12 @@ class ImpuestoImportacion extends Impuesto {
     }
 }
 
+class ImpuestoCompercial extends  Impuesto{
+    double calcular(Producto producto){
+        return producto.getPrecio()*0.11;
+    }
+}
+
 class CalculadoraImpuestos {
     private List<Impuesto> reglasImpuestos;
 
@@ -44,6 +74,7 @@ class CalculadoraImpuestos {
         this.reglasImpuestos = new ArrayList<>();
         reglasImpuestos.add(new ImpuestoNacional());
         reglasImpuestos.add(new ImpuestoImportacion());
+        reglasImpuestos.add(new ImpuestoCompercial());
     }
 
     public void agregarReglaImpuesto(Impuesto impuesto) {
@@ -75,7 +106,7 @@ class CalculadoraImpuestos {
 * */
 
 
-class CalculadoraImpuestosAtiPatron {
+class CalculadoraImpuestosAntiPatron {
     public double calcularImpuestosAtiPatron(List<Producto> productos) {
         double totalImpuestos = 0;
         for (Producto producto : productos) {
@@ -86,6 +117,33 @@ class CalculadoraImpuestosAtiPatron {
             }
         }
         return totalImpuestos;
+    }
+}
+
+/**
+ * Ejemplo de principio Open Close en el contexto de telefonos moviles
+ */
+interface Telefono {
+    void llamar();
+}
+
+class CelularBasico implements Telefono {
+    @Override
+    public void llamar() {
+        System.out.println("Llamando desde un celular básico");
+    }
+}
+
+class Smartphone implements Telefono {
+    @Override
+    public void llamar() {
+        System.out.println("Llamando desde un smartphone");
+    }
+}
+class CelularInteligente implements Telefono {
+    @Override
+    public void llamar() {
+        System.out.println("Llamando desde un celular inteligente");
     }
 }
 

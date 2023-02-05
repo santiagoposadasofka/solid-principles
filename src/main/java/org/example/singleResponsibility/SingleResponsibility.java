@@ -1,6 +1,73 @@
 package org.example.singleResponsibility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SingleResponsibility {
+    /**
+     * Van instanciar una cuenta vancaria y van a generar varios comportamientos en ella,
+     * van a instanciar una clase sistema, revisando las otras clases de las cuales la clase sistema depende,
+     * van a ejecutar sus comportamientos.
+     * Van a establecer un ejemplo de una clase que sigue este patron o una clase que no lo sigue.
+     * */
+
+    public void ejecutar(){
+
+
+        List<CuentaBancaria> cuentasBancarias = new ArrayList<>();
+        cuentasBancarias.add(new CuentaBancaria(10000));
+        cuentasBancarias.add(new CuentaBancaria(19000));
+
+
+        for(CuentaBancaria cuentaBancaria: cuentasBancarias){
+            System.out.println( "==========================================");
+            System.out.println("CUENTA BANCARIA");
+            System.out.println( "==========================================");
+            System.out.println( "Saldo cuenta bancaria: " + cuentaBancaria.getSaldo());
+
+
+            cuentaBancaria.depositar(200);
+            cuentaBancaria.retirar(2000);
+
+
+            System.out.println( "Depositar: 200 ");
+            System.out.println( "Retirar: 200 ");
+
+
+
+            System.out.println( "Nuevo Saldo: " + cuentaBancaria.getSaldo());
+
+        }
+        System.out.println("");
+
+
+
+
+        List<Sistema> sistemasList = new ArrayList<>();
+        sistemasList.add(new Sistema());
+
+        for(Sistema sistema: sistemasList){
+            System.out.println( "==========================================");
+            System.out.println("SISTEMA");
+            System.out.println( "==========================================\n");
+
+            sistema.depositar(890);
+            sistema.retirar(89);
+
+
+        }
+
+        List<AlquilerPelicula> alquilerPeliculaList = new ArrayList<>();
+        alquilerPeliculaList.add(new AlquilerPelicula(5678,800,"Interestelar"));
+        for(AlquilerPelicula alquilerPelicula: alquilerPeliculaList){
+
+            System.out.println("\nALQUILAR PELICULA");
+            System.out.println( "==========================================");
+            System.out.println( "Saldo usuario: " + alquilerPelicula.getSaldo());
+            System.out.println( "Costo: " + alquilerPelicula.getCosto());
+        }
+
+    }
 }
 
 
@@ -72,3 +139,40 @@ class Sistema {
         emailSender.send("Retiro realizado", receipt);
     }
 }
+
+/** Ejemplo de clase con patron de responsabilidad
+ */
+class AlquilerPelicula {
+     private double saldo;
+   private double costo;
+   private String nombre;
+   public AlquilerPelicula(double saldo, double costo, String nombre) {
+        this.saldo = saldo;
+      this.costo = costo;
+       this.nombre = nombre;
+    }
+    public void saldo(double cantidad) {
+         this.saldo += cantidad;
+    }
+
+    public void alquilar(double cantidad) {
+         if (costo> this.saldo) {
+             throw new IllegalArgumentException("Saldo insuficiente para alquilar");
+        }
+        this.saldo -= cantidad;
+    }
+
+    public double getSaldo() {
+
+       return this.saldo;
+     }
+
+    public double getCosto() {
+           return this.costo;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+  }
+
