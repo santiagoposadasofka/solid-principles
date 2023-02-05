@@ -72,5 +72,44 @@ class Barco implements Navegable {
     }
 
 }
+/**
+ * Ejemplo InterfaceSegregation
+ */
 
+interface destinosTuristicos{
+    void mostrarInformacion();
+}
+
+class Playa implements  destinosTuristicos{
+    private String nombre;
+    private String ubicacion;
+
+    public Playa(String nombre, String ubicacion) {
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+    }
+
+    @Override
+    public void mostrarInformacion() {
+        System.out.println("Información sobre playa");
+        System.out.println("Nombre: "+nombre);
+        System.out.println("Ubicación: "+ubicacion);
+
+    }
+}
+
+class Montaña implements destinosTuristicos{
+    private String nombre;
+    private String ubicacion;
+    private int altura;
+
+    @Override
+    public void mostrarInformacion() {
+        System.out.println("Información sobre playa");
+        System.out.println("Nombre: "+nombre);
+        System.out.println("Ubicación: "+ubicacion);
+        System.out.println("Altura: "+altura);
+
+    }
+}
 
